@@ -1,28 +1,3 @@
-
-![Alt text](../images/getting_started/instance.png "Pulsar Instance")
-
-Pulsar Logical Components
--------------------------
-- Pulsar was designed to serve as a multi-tenant system, allowing it to be shared across multiple departments within your organization by providing each with its own secure and isolated messaging environment - called units.
-- Each unit within the shared environment is called a tenant.
-- This design enables a single Pulsar instance to effectively be shared across your entire organization.
-
-Pulsar Logical Components
--------------------------
-1. **Tenant:**
-    - is the most basic unit of categorization of topics.
-    - can be spread across and isolated to different clusters
-    - provide a security boundary within different parts of an organization each having their own tenant.
-    - two configurable aspects: `Admin Roles` and `Allowed Clusters`
-
-2. **Namespaces**
-    - The administrative unit of the topic, which acts as a grouping mechanism for related topics.
-    - Most topic configurations are performed at the namespace level.
-    - Each tenant has one or multiple namespaces.
-
-3. **Topics**
-    - As in other pub-sub systems, topics in Pulsar are named channels for transmitting messages from producers to consumers.
-
 ![Alt text](../images/getting_started/multitenancy.png "Multitenancy")
 
 
