@@ -26,7 +26,7 @@ public class AppUtils {
 
     public static StockTicker strToStockTicker(String str) {
         String[] tokens = str.split(",");
-        Date date = Date.valueOf(tokens[0]);
+        Date date       = Date.valueOf(tokens[0]);
         String name     = tokens[1];
         Double open     = strToDoubleParser(tokens[2]);
         Double close    = strToDoubleParser(tokens[3]);
