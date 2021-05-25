@@ -2,14 +2,13 @@ package sn.academy.producers;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
+import org.apache.pulsar.client.api.BatcherBuilder;
 import org.apache.pulsar.client.api.Producer;
 import org.apache.pulsar.client.api.PulsarClient;
 import org.apache.pulsar.client.api.PulsarClientException;
 import org.apache.pulsar.client.impl.schema.JSONSchema;
 import sn.academy.config.AppConfig;
 import sn.academy.interceptors.CustomAsyncProducerInterceptor;
-import sn.academy.interceptors.CustomProducerInterceptor;
 import sn.academy.models.StockTicker;
 import sn.academy.utils.AppUtils;
 
@@ -29,6 +28,7 @@ public class AsyncProducer {
                 .producerName("stock-ticker-producer")
                 .intercept(interceptor)
                 .enableBatching(true)
+                .batcherBuilder(BatcherBuilder.KEY_BASED)
                 .blockIfQueueFull(true)
                 .maxPendingMessages(50000)
                 .create();
