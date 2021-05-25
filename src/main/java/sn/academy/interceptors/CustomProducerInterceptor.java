@@ -19,8 +19,9 @@ public class CustomProducerInterceptor implements ProducerInterceptor {
 
     @Override
     public Message beforeSend(Producer producer, Message message) {
-        System.out.println("[" + producer.getProducerName() + "] Sending message - " + message.getMessageId() + " -  with payload: " + new String(message.getData()));
-        return message;    }
+        System.out.println("[" + producer.getProducerName() + "] Sending message with payload: " + new String(message.getData()));
+        return message;
+    }
 
     @Override
     public void onSendAcknowledgement(Producer producer, Message message, MessageId messageId, Throwable throwable) {
@@ -34,5 +35,4 @@ public class CustomProducerInterceptor implements ProducerInterceptor {
     public AtomicInteger totalMessageCount() {
         return totalMessages;
     }
-
 }

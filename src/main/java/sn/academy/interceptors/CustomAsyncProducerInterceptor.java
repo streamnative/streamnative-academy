@@ -21,7 +21,6 @@ public class CustomAsyncProducerInterceptor implements ProducerInterceptor {
 
     @Override
     public Message beforeSend(Producer producer, Message message) {
-        System.out.println("[" + producer.getProducerName() + "] Sending message - " + message.getMessageId() + " -  with payload: " + new String(message.getData()));
         return message;    }
 
     @Override
@@ -34,7 +33,6 @@ public class CustomAsyncProducerInterceptor implements ProducerInterceptor {
         long t2 = System.currentTimeMillis();
         long totalTimeSeconds = TimeUnit.MILLISECONDS.toSeconds(t2 - t1);
         System.out.printf("Total messages produced: %s in %s seconds.%n", totalMessages.getAndAdd(1), totalTimeSeconds);
-
     }
 
     public AtomicInteger totalMessageCount() {
