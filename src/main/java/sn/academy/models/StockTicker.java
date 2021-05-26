@@ -1,6 +1,6 @@
 package sn.academy.models;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.Objects;
 
 public class StockTicker {
