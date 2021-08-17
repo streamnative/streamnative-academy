@@ -1,0 +1,30 @@
+@namespace("sn.academy.food_delivery.models.avro")
+protocol OrderProtocol {
+
+  import idl "./common.avdl";
+  import idl "./payment.avdl";
+  import idl "./restaurant.avdl";
+
+  record FoodOrder {
+    long order_id;
+    long customer_id;
+    long restaurant_id;
+    string time_placed;
+    OrderStatus order_status;
+    array<OrderDetail> details;
+    sn.academy.food_delivery.models.avro.Address delivery_location;
+    sn.academy.food_delivery.models.avro.CreditCard payment_method;
+    float total = 0.0;
+  }
+
+  record OrderDetail {
+     int quantity;
+     float total;
+     sn.academy.food_delivery.models.avro.MenuItem food_item;
+  }
+
+  enum OrderStatus {
+    NEW, ACCEPTED, READY, DISPATCHED, DELIVERED
+  }
+
+}
