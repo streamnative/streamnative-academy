@@ -10,5 +10,30 @@ protocol PaymentsProtocol {
     string account_number;
     string billing_zip;
     string ccv;
+    string expMonth;
+    string expYear;
+  }
+
+  record ApplePay {
+    string accountNumber;
+  }
+
+  record PayPal {
+    string accountNumber;
+  }
+
+  record Payment {
+    PaymentMethod method_of_payment;
+  	PaymentAmount amount;
+  }
+
+  record PaymentMethod {
+    union { CreditCard, ApplePay, PayPal } type;
+  }
+
+  record PaymentAmount {
+    float food_total;
+    float tax;
+    float total;
   }
 }

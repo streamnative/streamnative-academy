@@ -9,6 +9,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import sn.academy.food_delivery.models.avro.Address;
+import sn.academy.food_delivery.models.avro.ApplePay;
 import sn.academy.food_delivery.models.avro.CardType;
 import sn.academy.food_delivery.models.avro.CreditCard;
 import sn.academy.food_delivery.models.avro.FoodOrder;
@@ -16,6 +17,10 @@ import sn.academy.food_delivery.models.avro.FoodOrderMeta;
 import sn.academy.food_delivery.models.avro.MenuItem;
 import sn.academy.food_delivery.models.avro.OrderDetail;
 import sn.academy.food_delivery.models.avro.OrderStatus;
+import sn.academy.food_delivery.models.avro.PayPal;
+import sn.academy.food_delivery.models.avro.Payment;
+import sn.academy.food_delivery.models.avro.PaymentAmount;
+import sn.academy.food_delivery.models.avro.PaymentMethod;
 
 public class FoodOrderGenerator {
     private final int TOTAL_CUSTOMERS = 10000;
@@ -24,6 +29,7 @@ public class FoodOrderGenerator {
     private final Faker faker = new Faker();
     private final Random random = new Random();
     private final CardType[] cardTypes = CardType.values();
+
     private AtomicInteger orderId = new AtomicInteger();
 
     public FoodOrder generateOrder() {
@@ -46,12 +52,20 @@ public class FoodOrderGenerator {
 
         FoodOrderMeta foodOrderMeta =
                 new FoodOrderMeta(orderId.getAndIncrement(), customId, timePlaced, OrderStatus.NEW);
+
+        Payment payment = getPayment();
+        PaymentAmount paymentAmount = PaymentAmount.newBuilder()
+                .setFoodTotal(orderTotal)
+                .setTax(0.24f)
+                .setTotal(orderTotal + (orderTotal * 0.24f))
+                .build();
+        payment.setAmount(paymentAmount);
         return new FoodOrder(
                 foodOrderMeta,
                 restaurantId,
                 orderDetails,
                 getAddress(),
-                getCreditCard(),
+                payment,
                 orderTotal);
     }
 
@@ -61,12 +75,28 @@ public class FoodOrderGenerator {
         return new MenuItem(random.nextInt(35), food.dish(), "", price);
     }
 
-    private CreditCard getCreditCard() {
+    private Payment getPayment() {
         CardType cardType = cardTypes[random.nextInt(cardTypes.length)];
-        String creditCard = faker.finance().creditCard();
+
+        String card = faker.finance().creditCard();
         String ccv = (random.nextInt(900) + 100) + "";
 
-        return new CreditCard(cardType, creditCard, faker.address().zipCode(), ccv);
+        int month = random.nextInt(12) + 1;
+        int year = random.nextInt(2022 + random.nextInt(10));
+        CreditCard creditCard =
+                new CreditCard(cardType, card, faker.address().zipCode(), ccv, month + "", year + "");
+
+        PaymentMethod paymentMethod = null;
+        switch (random.nextInt(3)) {
+            case 0:
+                paymentMethod = new PaymentMethod(new PayPal());
+            case 1:
+                paymentMethod = new PaymentMethod(new CreditCard());
+            default:
+                paymentMethod = new PaymentMethod(new ApplePay());
+        }
+
+        return new Payment(paymentMethod, new PaymentAmount());
     }
 
     private Address getAddress() {

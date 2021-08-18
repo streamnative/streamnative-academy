@@ -14,8 +14,8 @@ import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 5852153619797477541L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"FoodOrder\",\"namespace\":\"sn.academy.food_delivery.models.avro\",\"fields\":[{\"name\":\"meta\",\"type\":{\"type\":\"record\",\"name\":\"FoodOrderMeta\",\"fields\":[{\"name\":\"order_id\",\"type\":\"int\"},{\"name\":\"customer_id\",\"type\":\"int\"},{\"name\":\"time_placed\",\"type\":\"string\"},{\"name\":\"order_status\",\"type\":{\"type\":\"enum\",\"name\":\"OrderStatus\",\"symbols\":[\"NEW\",\"ACCEPTED\",\"READY\",\"DISPATCHED\",\"DELIVERED\"]}}]}},{\"name\":\"restaurant_id\",\"type\":\"int\"},{\"name\":\"details\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"OrderDetail\",\"fields\":[{\"name\":\"quantity\",\"type\":\"int\"},{\"name\":\"total\",\"type\":\"float\"},{\"name\":\"food_item\",\"type\":{\"type\":\"record\",\"name\":\"MenuItem\",\"fields\":[{\"name\":\"item_id\",\"type\":\"int\"},{\"name\":\"item_name\",\"type\":\"string\"},{\"name\":\"item_description\",\"type\":\"string\"},{\"name\":\"price\",\"type\":\"float\"}]}}]}}},{\"name\":\"delivery_location\",\"type\":{\"type\":\"record\",\"name\":\"Address\",\"fields\":[{\"name\":\"street\",\"type\":\"string\"},{\"name\":\"city\",\"type\":\"string\"},{\"name\":\"state\",\"type\":\"string\"},{\"name\":\"zip\",\"type\":\"string\"}]}},{\"name\":\"payment_method\",\"type\":{\"type\":\"record\",\"name\":\"CreditCard\",\"fields\":[{\"name\":\"card_type\",\"type\":{\"type\":\"enum\",\"name\":\"CardType\",\"symbols\":[\"MASTERCARD\",\"AMEX\",\"VISA\",\"DISCOVER\"]}},{\"name\":\"account_number\",\"type\":\"string\"},{\"name\":\"billing_zip\",\"type\":\"string\"},{\"name\":\"ccv\",\"type\":\"string\"}]}},{\"name\":\"total\",\"type\":\"float\",\"default\":0.0}]}");
+  private static final long serialVersionUID = -7475168519278464585L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"FoodOrder\",\"namespace\":\"sn.academy.food_delivery.models.avro\",\"fields\":[{\"name\":\"meta\",\"type\":{\"type\":\"record\",\"name\":\"FoodOrderMeta\",\"fields\":[{\"name\":\"order_id\",\"type\":\"int\"},{\"name\":\"customer_id\",\"type\":\"int\"},{\"name\":\"time_placed\",\"type\":\"string\"},{\"name\":\"order_status\",\"type\":{\"type\":\"enum\",\"name\":\"OrderStatus\",\"symbols\":[\"NEW\",\"ACCEPTED\",\"READY\",\"DISPATCHED\",\"DELIVERED\"]}}]}},{\"name\":\"restaurant_id\",\"type\":\"int\"},{\"name\":\"details\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"OrderDetail\",\"fields\":[{\"name\":\"quantity\",\"type\":\"int\"},{\"name\":\"total\",\"type\":\"float\"},{\"name\":\"food_item\",\"type\":{\"type\":\"record\",\"name\":\"MenuItem\",\"fields\":[{\"name\":\"item_id\",\"type\":\"int\"},{\"name\":\"item_name\",\"type\":\"string\"},{\"name\":\"item_description\",\"type\":\"string\"},{\"name\":\"price\",\"type\":\"float\"}]}}]}}},{\"name\":\"delivery_location\",\"type\":{\"type\":\"record\",\"name\":\"Address\",\"fields\":[{\"name\":\"street\",\"type\":\"string\"},{\"name\":\"city\",\"type\":\"string\"},{\"name\":\"state\",\"type\":\"string\"},{\"name\":\"zip\",\"type\":\"string\"}]}},{\"name\":\"payment\",\"type\":{\"type\":\"record\",\"name\":\"Payment\",\"fields\":[{\"name\":\"method_of_payment\",\"type\":{\"type\":\"record\",\"name\":\"PaymentMethod\",\"fields\":[{\"name\":\"type\",\"type\":[{\"type\":\"record\",\"name\":\"CreditCard\",\"fields\":[{\"name\":\"card_type\",\"type\":{\"type\":\"enum\",\"name\":\"CardType\",\"symbols\":[\"MASTERCARD\",\"AMEX\",\"VISA\",\"DISCOVER\"]}},{\"name\":\"account_number\",\"type\":\"string\"},{\"name\":\"billing_zip\",\"type\":\"string\"},{\"name\":\"ccv\",\"type\":\"string\"},{\"name\":\"expMonth\",\"type\":\"string\"},{\"name\":\"expYear\",\"type\":\"string\"}]},{\"type\":\"record\",\"name\":\"ApplePay\",\"fields\":[{\"name\":\"accountNumber\",\"type\":\"string\"}]},{\"type\":\"record\",\"name\":\"PayPal\",\"fields\":[{\"name\":\"accountNumber\",\"type\":\"string\"}]}]}]}},{\"name\":\"amount\",\"type\":{\"type\":\"record\",\"name\":\"PaymentAmount\",\"fields\":[{\"name\":\"food_total\",\"type\":\"float\"},{\"name\":\"tax\",\"type\":\"float\"},{\"name\":\"total\",\"type\":\"float\"}]}}]}},{\"name\":\"total\",\"type\":\"float\",\"default\":0.0}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -75,7 +75,7 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
   @Deprecated public int restaurant_id;
   @Deprecated public java.util.List<sn.academy.food_delivery.models.avro.OrderDetail> details;
   @Deprecated public sn.academy.food_delivery.models.avro.Address delivery_location;
-  @Deprecated public sn.academy.food_delivery.models.avro.CreditCard payment_method;
+  @Deprecated public sn.academy.food_delivery.models.avro.Payment payment;
   @Deprecated public float total;
 
   /**
@@ -91,15 +91,15 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
    * @param restaurant_id The new value for restaurant_id
    * @param details The new value for details
    * @param delivery_location The new value for delivery_location
-   * @param payment_method The new value for payment_method
+   * @param payment The new value for payment
    * @param total The new value for total
    */
-  public FoodOrder(sn.academy.food_delivery.models.avro.FoodOrderMeta meta, java.lang.Integer restaurant_id, java.util.List<sn.academy.food_delivery.models.avro.OrderDetail> details, sn.academy.food_delivery.models.avro.Address delivery_location, sn.academy.food_delivery.models.avro.CreditCard payment_method, java.lang.Float total) {
+  public FoodOrder(sn.academy.food_delivery.models.avro.FoodOrderMeta meta, java.lang.Integer restaurant_id, java.util.List<sn.academy.food_delivery.models.avro.OrderDetail> details, sn.academy.food_delivery.models.avro.Address delivery_location, sn.academy.food_delivery.models.avro.Payment payment, java.lang.Float total) {
     this.meta = meta;
     this.restaurant_id = restaurant_id;
     this.details = details;
     this.delivery_location = delivery_location;
-    this.payment_method = payment_method;
+    this.payment = payment;
     this.total = total;
   }
 
@@ -112,7 +112,7 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
     case 1: return restaurant_id;
     case 2: return details;
     case 3: return delivery_location;
-    case 4: return payment_method;
+    case 4: return payment;
     case 5: return total;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
@@ -126,7 +126,7 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
     case 1: restaurant_id = (java.lang.Integer)value$; break;
     case 2: details = (java.util.List<sn.academy.food_delivery.models.avro.OrderDetail>)value$; break;
     case 3: delivery_location = (sn.academy.food_delivery.models.avro.Address)value$; break;
-    case 4: payment_method = (sn.academy.food_delivery.models.avro.CreditCard)value$; break;
+    case 4: payment = (sn.academy.food_delivery.models.avro.Payment)value$; break;
     case 5: total = (java.lang.Float)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
@@ -201,20 +201,20 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
   }
 
   /**
-   * Gets the value of the 'payment_method' field.
-   * @return The value of the 'payment_method' field.
+   * Gets the value of the 'payment' field.
+   * @return The value of the 'payment' field.
    */
-  public sn.academy.food_delivery.models.avro.CreditCard getPaymentMethod() {
-    return payment_method;
+  public sn.academy.food_delivery.models.avro.Payment getPayment() {
+    return payment;
   }
 
 
   /**
-   * Sets the value of the 'payment_method' field.
+   * Sets the value of the 'payment' field.
    * @param value the value to set.
    */
-  public void setPaymentMethod(sn.academy.food_delivery.models.avro.CreditCard value) {
-    this.payment_method = value;
+  public void setPayment(sn.academy.food_delivery.models.avro.Payment value) {
+    this.payment = value;
   }
 
   /**
@@ -281,8 +281,8 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
     private java.util.List<sn.academy.food_delivery.models.avro.OrderDetail> details;
     private sn.academy.food_delivery.models.avro.Address delivery_location;
     private sn.academy.food_delivery.models.avro.Address.Builder delivery_locationBuilder;
-    private sn.academy.food_delivery.models.avro.CreditCard payment_method;
-    private sn.academy.food_delivery.models.avro.CreditCard.Builder payment_methodBuilder;
+    private sn.academy.food_delivery.models.avro.Payment payment;
+    private sn.academy.food_delivery.models.avro.Payment.Builder paymentBuilder;
     private float total;
 
     /** Creates a new Builder */
@@ -318,12 +318,12 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
       if (other.hasDeliveryLocationBuilder()) {
         this.delivery_locationBuilder = sn.academy.food_delivery.models.avro.Address.newBuilder(other.getDeliveryLocationBuilder());
       }
-      if (isValidValue(fields()[4], other.payment_method)) {
-        this.payment_method = data().deepCopy(fields()[4].schema(), other.payment_method);
+      if (isValidValue(fields()[4], other.payment)) {
+        this.payment = data().deepCopy(fields()[4].schema(), other.payment);
         fieldSetFlags()[4] = other.fieldSetFlags()[4];
       }
-      if (other.hasPaymentMethodBuilder()) {
-        this.payment_methodBuilder = sn.academy.food_delivery.models.avro.CreditCard.newBuilder(other.getPaymentMethodBuilder());
+      if (other.hasPaymentBuilder()) {
+        this.paymentBuilder = sn.academy.food_delivery.models.avro.Payment.newBuilder(other.getPaymentBuilder());
       }
       if (isValidValue(fields()[5], other.total)) {
         this.total = data().deepCopy(fields()[5].schema(), other.total);
@@ -355,11 +355,11 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
         fieldSetFlags()[3] = true;
       }
       this.delivery_locationBuilder = null;
-      if (isValidValue(fields()[4], other.payment_method)) {
-        this.payment_method = data().deepCopy(fields()[4].schema(), other.payment_method);
+      if (isValidValue(fields()[4], other.payment)) {
+        this.payment = data().deepCopy(fields()[4].schema(), other.payment);
         fieldSetFlags()[4] = true;
       }
-      this.payment_methodBuilder = null;
+      this.paymentBuilder = null;
       if (isValidValue(fields()[5], other.total)) {
         this.total = data().deepCopy(fields()[5].schema(), other.total);
         fieldSetFlags()[5] = true;
@@ -596,76 +596,76 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
     }
 
     /**
-      * Gets the value of the 'payment_method' field.
+      * Gets the value of the 'payment' field.
       * @return The value.
       */
-    public sn.academy.food_delivery.models.avro.CreditCard getPaymentMethod() {
-      return payment_method;
+    public sn.academy.food_delivery.models.avro.Payment getPayment() {
+      return payment;
     }
 
 
     /**
-      * Sets the value of the 'payment_method' field.
-      * @param value The value of 'payment_method'.
+      * Sets the value of the 'payment' field.
+      * @param value The value of 'payment'.
       * @return This builder.
       */
-    public sn.academy.food_delivery.models.avro.FoodOrder.Builder setPaymentMethod(sn.academy.food_delivery.models.avro.CreditCard value) {
+    public sn.academy.food_delivery.models.avro.FoodOrder.Builder setPayment(sn.academy.food_delivery.models.avro.Payment value) {
       validate(fields()[4], value);
-      this.payment_methodBuilder = null;
-      this.payment_method = value;
+      this.paymentBuilder = null;
+      this.payment = value;
       fieldSetFlags()[4] = true;
       return this;
     }
 
     /**
-      * Checks whether the 'payment_method' field has been set.
-      * @return True if the 'payment_method' field has been set, false otherwise.
+      * Checks whether the 'payment' field has been set.
+      * @return True if the 'payment' field has been set, false otherwise.
       */
-    public boolean hasPaymentMethod() {
+    public boolean hasPayment() {
       return fieldSetFlags()[4];
     }
 
     /**
-     * Gets the Builder instance for the 'payment_method' field and creates one if it doesn't exist yet.
+     * Gets the Builder instance for the 'payment' field and creates one if it doesn't exist yet.
      * @return This builder.
      */
-    public sn.academy.food_delivery.models.avro.CreditCard.Builder getPaymentMethodBuilder() {
-      if (payment_methodBuilder == null) {
-        if (hasPaymentMethod()) {
-          setPaymentMethodBuilder(sn.academy.food_delivery.models.avro.CreditCard.newBuilder(payment_method));
+    public sn.academy.food_delivery.models.avro.Payment.Builder getPaymentBuilder() {
+      if (paymentBuilder == null) {
+        if (hasPayment()) {
+          setPaymentBuilder(sn.academy.food_delivery.models.avro.Payment.newBuilder(payment));
         } else {
-          setPaymentMethodBuilder(sn.academy.food_delivery.models.avro.CreditCard.newBuilder());
+          setPaymentBuilder(sn.academy.food_delivery.models.avro.Payment.newBuilder());
         }
       }
-      return payment_methodBuilder;
+      return paymentBuilder;
     }
 
     /**
-     * Sets the Builder instance for the 'payment_method' field
+     * Sets the Builder instance for the 'payment' field
      * @param value The builder instance that must be set.
      * @return This builder.
      */
-    public sn.academy.food_delivery.models.avro.FoodOrder.Builder setPaymentMethodBuilder(sn.academy.food_delivery.models.avro.CreditCard.Builder value) {
-      clearPaymentMethod();
-      payment_methodBuilder = value;
+    public sn.academy.food_delivery.models.avro.FoodOrder.Builder setPaymentBuilder(sn.academy.food_delivery.models.avro.Payment.Builder value) {
+      clearPayment();
+      paymentBuilder = value;
       return this;
     }
 
     /**
-     * Checks whether the 'payment_method' field has an active Builder instance
-     * @return True if the 'payment_method' field has an active Builder instance
+     * Checks whether the 'payment' field has an active Builder instance
+     * @return True if the 'payment' field has an active Builder instance
      */
-    public boolean hasPaymentMethodBuilder() {
-      return payment_methodBuilder != null;
+    public boolean hasPaymentBuilder() {
+      return paymentBuilder != null;
     }
 
     /**
-      * Clears the value of the 'payment_method' field.
+      * Clears the value of the 'payment' field.
       * @return This builder.
       */
-    public sn.academy.food_delivery.models.avro.FoodOrder.Builder clearPaymentMethod() {
-      payment_method = null;
-      payment_methodBuilder = null;
+    public sn.academy.food_delivery.models.avro.FoodOrder.Builder clearPayment() {
+      payment = null;
+      paymentBuilder = null;
       fieldSetFlags()[4] = false;
       return this;
     }
@@ -736,15 +736,15 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
         } else {
           record.delivery_location = fieldSetFlags()[3] ? this.delivery_location : (sn.academy.food_delivery.models.avro.Address) defaultValue(fields()[3]);
         }
-        if (payment_methodBuilder != null) {
+        if (paymentBuilder != null) {
           try {
-            record.payment_method = this.payment_methodBuilder.build();
+            record.payment = this.paymentBuilder.build();
           } catch (org.apache.avro.AvroMissingFieldException e) {
-            e.addParentField(record.getSchema().getField("payment_method"));
+            e.addParentField(record.getSchema().getField("payment"));
             throw e;
           }
         } else {
-          record.payment_method = fieldSetFlags()[4] ? this.payment_method : (sn.academy.food_delivery.models.avro.CreditCard) defaultValue(fields()[4]);
+          record.payment = fieldSetFlags()[4] ? this.payment : (sn.academy.food_delivery.models.avro.Payment) defaultValue(fields()[4]);
         }
         record.total = fieldSetFlags()[5] ? this.total : (java.lang.Float) defaultValue(fields()[5]);
         return record;
@@ -774,136 +774,6 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
     READER$.read(this, SpecificData.getDecoder(in));
   }
 
-  @Override protected boolean hasCustomCoders() { return true; }
-
-  @Override public void customEncode(org.apache.avro.io.Encoder out)
-    throws java.io.IOException
-  {
-    this.meta.customEncode(out);
-
-    out.writeInt(this.restaurant_id);
-
-    long size0 = this.details.size();
-    out.writeArrayStart();
-    out.setItemCount(size0);
-    long actualSize0 = 0;
-    for (sn.academy.food_delivery.models.avro.OrderDetail e0: this.details) {
-      actualSize0++;
-      out.startItem();
-      e0.customEncode(out);
-    }
-    out.writeArrayEnd();
-    if (actualSize0 != size0)
-      throw new java.util.ConcurrentModificationException("Array-size written was " + size0 + ", but element count was " + actualSize0 + ".");
-
-    this.delivery_location.customEncode(out);
-
-    this.payment_method.customEncode(out);
-
-    out.writeFloat(this.total);
-
-  }
-
-  @Override public void customDecode(org.apache.avro.io.ResolvingDecoder in)
-    throws java.io.IOException
-  {
-    org.apache.avro.Schema.Field[] fieldOrder = in.readFieldOrderIfDiff();
-    if (fieldOrder == null) {
-      if (this.meta == null) {
-        this.meta = new sn.academy.food_delivery.models.avro.FoodOrderMeta();
-      }
-      this.meta.customDecode(in);
-
-      this.restaurant_id = in.readInt();
-
-      long size0 = in.readArrayStart();
-      java.util.List<sn.academy.food_delivery.models.avro.OrderDetail> a0 = this.details;
-      if (a0 == null) {
-        a0 = new SpecificData.Array<sn.academy.food_delivery.models.avro.OrderDetail>((int)size0, SCHEMA$.getField("details").schema());
-        this.details = a0;
-      } else a0.clear();
-      SpecificData.Array<sn.academy.food_delivery.models.avro.OrderDetail> ga0 = (a0 instanceof SpecificData.Array ? (SpecificData.Array<sn.academy.food_delivery.models.avro.OrderDetail>)a0 : null);
-      for ( ; 0 < size0; size0 = in.arrayNext()) {
-        for ( ; size0 != 0; size0--) {
-          sn.academy.food_delivery.models.avro.OrderDetail e0 = (ga0 != null ? ga0.peek() : null);
-          if (e0 == null) {
-            e0 = new sn.academy.food_delivery.models.avro.OrderDetail();
-          }
-          e0.customDecode(in);
-          a0.add(e0);
-        }
-      }
-
-      if (this.delivery_location == null) {
-        this.delivery_location = new sn.academy.food_delivery.models.avro.Address();
-      }
-      this.delivery_location.customDecode(in);
-
-      if (this.payment_method == null) {
-        this.payment_method = new sn.academy.food_delivery.models.avro.CreditCard();
-      }
-      this.payment_method.customDecode(in);
-
-      this.total = in.readFloat();
-
-    } else {
-      for (int i = 0; i < 6; i++) {
-        switch (fieldOrder[i].pos()) {
-        case 0:
-          if (this.meta == null) {
-            this.meta = new sn.academy.food_delivery.models.avro.FoodOrderMeta();
-          }
-          this.meta.customDecode(in);
-          break;
-
-        case 1:
-          this.restaurant_id = in.readInt();
-          break;
-
-        case 2:
-          long size0 = in.readArrayStart();
-          java.util.List<sn.academy.food_delivery.models.avro.OrderDetail> a0 = this.details;
-          if (a0 == null) {
-            a0 = new SpecificData.Array<sn.academy.food_delivery.models.avro.OrderDetail>((int)size0, SCHEMA$.getField("details").schema());
-            this.details = a0;
-          } else a0.clear();
-          SpecificData.Array<sn.academy.food_delivery.models.avro.OrderDetail> ga0 = (a0 instanceof SpecificData.Array ? (SpecificData.Array<sn.academy.food_delivery.models.avro.OrderDetail>)a0 : null);
-          for ( ; 0 < size0; size0 = in.arrayNext()) {
-            for ( ; size0 != 0; size0--) {
-              sn.academy.food_delivery.models.avro.OrderDetail e0 = (ga0 != null ? ga0.peek() : null);
-              if (e0 == null) {
-                e0 = new sn.academy.food_delivery.models.avro.OrderDetail();
-              }
-              e0.customDecode(in);
-              a0.add(e0);
-            }
-          }
-          break;
-
-        case 3:
-          if (this.delivery_location == null) {
-            this.delivery_location = new sn.academy.food_delivery.models.avro.Address();
-          }
-          this.delivery_location.customDecode(in);
-          break;
-
-        case 4:
-          if (this.payment_method == null) {
-            this.payment_method = new sn.academy.food_delivery.models.avro.CreditCard();
-          }
-          this.payment_method.customDecode(in);
-          break;
-
-        case 5:
-          this.total = in.readFloat();
-          break;
-
-        default:
-          throw new java.io.IOException("Corrupt ResolvingDecoder.");
-        }
-      }
-    }
-  }
 }
 
 

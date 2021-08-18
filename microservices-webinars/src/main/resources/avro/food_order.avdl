@@ -10,7 +10,7 @@ protocol OrderProtocol {
     int restaurant_id;
     array<OrderDetail> details;
     sn.academy.food_delivery.models.avro.Address delivery_location;
-    sn.academy.food_delivery.models.avro.CreditCard payment_method;
+    sn.academy.food_delivery.models.avro.Payment payment;
     float total = 0.0;
   }
 

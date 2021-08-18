@@ -9,7 +9,12 @@ import sn.academy.food_delivery.models.avro.Address;
 import sn.academy.food_delivery.models.avro.CreditCard;
 import sn.academy.food_delivery.models.avro.FoodOrder;
 import sn.academy.food_delivery.models.avro.FoodOrderMeta;
+import sn.academy.food_delivery.models.avro.Payment;
 
+/**
+ * Demonstrates the Splitter Pattern
+ *
+ * */
 public class OrderValidationService implements Function<FoodOrder, Void> {
     private Logger logger;
 
@@ -20,7 +25,7 @@ public class OrderValidationService implements Function<FoodOrder, Void> {
         // When a new order is invoke 3 services to validate it
         String orderId = foodOrder.getMeta().getOrderId() + "";
         Address deliveryLocation = foodOrder.getDeliveryLocation();
-        CreditCard paymentMethod = foodOrder.getPaymentMethod();
+        Payment payment = foodOrder.getPayment();
 
         // invoke the geo-encoding service
         context.newOutputMessage(AppConfig.GEO_ENCODER_TOPIC_NAME, AvroSchema.of(Address.class))
@@ -29,9 +34,9 @@ public class OrderValidationService implements Function<FoodOrder, Void> {
                 .sendAsync();
 
         // invoke the payments service
-        context.newOutputMessage(AppConfig.PAYMENTS_TOPIC_NAME, AvroSchema.of(CreditCard.class))
+        context.newOutputMessage(AppConfig.PAYMENTS_TOPIC_NAME, AvroSchema.of(Payment.class))
                 .property("order-id", orderId)
-                .value(paymentMethod)
+                .value(payment)
                 .sendAsync();
 
         context.newOutputMessage(AppConfig.ORDER_AGGREGATION_TOPIC_NAME, AvroSchema.of(FoodOrderMeta.class))

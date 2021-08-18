@@ -14,8 +14,8 @@ import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class CreditCard extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 8800097998619727236L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"CreditCard\",\"namespace\":\"sn.academy.food_delivery.models.avro\",\"fields\":[{\"name\":\"card_type\",\"type\":{\"type\":\"enum\",\"name\":\"CardType\",\"symbols\":[\"MASTERCARD\",\"AMEX\",\"VISA\",\"DISCOVER\"]}},{\"name\":\"account_number\",\"type\":\"string\"},{\"name\":\"billing_zip\",\"type\":\"string\"},{\"name\":\"ccv\",\"type\":\"string\"}]}");
+  private static final long serialVersionUID = 1236769172183456778L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"CreditCard\",\"namespace\":\"sn.academy.food_delivery.models.avro\",\"fields\":[{\"name\":\"card_type\",\"type\":{\"type\":\"enum\",\"name\":\"CardType\",\"symbols\":[\"MASTERCARD\",\"AMEX\",\"VISA\",\"DISCOVER\"]}},{\"name\":\"account_number\",\"type\":\"string\"},{\"name\":\"billing_zip\",\"type\":\"string\"},{\"name\":\"ccv\",\"type\":\"string\"},{\"name\":\"expMonth\",\"type\":\"string\"},{\"name\":\"expYear\",\"type\":\"string\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -75,6 +75,8 @@ public class CreditCard extends org.apache.avro.specific.SpecificRecordBase impl
   @Deprecated public java.lang.CharSequence account_number;
   @Deprecated public java.lang.CharSequence billing_zip;
   @Deprecated public java.lang.CharSequence ccv;
+  @Deprecated public java.lang.CharSequence expMonth;
+  @Deprecated public java.lang.CharSequence expYear;
 
   /**
    * Default constructor.  Note that this does not initialize fields
@@ -89,12 +91,16 @@ public class CreditCard extends org.apache.avro.specific.SpecificRecordBase impl
    * @param account_number The new value for account_number
    * @param billing_zip The new value for billing_zip
    * @param ccv The new value for ccv
+   * @param expMonth The new value for expMonth
+   * @param expYear The new value for expYear
    */
-  public CreditCard(sn.academy.food_delivery.models.avro.CardType card_type, java.lang.CharSequence account_number, java.lang.CharSequence billing_zip, java.lang.CharSequence ccv) {
+  public CreditCard(sn.academy.food_delivery.models.avro.CardType card_type, java.lang.CharSequence account_number, java.lang.CharSequence billing_zip, java.lang.CharSequence ccv, java.lang.CharSequence expMonth, java.lang.CharSequence expYear) {
     this.card_type = card_type;
     this.account_number = account_number;
     this.billing_zip = billing_zip;
     this.ccv = ccv;
+    this.expMonth = expMonth;
+    this.expYear = expYear;
   }
 
   public org.apache.avro.specific.SpecificData getSpecificData() { return MODEL$; }
@@ -106,6 +112,8 @@ public class CreditCard extends org.apache.avro.specific.SpecificRecordBase impl
     case 1: return account_number;
     case 2: return billing_zip;
     case 3: return ccv;
+    case 4: return expMonth;
+    case 5: return expYear;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -118,6 +126,8 @@ public class CreditCard extends org.apache.avro.specific.SpecificRecordBase impl
     case 1: account_number = (java.lang.CharSequence)value$; break;
     case 2: billing_zip = (java.lang.CharSequence)value$; break;
     case 3: ccv = (java.lang.CharSequence)value$; break;
+    case 4: expMonth = (java.lang.CharSequence)value$; break;
+    case 5: expYear = (java.lang.CharSequence)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -191,6 +201,40 @@ public class CreditCard extends org.apache.avro.specific.SpecificRecordBase impl
   }
 
   /**
+   * Gets the value of the 'expMonth' field.
+   * @return The value of the 'expMonth' field.
+   */
+  public java.lang.CharSequence getExpMonth() {
+    return expMonth;
+  }
+
+
+  /**
+   * Sets the value of the 'expMonth' field.
+   * @param value the value to set.
+   */
+  public void setExpMonth(java.lang.CharSequence value) {
+    this.expMonth = value;
+  }
+
+  /**
+   * Gets the value of the 'expYear' field.
+   * @return The value of the 'expYear' field.
+   */
+  public java.lang.CharSequence getExpYear() {
+    return expYear;
+  }
+
+
+  /**
+   * Sets the value of the 'expYear' field.
+   * @param value the value to set.
+   */
+  public void setExpYear(java.lang.CharSequence value) {
+    this.expYear = value;
+  }
+
+  /**
    * Creates a new CreditCard RecordBuilder.
    * @return A new CreditCard RecordBuilder
    */
@@ -235,6 +279,8 @@ public class CreditCard extends org.apache.avro.specific.SpecificRecordBase impl
     private java.lang.CharSequence account_number;
     private java.lang.CharSequence billing_zip;
     private java.lang.CharSequence ccv;
+    private java.lang.CharSequence expMonth;
+    private java.lang.CharSequence expYear;
 
     /** Creates a new Builder */
     private Builder() {
@@ -263,6 +309,14 @@ public class CreditCard extends org.apache.avro.specific.SpecificRecordBase impl
         this.ccv = data().deepCopy(fields()[3].schema(), other.ccv);
         fieldSetFlags()[3] = other.fieldSetFlags()[3];
       }
+      if (isValidValue(fields()[4], other.expMonth)) {
+        this.expMonth = data().deepCopy(fields()[4].schema(), other.expMonth);
+        fieldSetFlags()[4] = other.fieldSetFlags()[4];
+      }
+      if (isValidValue(fields()[5], other.expYear)) {
+        this.expYear = data().deepCopy(fields()[5].schema(), other.expYear);
+        fieldSetFlags()[5] = other.fieldSetFlags()[5];
+      }
     }
 
     /**
@@ -286,6 +340,14 @@ public class CreditCard extends org.apache.avro.specific.SpecificRecordBase impl
       if (isValidValue(fields()[3], other.ccv)) {
         this.ccv = data().deepCopy(fields()[3].schema(), other.ccv);
         fieldSetFlags()[3] = true;
+      }
+      if (isValidValue(fields()[4], other.expMonth)) {
+        this.expMonth = data().deepCopy(fields()[4].schema(), other.expMonth);
+        fieldSetFlags()[4] = true;
+      }
+      if (isValidValue(fields()[5], other.expYear)) {
+        this.expYear = data().deepCopy(fields()[5].schema(), other.expYear);
+        fieldSetFlags()[5] = true;
       }
     }
 
@@ -449,6 +511,86 @@ public class CreditCard extends org.apache.avro.specific.SpecificRecordBase impl
       return this;
     }
 
+    /**
+      * Gets the value of the 'expMonth' field.
+      * @return The value.
+      */
+    public java.lang.CharSequence getExpMonth() {
+      return expMonth;
+    }
+
+
+    /**
+      * Sets the value of the 'expMonth' field.
+      * @param value The value of 'expMonth'.
+      * @return This builder.
+      */
+    public sn.academy.food_delivery.models.avro.CreditCard.Builder setExpMonth(java.lang.CharSequence value) {
+      validate(fields()[4], value);
+      this.expMonth = value;
+      fieldSetFlags()[4] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'expMonth' field has been set.
+      * @return True if the 'expMonth' field has been set, false otherwise.
+      */
+    public boolean hasExpMonth() {
+      return fieldSetFlags()[4];
+    }
+
+
+    /**
+      * Clears the value of the 'expMonth' field.
+      * @return This builder.
+      */
+    public sn.academy.food_delivery.models.avro.CreditCard.Builder clearExpMonth() {
+      expMonth = null;
+      fieldSetFlags()[4] = false;
+      return this;
+    }
+
+    /**
+      * Gets the value of the 'expYear' field.
+      * @return The value.
+      */
+    public java.lang.CharSequence getExpYear() {
+      return expYear;
+    }
+
+
+    /**
+      * Sets the value of the 'expYear' field.
+      * @param value The value of 'expYear'.
+      * @return This builder.
+      */
+    public sn.academy.food_delivery.models.avro.CreditCard.Builder setExpYear(java.lang.CharSequence value) {
+      validate(fields()[5], value);
+      this.expYear = value;
+      fieldSetFlags()[5] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'expYear' field has been set.
+      * @return True if the 'expYear' field has been set, false otherwise.
+      */
+    public boolean hasExpYear() {
+      return fieldSetFlags()[5];
+    }
+
+
+    /**
+      * Clears the value of the 'expYear' field.
+      * @return This builder.
+      */
+    public sn.academy.food_delivery.models.avro.CreditCard.Builder clearExpYear() {
+      expYear = null;
+      fieldSetFlags()[5] = false;
+      return this;
+    }
+
     @Override
     @SuppressWarnings("unchecked")
     public CreditCard build() {
@@ -458,6 +600,8 @@ public class CreditCard extends org.apache.avro.specific.SpecificRecordBase impl
         record.account_number = fieldSetFlags()[1] ? this.account_number : (java.lang.CharSequence) defaultValue(fields()[1]);
         record.billing_zip = fieldSetFlags()[2] ? this.billing_zip : (java.lang.CharSequence) defaultValue(fields()[2]);
         record.ccv = fieldSetFlags()[3] ? this.ccv : (java.lang.CharSequence) defaultValue(fields()[3]);
+        record.expMonth = fieldSetFlags()[4] ? this.expMonth : (java.lang.CharSequence) defaultValue(fields()[4]);
+        record.expYear = fieldSetFlags()[5] ? this.expYear : (java.lang.CharSequence) defaultValue(fields()[5]);
         return record;
       } catch (org.apache.avro.AvroMissingFieldException e) {
         throw e;
@@ -498,6 +642,10 @@ public class CreditCard extends org.apache.avro.specific.SpecificRecordBase impl
 
     out.writeString(this.ccv);
 
+    out.writeString(this.expMonth);
+
+    out.writeString(this.expYear);
+
   }
 
   @Override public void customDecode(org.apache.avro.io.ResolvingDecoder in)
@@ -513,8 +661,12 @@ public class CreditCard extends org.apache.avro.specific.SpecificRecordBase impl
 
       this.ccv = in.readString(this.ccv instanceof Utf8 ? (Utf8)this.ccv : null);
 
+      this.expMonth = in.readString(this.expMonth instanceof Utf8 ? (Utf8)this.expMonth : null);
+
+      this.expYear = in.readString(this.expYear instanceof Utf8 ? (Utf8)this.expYear : null);
+
     } else {
-      for (int i = 0; i < 4; i++) {
+      for (int i = 0; i < 6; i++) {
         switch (fieldOrder[i].pos()) {
         case 0:
           this.card_type = sn.academy.food_delivery.models.avro.CardType.values()[in.readEnum()];
@@ -530,6 +682,14 @@ public class CreditCard extends org.apache.avro.specific.SpecificRecordBase impl
 
         case 3:
           this.ccv = in.readString(this.ccv instanceof Utf8 ? (Utf8)this.ccv : null);
+          break;
+
+        case 4:
+          this.expMonth = in.readString(this.expMonth instanceof Utf8 ? (Utf8)this.expMonth : null);
+          break;
+
+        case 5:
+          this.expYear = in.readString(this.expYear instanceof Utf8 ? (Utf8)this.expYear : null);
           break;
 
         default:
