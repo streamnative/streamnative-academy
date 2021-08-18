@@ -33,13 +33,13 @@ public class FoodOrderGenerator {
     private AtomicInteger orderId = new AtomicInteger();
 
     public FoodOrder generateOrder() {
-        int totalMenuItems = random.nextInt(5) + 1;
+        int totalMenuItems = random.nextInt(3) + 1;
 
         List<OrderDetail> orderDetails = IntStream.range(0, totalMenuItems).mapToObj(i -> {
-            int quantity = random.nextInt(3) + 1;
+            int quantity = random.nextInt(2) + 1;
             MenuItem menuItem = getMenuItem();
             float total = menuItem.getPrice() * quantity;
-            return new OrderDetail(quantity, total, menuItem);
+            return new OrderDetail(quantity, total * 0.1f + 10, menuItem);
         }).collect(Collectors.toList());
 
         float orderTotal = orderDetails.stream()
@@ -89,12 +89,15 @@ public class FoodOrderGenerator {
         PaymentMethod paymentMethod = null;
         switch (random.nextInt(3)) {
             case 0:
-                paymentMethod = new PaymentMethod(new PayPal());
+                paymentMethod = new PaymentMethod(new PayPal(card));
+                break;
             case 1:
-                paymentMethod = new PaymentMethod(new CreditCard());
+                paymentMethod = new PaymentMethod(creditCard);
+                break;
             default:
-                paymentMethod = new PaymentMethod(new ApplePay());
+                paymentMethod = new PaymentMethod(new ApplePay(card));
         }
+
 
         return new Payment(paymentMethod, new PaymentAmount());
     }

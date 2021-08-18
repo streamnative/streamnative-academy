@@ -6,7 +6,6 @@ import org.apache.pulsar.functions.api.Function;
 import org.slf4j.Logger;
 import sn.academy.food_delivery.config.AppConfig;
 import sn.academy.food_delivery.models.avro.Address;
-import sn.academy.food_delivery.models.avro.CreditCard;
 import sn.academy.food_delivery.models.avro.FoodOrder;
 import sn.academy.food_delivery.models.avro.FoodOrderMeta;
 import sn.academy.food_delivery.models.avro.Payment;
