@@ -12,6 +12,7 @@ import sn.academy.food_delivery.models.avro.Address;
 import sn.academy.food_delivery.models.avro.CardType;
 import sn.academy.food_delivery.models.avro.CreditCard;
 import sn.academy.food_delivery.models.avro.FoodOrder;
+import sn.academy.food_delivery.models.avro.FoodOrderMeta;
 import sn.academy.food_delivery.models.avro.MenuItem;
 import sn.academy.food_delivery.models.avro.OrderDetail;
 import sn.academy.food_delivery.models.avro.OrderStatus;
@@ -43,12 +44,12 @@ public class FoodOrderGenerator {
         int restaurantId = random.nextInt(TOTAL_RESTAURANTS);
         String timePlaced = new Timestamp(System.currentTimeMillis()).toString();
 
+        FoodOrderMeta foodOrderMeta =
+                new FoodOrderMeta(orderId.getAndIncrement(), customId, timePlaced, OrderStatus.NEW);
         return new FoodOrder(
-                orderId.getAndIncrement(),
-                customId,
+                foodOrderMeta,
                 restaurantId,
-                timePlaced,
-                OrderStatus.NEW, orderDetails,
+                orderDetails,
                 getAddress(),
                 getCreditCard(),
                 orderTotal);

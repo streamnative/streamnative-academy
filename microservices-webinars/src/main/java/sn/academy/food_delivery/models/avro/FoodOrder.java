@@ -14,8 +14,8 @@ import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 5554529473809126372L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"FoodOrder\",\"namespace\":\"sn.academy.food_delivery.models.avro\",\"fields\":[{\"name\":\"order_id\",\"type\":\"int\"},{\"name\":\"customer_id\",\"type\":\"int\"},{\"name\":\"restaurant_id\",\"type\":\"int\"},{\"name\":\"time_placed\",\"type\":\"string\"},{\"name\":\"order_status\",\"type\":{\"type\":\"enum\",\"name\":\"OrderStatus\",\"symbols\":[\"NEW\",\"ACCEPTED\",\"READY\",\"DISPATCHED\",\"DELIVERED\"]}},{\"name\":\"details\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"OrderDetail\",\"fields\":[{\"name\":\"quantity\",\"type\":\"int\"},{\"name\":\"total\",\"type\":\"float\"},{\"name\":\"food_item\",\"type\":{\"type\":\"record\",\"name\":\"MenuItem\",\"fields\":[{\"name\":\"item_id\",\"type\":\"int\"},{\"name\":\"item_name\",\"type\":\"string\"},{\"name\":\"item_description\",\"type\":\"string\"},{\"name\":\"price\",\"type\":\"float\"}]}}]}}},{\"name\":\"delivery_location\",\"type\":{\"type\":\"record\",\"name\":\"Address\",\"fields\":[{\"name\":\"street\",\"type\":\"string\"},{\"name\":\"city\",\"type\":\"string\"},{\"name\":\"state\",\"type\":\"string\"},{\"name\":\"zip\",\"type\":\"string\"}]}},{\"name\":\"payment_method\",\"type\":{\"type\":\"record\",\"name\":\"CreditCard\",\"fields\":[{\"name\":\"card_type\",\"type\":{\"type\":\"enum\",\"name\":\"CardType\",\"symbols\":[\"MASTERCARD\",\"AMEX\",\"VISA\",\"DISCOVER\"]}},{\"name\":\"account_number\",\"type\":\"string\"},{\"name\":\"billing_zip\",\"type\":\"string\"},{\"name\":\"ccv\",\"type\":\"string\"}]}},{\"name\":\"total\",\"type\":\"float\",\"default\":0.0}]}");
+  private static final long serialVersionUID = 5852153619797477541L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"FoodOrder\",\"namespace\":\"sn.academy.food_delivery.models.avro\",\"fields\":[{\"name\":\"meta\",\"type\":{\"type\":\"record\",\"name\":\"FoodOrderMeta\",\"fields\":[{\"name\":\"order_id\",\"type\":\"int\"},{\"name\":\"customer_id\",\"type\":\"int\"},{\"name\":\"time_placed\",\"type\":\"string\"},{\"name\":\"order_status\",\"type\":{\"type\":\"enum\",\"name\":\"OrderStatus\",\"symbols\":[\"NEW\",\"ACCEPTED\",\"READY\",\"DISPATCHED\",\"DELIVERED\"]}}]}},{\"name\":\"restaurant_id\",\"type\":\"int\"},{\"name\":\"details\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"OrderDetail\",\"fields\":[{\"name\":\"quantity\",\"type\":\"int\"},{\"name\":\"total\",\"type\":\"float\"},{\"name\":\"food_item\",\"type\":{\"type\":\"record\",\"name\":\"MenuItem\",\"fields\":[{\"name\":\"item_id\",\"type\":\"int\"},{\"name\":\"item_name\",\"type\":\"string\"},{\"name\":\"item_description\",\"type\":\"string\"},{\"name\":\"price\",\"type\":\"float\"}]}}]}}},{\"name\":\"delivery_location\",\"type\":{\"type\":\"record\",\"name\":\"Address\",\"fields\":[{\"name\":\"street\",\"type\":\"string\"},{\"name\":\"city\",\"type\":\"string\"},{\"name\":\"state\",\"type\":\"string\"},{\"name\":\"zip\",\"type\":\"string\"}]}},{\"name\":\"payment_method\",\"type\":{\"type\":\"record\",\"name\":\"CreditCard\",\"fields\":[{\"name\":\"card_type\",\"type\":{\"type\":\"enum\",\"name\":\"CardType\",\"symbols\":[\"MASTERCARD\",\"AMEX\",\"VISA\",\"DISCOVER\"]}},{\"name\":\"account_number\",\"type\":\"string\"},{\"name\":\"billing_zip\",\"type\":\"string\"},{\"name\":\"ccv\",\"type\":\"string\"}]}},{\"name\":\"total\",\"type\":\"float\",\"default\":0.0}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -71,11 +71,8 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
     return DECODER.decode(b);
   }
 
-  @Deprecated public int order_id;
-  @Deprecated public int customer_id;
+  @Deprecated public sn.academy.food_delivery.models.avro.FoodOrderMeta meta;
   @Deprecated public int restaurant_id;
-  @Deprecated public java.lang.CharSequence time_placed;
-  @Deprecated public sn.academy.food_delivery.models.avro.OrderStatus order_status;
   @Deprecated public java.util.List<sn.academy.food_delivery.models.avro.OrderDetail> details;
   @Deprecated public sn.academy.food_delivery.models.avro.Address delivery_location;
   @Deprecated public sn.academy.food_delivery.models.avro.CreditCard payment_method;
@@ -90,22 +87,16 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
 
   /**
    * All-args constructor.
-   * @param order_id The new value for order_id
-   * @param customer_id The new value for customer_id
+   * @param meta The new value for meta
    * @param restaurant_id The new value for restaurant_id
-   * @param time_placed The new value for time_placed
-   * @param order_status The new value for order_status
    * @param details The new value for details
    * @param delivery_location The new value for delivery_location
    * @param payment_method The new value for payment_method
    * @param total The new value for total
    */
-  public FoodOrder(java.lang.Integer order_id, java.lang.Integer customer_id, java.lang.Integer restaurant_id, java.lang.CharSequence time_placed, sn.academy.food_delivery.models.avro.OrderStatus order_status, java.util.List<sn.academy.food_delivery.models.avro.OrderDetail> details, sn.academy.food_delivery.models.avro.Address delivery_location, sn.academy.food_delivery.models.avro.CreditCard payment_method, java.lang.Float total) {
-    this.order_id = order_id;
-    this.customer_id = customer_id;
+  public FoodOrder(sn.academy.food_delivery.models.avro.FoodOrderMeta meta, java.lang.Integer restaurant_id, java.util.List<sn.academy.food_delivery.models.avro.OrderDetail> details, sn.academy.food_delivery.models.avro.Address delivery_location, sn.academy.food_delivery.models.avro.CreditCard payment_method, java.lang.Float total) {
+    this.meta = meta;
     this.restaurant_id = restaurant_id;
-    this.time_placed = time_placed;
-    this.order_status = order_status;
     this.details = details;
     this.delivery_location = delivery_location;
     this.payment_method = payment_method;
@@ -117,15 +108,12 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
   // Used by DatumWriter.  Applications should not call.
   public java.lang.Object get(int field$) {
     switch (field$) {
-    case 0: return order_id;
-    case 1: return customer_id;
-    case 2: return restaurant_id;
-    case 3: return time_placed;
-    case 4: return order_status;
-    case 5: return details;
-    case 6: return delivery_location;
-    case 7: return payment_method;
-    case 8: return total;
+    case 0: return meta;
+    case 1: return restaurant_id;
+    case 2: return details;
+    case 3: return delivery_location;
+    case 4: return payment_method;
+    case 5: return total;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -134,51 +122,31 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
   @SuppressWarnings(value="unchecked")
   public void put(int field$, java.lang.Object value$) {
     switch (field$) {
-    case 0: order_id = (java.lang.Integer)value$; break;
-    case 1: customer_id = (java.lang.Integer)value$; break;
-    case 2: restaurant_id = (java.lang.Integer)value$; break;
-    case 3: time_placed = (java.lang.CharSequence)value$; break;
-    case 4: order_status = (sn.academy.food_delivery.models.avro.OrderStatus)value$; break;
-    case 5: details = (java.util.List<sn.academy.food_delivery.models.avro.OrderDetail>)value$; break;
-    case 6: delivery_location = (sn.academy.food_delivery.models.avro.Address)value$; break;
-    case 7: payment_method = (sn.academy.food_delivery.models.avro.CreditCard)value$; break;
-    case 8: total = (java.lang.Float)value$; break;
+    case 0: meta = (sn.academy.food_delivery.models.avro.FoodOrderMeta)value$; break;
+    case 1: restaurant_id = (java.lang.Integer)value$; break;
+    case 2: details = (java.util.List<sn.academy.food_delivery.models.avro.OrderDetail>)value$; break;
+    case 3: delivery_location = (sn.academy.food_delivery.models.avro.Address)value$; break;
+    case 4: payment_method = (sn.academy.food_delivery.models.avro.CreditCard)value$; break;
+    case 5: total = (java.lang.Float)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
 
   /**
-   * Gets the value of the 'order_id' field.
-   * @return The value of the 'order_id' field.
+   * Gets the value of the 'meta' field.
+   * @return The value of the 'meta' field.
    */
-  public int getOrderId() {
-    return order_id;
+  public sn.academy.food_delivery.models.avro.FoodOrderMeta getMeta() {
+    return meta;
   }
 
 
   /**
-   * Sets the value of the 'order_id' field.
+   * Sets the value of the 'meta' field.
    * @param value the value to set.
    */
-  public void setOrderId(int value) {
-    this.order_id = value;
-  }
-
-  /**
-   * Gets the value of the 'customer_id' field.
-   * @return The value of the 'customer_id' field.
-   */
-  public int getCustomerId() {
-    return customer_id;
-  }
-
-
-  /**
-   * Sets the value of the 'customer_id' field.
-   * @param value the value to set.
-   */
-  public void setCustomerId(int value) {
-    this.customer_id = value;
+  public void setMeta(sn.academy.food_delivery.models.avro.FoodOrderMeta value) {
+    this.meta = value;
   }
 
   /**
@@ -196,40 +164,6 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
    */
   public void setRestaurantId(int value) {
     this.restaurant_id = value;
-  }
-
-  /**
-   * Gets the value of the 'time_placed' field.
-   * @return The value of the 'time_placed' field.
-   */
-  public java.lang.CharSequence getTimePlaced() {
-    return time_placed;
-  }
-
-
-  /**
-   * Sets the value of the 'time_placed' field.
-   * @param value the value to set.
-   */
-  public void setTimePlaced(java.lang.CharSequence value) {
-    this.time_placed = value;
-  }
-
-  /**
-   * Gets the value of the 'order_status' field.
-   * @return The value of the 'order_status' field.
-   */
-  public sn.academy.food_delivery.models.avro.OrderStatus getOrderStatus() {
-    return order_status;
-  }
-
-
-  /**
-   * Sets the value of the 'order_status' field.
-   * @param value the value to set.
-   */
-  public void setOrderStatus(sn.academy.food_delivery.models.avro.OrderStatus value) {
-    this.order_status = value;
   }
 
   /**
@@ -341,11 +275,9 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
   public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<FoodOrder>
     implements org.apache.avro.data.RecordBuilder<FoodOrder> {
 
-    private int order_id;
-    private int customer_id;
+    private sn.academy.food_delivery.models.avro.FoodOrderMeta meta;
+    private sn.academy.food_delivery.models.avro.FoodOrderMeta.Builder metaBuilder;
     private int restaurant_id;
-    private java.lang.CharSequence time_placed;
-    private sn.academy.food_delivery.models.avro.OrderStatus order_status;
     private java.util.List<sn.academy.food_delivery.models.avro.OrderDetail> details;
     private sn.academy.food_delivery.models.avro.Address delivery_location;
     private sn.academy.food_delivery.models.avro.Address.Builder delivery_locationBuilder;
@@ -364,47 +296,38 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
      */
     private Builder(sn.academy.food_delivery.models.avro.FoodOrder.Builder other) {
       super(other);
-      if (isValidValue(fields()[0], other.order_id)) {
-        this.order_id = data().deepCopy(fields()[0].schema(), other.order_id);
+      if (isValidValue(fields()[0], other.meta)) {
+        this.meta = data().deepCopy(fields()[0].schema(), other.meta);
         fieldSetFlags()[0] = other.fieldSetFlags()[0];
       }
-      if (isValidValue(fields()[1], other.customer_id)) {
-        this.customer_id = data().deepCopy(fields()[1].schema(), other.customer_id);
+      if (other.hasMetaBuilder()) {
+        this.metaBuilder = sn.academy.food_delivery.models.avro.FoodOrderMeta.newBuilder(other.getMetaBuilder());
+      }
+      if (isValidValue(fields()[1], other.restaurant_id)) {
+        this.restaurant_id = data().deepCopy(fields()[1].schema(), other.restaurant_id);
         fieldSetFlags()[1] = other.fieldSetFlags()[1];
       }
-      if (isValidValue(fields()[2], other.restaurant_id)) {
-        this.restaurant_id = data().deepCopy(fields()[2].schema(), other.restaurant_id);
+      if (isValidValue(fields()[2], other.details)) {
+        this.details = data().deepCopy(fields()[2].schema(), other.details);
         fieldSetFlags()[2] = other.fieldSetFlags()[2];
       }
-      if (isValidValue(fields()[3], other.time_placed)) {
-        this.time_placed = data().deepCopy(fields()[3].schema(), other.time_placed);
+      if (isValidValue(fields()[3], other.delivery_location)) {
+        this.delivery_location = data().deepCopy(fields()[3].schema(), other.delivery_location);
         fieldSetFlags()[3] = other.fieldSetFlags()[3];
-      }
-      if (isValidValue(fields()[4], other.order_status)) {
-        this.order_status = data().deepCopy(fields()[4].schema(), other.order_status);
-        fieldSetFlags()[4] = other.fieldSetFlags()[4];
-      }
-      if (isValidValue(fields()[5], other.details)) {
-        this.details = data().deepCopy(fields()[5].schema(), other.details);
-        fieldSetFlags()[5] = other.fieldSetFlags()[5];
-      }
-      if (isValidValue(fields()[6], other.delivery_location)) {
-        this.delivery_location = data().deepCopy(fields()[6].schema(), other.delivery_location);
-        fieldSetFlags()[6] = other.fieldSetFlags()[6];
       }
       if (other.hasDeliveryLocationBuilder()) {
         this.delivery_locationBuilder = sn.academy.food_delivery.models.avro.Address.newBuilder(other.getDeliveryLocationBuilder());
       }
-      if (isValidValue(fields()[7], other.payment_method)) {
-        this.payment_method = data().deepCopy(fields()[7].schema(), other.payment_method);
-        fieldSetFlags()[7] = other.fieldSetFlags()[7];
+      if (isValidValue(fields()[4], other.payment_method)) {
+        this.payment_method = data().deepCopy(fields()[4].schema(), other.payment_method);
+        fieldSetFlags()[4] = other.fieldSetFlags()[4];
       }
       if (other.hasPaymentMethodBuilder()) {
         this.payment_methodBuilder = sn.academy.food_delivery.models.avro.CreditCard.newBuilder(other.getPaymentMethodBuilder());
       }
-      if (isValidValue(fields()[8], other.total)) {
-        this.total = data().deepCopy(fields()[8].schema(), other.total);
-        fieldSetFlags()[8] = other.fieldSetFlags()[8];
+      if (isValidValue(fields()[5], other.total)) {
+        this.total = data().deepCopy(fields()[5].schema(), other.total);
+        fieldSetFlags()[5] = other.fieldSetFlags()[5];
       }
     }
 
@@ -414,121 +337,107 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
      */
     private Builder(sn.academy.food_delivery.models.avro.FoodOrder other) {
       super(SCHEMA$);
-      if (isValidValue(fields()[0], other.order_id)) {
-        this.order_id = data().deepCopy(fields()[0].schema(), other.order_id);
+      if (isValidValue(fields()[0], other.meta)) {
+        this.meta = data().deepCopy(fields()[0].schema(), other.meta);
         fieldSetFlags()[0] = true;
       }
-      if (isValidValue(fields()[1], other.customer_id)) {
-        this.customer_id = data().deepCopy(fields()[1].schema(), other.customer_id);
+      this.metaBuilder = null;
+      if (isValidValue(fields()[1], other.restaurant_id)) {
+        this.restaurant_id = data().deepCopy(fields()[1].schema(), other.restaurant_id);
         fieldSetFlags()[1] = true;
       }
-      if (isValidValue(fields()[2], other.restaurant_id)) {
-        this.restaurant_id = data().deepCopy(fields()[2].schema(), other.restaurant_id);
+      if (isValidValue(fields()[2], other.details)) {
+        this.details = data().deepCopy(fields()[2].schema(), other.details);
         fieldSetFlags()[2] = true;
       }
-      if (isValidValue(fields()[3], other.time_placed)) {
-        this.time_placed = data().deepCopy(fields()[3].schema(), other.time_placed);
+      if (isValidValue(fields()[3], other.delivery_location)) {
+        this.delivery_location = data().deepCopy(fields()[3].schema(), other.delivery_location);
         fieldSetFlags()[3] = true;
       }
-      if (isValidValue(fields()[4], other.order_status)) {
-        this.order_status = data().deepCopy(fields()[4].schema(), other.order_status);
+      this.delivery_locationBuilder = null;
+      if (isValidValue(fields()[4], other.payment_method)) {
+        this.payment_method = data().deepCopy(fields()[4].schema(), other.payment_method);
         fieldSetFlags()[4] = true;
       }
-      if (isValidValue(fields()[5], other.details)) {
-        this.details = data().deepCopy(fields()[5].schema(), other.details);
+      this.payment_methodBuilder = null;
+      if (isValidValue(fields()[5], other.total)) {
+        this.total = data().deepCopy(fields()[5].schema(), other.total);
         fieldSetFlags()[5] = true;
       }
-      if (isValidValue(fields()[6], other.delivery_location)) {
-        this.delivery_location = data().deepCopy(fields()[6].schema(), other.delivery_location);
-        fieldSetFlags()[6] = true;
-      }
-      this.delivery_locationBuilder = null;
-      if (isValidValue(fields()[7], other.payment_method)) {
-        this.payment_method = data().deepCopy(fields()[7].schema(), other.payment_method);
-        fieldSetFlags()[7] = true;
-      }
-      this.payment_methodBuilder = null;
-      if (isValidValue(fields()[8], other.total)) {
-        this.total = data().deepCopy(fields()[8].schema(), other.total);
-        fieldSetFlags()[8] = true;
-      }
     }
 
     /**
-      * Gets the value of the 'order_id' field.
+      * Gets the value of the 'meta' field.
       * @return The value.
       */
-    public int getOrderId() {
-      return order_id;
+    public sn.academy.food_delivery.models.avro.FoodOrderMeta getMeta() {
+      return meta;
     }
 
 
     /**
-      * Sets the value of the 'order_id' field.
-      * @param value The value of 'order_id'.
+      * Sets the value of the 'meta' field.
+      * @param value The value of 'meta'.
       * @return This builder.
       */
-    public sn.academy.food_delivery.models.avro.FoodOrder.Builder setOrderId(int value) {
+    public sn.academy.food_delivery.models.avro.FoodOrder.Builder setMeta(sn.academy.food_delivery.models.avro.FoodOrderMeta value) {
       validate(fields()[0], value);
-      this.order_id = value;
+      this.metaBuilder = null;
+      this.meta = value;
       fieldSetFlags()[0] = true;
       return this;
     }
 
     /**
-      * Checks whether the 'order_id' field has been set.
-      * @return True if the 'order_id' field has been set, false otherwise.
+      * Checks whether the 'meta' field has been set.
+      * @return True if the 'meta' field has been set, false otherwise.
       */
-    public boolean hasOrderId() {
+    public boolean hasMeta() {
       return fieldSetFlags()[0];
     }
 
+    /**
+     * Gets the Builder instance for the 'meta' field and creates one if it doesn't exist yet.
+     * @return This builder.
+     */
+    public sn.academy.food_delivery.models.avro.FoodOrderMeta.Builder getMetaBuilder() {
+      if (metaBuilder == null) {
+        if (hasMeta()) {
+          setMetaBuilder(sn.academy.food_delivery.models.avro.FoodOrderMeta.newBuilder(meta));
+        } else {
+          setMetaBuilder(sn.academy.food_delivery.models.avro.FoodOrderMeta.newBuilder());
+        }
+      }
+      return metaBuilder;
+    }
 
     /**
-      * Clears the value of the 'order_id' field.
+     * Sets the Builder instance for the 'meta' field
+     * @param value The builder instance that must be set.
+     * @return This builder.
+     */
+    public sn.academy.food_delivery.models.avro.FoodOrder.Builder setMetaBuilder(sn.academy.food_delivery.models.avro.FoodOrderMeta.Builder value) {
+      clearMeta();
+      metaBuilder = value;
+      return this;
+    }
+
+    /**
+     * Checks whether the 'meta' field has an active Builder instance
+     * @return True if the 'meta' field has an active Builder instance
+     */
+    public boolean hasMetaBuilder() {
+      return metaBuilder != null;
+    }
+
+    /**
+      * Clears the value of the 'meta' field.
       * @return This builder.
       */
-    public sn.academy.food_delivery.models.avro.FoodOrder.Builder clearOrderId() {
+    public sn.academy.food_delivery.models.avro.FoodOrder.Builder clearMeta() {
+      meta = null;
+      metaBuilder = null;
       fieldSetFlags()[0] = false;
-      return this;
-    }
-
-    /**
-      * Gets the value of the 'customer_id' field.
-      * @return The value.
-      */
-    public int getCustomerId() {
-      return customer_id;
-    }
-
-
-    /**
-      * Sets the value of the 'customer_id' field.
-      * @param value The value of 'customer_id'.
-      * @return This builder.
-      */
-    public sn.academy.food_delivery.models.avro.FoodOrder.Builder setCustomerId(int value) {
-      validate(fields()[1], value);
-      this.customer_id = value;
-      fieldSetFlags()[1] = true;
-      return this;
-    }
-
-    /**
-      * Checks whether the 'customer_id' field has been set.
-      * @return True if the 'customer_id' field has been set, false otherwise.
-      */
-    public boolean hasCustomerId() {
-      return fieldSetFlags()[1];
-    }
-
-
-    /**
-      * Clears the value of the 'customer_id' field.
-      * @return This builder.
-      */
-    public sn.academy.food_delivery.models.avro.FoodOrder.Builder clearCustomerId() {
-      fieldSetFlags()[1] = false;
       return this;
     }
 
@@ -547,9 +456,9 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
       * @return This builder.
       */
     public sn.academy.food_delivery.models.avro.FoodOrder.Builder setRestaurantId(int value) {
-      validate(fields()[2], value);
+      validate(fields()[1], value);
       this.restaurant_id = value;
-      fieldSetFlags()[2] = true;
+      fieldSetFlags()[1] = true;
       return this;
     }
 
@@ -558,7 +467,7 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
       * @return True if the 'restaurant_id' field has been set, false otherwise.
       */
     public boolean hasRestaurantId() {
-      return fieldSetFlags()[2];
+      return fieldSetFlags()[1];
     }
 
 
@@ -567,87 +476,7 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
       * @return This builder.
       */
     public sn.academy.food_delivery.models.avro.FoodOrder.Builder clearRestaurantId() {
-      fieldSetFlags()[2] = false;
-      return this;
-    }
-
-    /**
-      * Gets the value of the 'time_placed' field.
-      * @return The value.
-      */
-    public java.lang.CharSequence getTimePlaced() {
-      return time_placed;
-    }
-
-
-    /**
-      * Sets the value of the 'time_placed' field.
-      * @param value The value of 'time_placed'.
-      * @return This builder.
-      */
-    public sn.academy.food_delivery.models.avro.FoodOrder.Builder setTimePlaced(java.lang.CharSequence value) {
-      validate(fields()[3], value);
-      this.time_placed = value;
-      fieldSetFlags()[3] = true;
-      return this;
-    }
-
-    /**
-      * Checks whether the 'time_placed' field has been set.
-      * @return True if the 'time_placed' field has been set, false otherwise.
-      */
-    public boolean hasTimePlaced() {
-      return fieldSetFlags()[3];
-    }
-
-
-    /**
-      * Clears the value of the 'time_placed' field.
-      * @return This builder.
-      */
-    public sn.academy.food_delivery.models.avro.FoodOrder.Builder clearTimePlaced() {
-      time_placed = null;
-      fieldSetFlags()[3] = false;
-      return this;
-    }
-
-    /**
-      * Gets the value of the 'order_status' field.
-      * @return The value.
-      */
-    public sn.academy.food_delivery.models.avro.OrderStatus getOrderStatus() {
-      return order_status;
-    }
-
-
-    /**
-      * Sets the value of the 'order_status' field.
-      * @param value The value of 'order_status'.
-      * @return This builder.
-      */
-    public sn.academy.food_delivery.models.avro.FoodOrder.Builder setOrderStatus(sn.academy.food_delivery.models.avro.OrderStatus value) {
-      validate(fields()[4], value);
-      this.order_status = value;
-      fieldSetFlags()[4] = true;
-      return this;
-    }
-
-    /**
-      * Checks whether the 'order_status' field has been set.
-      * @return True if the 'order_status' field has been set, false otherwise.
-      */
-    public boolean hasOrderStatus() {
-      return fieldSetFlags()[4];
-    }
-
-
-    /**
-      * Clears the value of the 'order_status' field.
-      * @return This builder.
-      */
-    public sn.academy.food_delivery.models.avro.FoodOrder.Builder clearOrderStatus() {
-      order_status = null;
-      fieldSetFlags()[4] = false;
+      fieldSetFlags()[1] = false;
       return this;
     }
 
@@ -666,9 +495,9 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
       * @return This builder.
       */
     public sn.academy.food_delivery.models.avro.FoodOrder.Builder setDetails(java.util.List<sn.academy.food_delivery.models.avro.OrderDetail> value) {
-      validate(fields()[5], value);
+      validate(fields()[2], value);
       this.details = value;
-      fieldSetFlags()[5] = true;
+      fieldSetFlags()[2] = true;
       return this;
     }
 
@@ -677,7 +506,7 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
       * @return True if the 'details' field has been set, false otherwise.
       */
     public boolean hasDetails() {
-      return fieldSetFlags()[5];
+      return fieldSetFlags()[2];
     }
 
 
@@ -687,7 +516,7 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
       */
     public sn.academy.food_delivery.models.avro.FoodOrder.Builder clearDetails() {
       details = null;
-      fieldSetFlags()[5] = false;
+      fieldSetFlags()[2] = false;
       return this;
     }
 
@@ -706,10 +535,10 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
       * @return This builder.
       */
     public sn.academy.food_delivery.models.avro.FoodOrder.Builder setDeliveryLocation(sn.academy.food_delivery.models.avro.Address value) {
-      validate(fields()[6], value);
+      validate(fields()[3], value);
       this.delivery_locationBuilder = null;
       this.delivery_location = value;
-      fieldSetFlags()[6] = true;
+      fieldSetFlags()[3] = true;
       return this;
     }
 
@@ -718,7 +547,7 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
       * @return True if the 'delivery_location' field has been set, false otherwise.
       */
     public boolean hasDeliveryLocation() {
-      return fieldSetFlags()[6];
+      return fieldSetFlags()[3];
     }
 
     /**
@@ -762,7 +591,7 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
     public sn.academy.food_delivery.models.avro.FoodOrder.Builder clearDeliveryLocation() {
       delivery_location = null;
       delivery_locationBuilder = null;
-      fieldSetFlags()[6] = false;
+      fieldSetFlags()[3] = false;
       return this;
     }
 
@@ -781,10 +610,10 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
       * @return This builder.
       */
     public sn.academy.food_delivery.models.avro.FoodOrder.Builder setPaymentMethod(sn.academy.food_delivery.models.avro.CreditCard value) {
-      validate(fields()[7], value);
+      validate(fields()[4], value);
       this.payment_methodBuilder = null;
       this.payment_method = value;
-      fieldSetFlags()[7] = true;
+      fieldSetFlags()[4] = true;
       return this;
     }
 
@@ -793,7 +622,7 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
       * @return True if the 'payment_method' field has been set, false otherwise.
       */
     public boolean hasPaymentMethod() {
-      return fieldSetFlags()[7];
+      return fieldSetFlags()[4];
     }
 
     /**
@@ -837,7 +666,7 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
     public sn.academy.food_delivery.models.avro.FoodOrder.Builder clearPaymentMethod() {
       payment_method = null;
       payment_methodBuilder = null;
-      fieldSetFlags()[7] = false;
+      fieldSetFlags()[4] = false;
       return this;
     }
 
@@ -856,9 +685,9 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
       * @return This builder.
       */
     public sn.academy.food_delivery.models.avro.FoodOrder.Builder setTotal(float value) {
-      validate(fields()[8], value);
+      validate(fields()[5], value);
       this.total = value;
-      fieldSetFlags()[8] = true;
+      fieldSetFlags()[5] = true;
       return this;
     }
 
@@ -867,7 +696,7 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
       * @return True if the 'total' field has been set, false otherwise.
       */
     public boolean hasTotal() {
-      return fieldSetFlags()[8];
+      return fieldSetFlags()[5];
     }
 
 
@@ -876,7 +705,7 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
       * @return This builder.
       */
     public sn.academy.food_delivery.models.avro.FoodOrder.Builder clearTotal() {
-      fieldSetFlags()[8] = false;
+      fieldSetFlags()[5] = false;
       return this;
     }
 
@@ -885,12 +714,18 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
     public FoodOrder build() {
       try {
         FoodOrder record = new FoodOrder();
-        record.order_id = fieldSetFlags()[0] ? this.order_id : (java.lang.Integer) defaultValue(fields()[0]);
-        record.customer_id = fieldSetFlags()[1] ? this.customer_id : (java.lang.Integer) defaultValue(fields()[1]);
-        record.restaurant_id = fieldSetFlags()[2] ? this.restaurant_id : (java.lang.Integer) defaultValue(fields()[2]);
-        record.time_placed = fieldSetFlags()[3] ? this.time_placed : (java.lang.CharSequence) defaultValue(fields()[3]);
-        record.order_status = fieldSetFlags()[4] ? this.order_status : (sn.academy.food_delivery.models.avro.OrderStatus) defaultValue(fields()[4]);
-        record.details = fieldSetFlags()[5] ? this.details : (java.util.List<sn.academy.food_delivery.models.avro.OrderDetail>) defaultValue(fields()[5]);
+        if (metaBuilder != null) {
+          try {
+            record.meta = this.metaBuilder.build();
+          } catch (org.apache.avro.AvroMissingFieldException e) {
+            e.addParentField(record.getSchema().getField("meta"));
+            throw e;
+          }
+        } else {
+          record.meta = fieldSetFlags()[0] ? this.meta : (sn.academy.food_delivery.models.avro.FoodOrderMeta) defaultValue(fields()[0]);
+        }
+        record.restaurant_id = fieldSetFlags()[1] ? this.restaurant_id : (java.lang.Integer) defaultValue(fields()[1]);
+        record.details = fieldSetFlags()[2] ? this.details : (java.util.List<sn.academy.food_delivery.models.avro.OrderDetail>) defaultValue(fields()[2]);
         if (delivery_locationBuilder != null) {
           try {
             record.delivery_location = this.delivery_locationBuilder.build();
@@ -899,7 +734,7 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
             throw e;
           }
         } else {
-          record.delivery_location = fieldSetFlags()[6] ? this.delivery_location : (sn.academy.food_delivery.models.avro.Address) defaultValue(fields()[6]);
+          record.delivery_location = fieldSetFlags()[3] ? this.delivery_location : (sn.academy.food_delivery.models.avro.Address) defaultValue(fields()[3]);
         }
         if (payment_methodBuilder != null) {
           try {
@@ -909,9 +744,9 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
             throw e;
           }
         } else {
-          record.payment_method = fieldSetFlags()[7] ? this.payment_method : (sn.academy.food_delivery.models.avro.CreditCard) defaultValue(fields()[7]);
+          record.payment_method = fieldSetFlags()[4] ? this.payment_method : (sn.academy.food_delivery.models.avro.CreditCard) defaultValue(fields()[4]);
         }
-        record.total = fieldSetFlags()[8] ? this.total : (java.lang.Float) defaultValue(fields()[8]);
+        record.total = fieldSetFlags()[5] ? this.total : (java.lang.Float) defaultValue(fields()[5]);
         return record;
       } catch (org.apache.avro.AvroMissingFieldException e) {
         throw e;
@@ -944,15 +779,9 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
   @Override public void customEncode(org.apache.avro.io.Encoder out)
     throws java.io.IOException
   {
-    out.writeInt(this.order_id);
-
-    out.writeInt(this.customer_id);
+    this.meta.customEncode(out);
 
     out.writeInt(this.restaurant_id);
-
-    out.writeString(this.time_placed);
-
-    out.writeEnum(this.order_status.ordinal());
 
     long size0 = this.details.size();
     out.writeArrayStart();
@@ -980,15 +809,12 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
   {
     org.apache.avro.Schema.Field[] fieldOrder = in.readFieldOrderIfDiff();
     if (fieldOrder == null) {
-      this.order_id = in.readInt();
-
-      this.customer_id = in.readInt();
+      if (this.meta == null) {
+        this.meta = new sn.academy.food_delivery.models.avro.FoodOrderMeta();
+      }
+      this.meta.customDecode(in);
 
       this.restaurant_id = in.readInt();
-
-      this.time_placed = in.readString(this.time_placed instanceof Utf8 ? (Utf8)this.time_placed : null);
-
-      this.order_status = sn.academy.food_delivery.models.avro.OrderStatus.values()[in.readEnum()];
 
       long size0 = in.readArrayStart();
       java.util.List<sn.academy.food_delivery.models.avro.OrderDetail> a0 = this.details;
@@ -1021,29 +847,20 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
       this.total = in.readFloat();
 
     } else {
-      for (int i = 0; i < 9; i++) {
+      for (int i = 0; i < 6; i++) {
         switch (fieldOrder[i].pos()) {
         case 0:
-          this.order_id = in.readInt();
+          if (this.meta == null) {
+            this.meta = new sn.academy.food_delivery.models.avro.FoodOrderMeta();
+          }
+          this.meta.customDecode(in);
           break;
 
         case 1:
-          this.customer_id = in.readInt();
-          break;
-
-        case 2:
           this.restaurant_id = in.readInt();
           break;
 
-        case 3:
-          this.time_placed = in.readString(this.time_placed instanceof Utf8 ? (Utf8)this.time_placed : null);
-          break;
-
-        case 4:
-          this.order_status = sn.academy.food_delivery.models.avro.OrderStatus.values()[in.readEnum()];
-          break;
-
-        case 5:
+        case 2:
           long size0 = in.readArrayStart();
           java.util.List<sn.academy.food_delivery.models.avro.OrderDetail> a0 = this.details;
           if (a0 == null) {
@@ -1063,21 +880,21 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
           }
           break;
 
-        case 6:
+        case 3:
           if (this.delivery_location == null) {
             this.delivery_location = new sn.academy.food_delivery.models.avro.Address();
           }
           this.delivery_location.customDecode(in);
           break;
 
-        case 7:
+        case 4:
           if (this.payment_method == null) {
             this.payment_method = new sn.academy.food_delivery.models.avro.CreditCard();
           }
           this.payment_method.customDecode(in);
           break;
 
-        case 8:
+        case 5:
           this.total = in.readFloat();
           break;
 

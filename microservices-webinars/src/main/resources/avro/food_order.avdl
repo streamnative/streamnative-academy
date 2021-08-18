@@ -6,11 +6,8 @@ protocol OrderProtocol {
   import idl "./restaurant.avdl";
 
   record FoodOrder {
-    int order_id;
-    int customer_id;
+    FoodOrderMeta meta;
     int restaurant_id;
-    string time_placed;
-    OrderStatus order_status;
     array<OrderDetail> details;
     sn.academy.food_delivery.models.avro.Address delivery_location;
     sn.academy.food_delivery.models.avro.CreditCard payment_method;
@@ -21,6 +18,13 @@ protocol OrderProtocol {
      int quantity;
      float total;
      sn.academy.food_delivery.models.avro.MenuItem food_item;
+  }
+
+ record FoodOrderMeta {
+    int order_id;
+    int customer_id;
+    string time_placed;
+    OrderStatus order_status;
   }
 
   enum OrderStatus {
