@@ -14,8 +14,8 @@ import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class MenuItem extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 5092369552539430248L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"MenuItem\",\"namespace\":\"sn.academy.food_delivery.models.avro\",\"fields\":[{\"name\":\"item_id\",\"type\":\"long\"},{\"name\":\"item_name\",\"type\":\"string\"},{\"name\":\"item_description\",\"type\":\"string\"},{\"name\":\"price\",\"type\":\"float\"}]}");
+  private static final long serialVersionUID = 4004275219581047254L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"MenuItem\",\"namespace\":\"sn.academy.food_delivery.models.avro\",\"fields\":[{\"name\":\"item_id\",\"type\":\"int\"},{\"name\":\"item_name\",\"type\":\"string\"},{\"name\":\"item_description\",\"type\":\"string\"},{\"name\":\"price\",\"type\":\"float\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -71,7 +71,7 @@ public class MenuItem extends org.apache.avro.specific.SpecificRecordBase implem
     return DECODER.decode(b);
   }
 
-  @Deprecated public long item_id;
+  @Deprecated public int item_id;
   @Deprecated public java.lang.CharSequence item_name;
   @Deprecated public java.lang.CharSequence item_description;
   @Deprecated public float price;
@@ -90,7 +90,7 @@ public class MenuItem extends org.apache.avro.specific.SpecificRecordBase implem
    * @param item_description The new value for item_description
    * @param price The new value for price
    */
-  public MenuItem(java.lang.Long item_id, java.lang.CharSequence item_name, java.lang.CharSequence item_description, java.lang.Float price) {
+  public MenuItem(java.lang.Integer item_id, java.lang.CharSequence item_name, java.lang.CharSequence item_description, java.lang.Float price) {
     this.item_id = item_id;
     this.item_name = item_name;
     this.item_description = item_description;
@@ -114,7 +114,7 @@ public class MenuItem extends org.apache.avro.specific.SpecificRecordBase implem
   @SuppressWarnings(value="unchecked")
   public void put(int field$, java.lang.Object value$) {
     switch (field$) {
-    case 0: item_id = (java.lang.Long)value$; break;
+    case 0: item_id = (java.lang.Integer)value$; break;
     case 1: item_name = (java.lang.CharSequence)value$; break;
     case 2: item_description = (java.lang.CharSequence)value$; break;
     case 3: price = (java.lang.Float)value$; break;
@@ -126,7 +126,7 @@ public class MenuItem extends org.apache.avro.specific.SpecificRecordBase implem
    * Gets the value of the 'item_id' field.
    * @return The value of the 'item_id' field.
    */
-  public long getItemId() {
+  public int getItemId() {
     return item_id;
   }
 
@@ -135,7 +135,7 @@ public class MenuItem extends org.apache.avro.specific.SpecificRecordBase implem
    * Sets the value of the 'item_id' field.
    * @param value the value to set.
    */
-  public void setItemId(long value) {
+  public void setItemId(int value) {
     this.item_id = value;
   }
 
@@ -231,7 +231,7 @@ public class MenuItem extends org.apache.avro.specific.SpecificRecordBase implem
   public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<MenuItem>
     implements org.apache.avro.data.RecordBuilder<MenuItem> {
 
-    private long item_id;
+    private int item_id;
     private java.lang.CharSequence item_name;
     private java.lang.CharSequence item_description;
     private float price;
@@ -293,7 +293,7 @@ public class MenuItem extends org.apache.avro.specific.SpecificRecordBase implem
       * Gets the value of the 'item_id' field.
       * @return The value.
       */
-    public long getItemId() {
+    public int getItemId() {
       return item_id;
     }
 
@@ -303,7 +303,7 @@ public class MenuItem extends org.apache.avro.specific.SpecificRecordBase implem
       * @param value The value of 'item_id'.
       * @return This builder.
       */
-    public sn.academy.food_delivery.models.avro.MenuItem.Builder setItemId(long value) {
+    public sn.academy.food_delivery.models.avro.MenuItem.Builder setItemId(int value) {
       validate(fields()[0], value);
       this.item_id = value;
       fieldSetFlags()[0] = true;
@@ -452,7 +452,7 @@ public class MenuItem extends org.apache.avro.specific.SpecificRecordBase implem
     public MenuItem build() {
       try {
         MenuItem record = new MenuItem();
-        record.item_id = fieldSetFlags()[0] ? this.item_id : (java.lang.Long) defaultValue(fields()[0]);
+        record.item_id = fieldSetFlags()[0] ? this.item_id : (java.lang.Integer) defaultValue(fields()[0]);
         record.item_name = fieldSetFlags()[1] ? this.item_name : (java.lang.CharSequence) defaultValue(fields()[1]);
         record.item_description = fieldSetFlags()[2] ? this.item_description : (java.lang.CharSequence) defaultValue(fields()[2]);
         record.price = fieldSetFlags()[3] ? this.price : (java.lang.Float) defaultValue(fields()[3]);
@@ -488,7 +488,7 @@ public class MenuItem extends org.apache.avro.specific.SpecificRecordBase implem
   @Override public void customEncode(org.apache.avro.io.Encoder out)
     throws java.io.IOException
   {
-    out.writeLong(this.item_id);
+    out.writeInt(this.item_id);
 
     out.writeString(this.item_name);
 
@@ -503,7 +503,7 @@ public class MenuItem extends org.apache.avro.specific.SpecificRecordBase implem
   {
     org.apache.avro.Schema.Field[] fieldOrder = in.readFieldOrderIfDiff();
     if (fieldOrder == null) {
-      this.item_id = in.readLong();
+      this.item_id = in.readInt();
 
       this.item_name = in.readString(this.item_name instanceof Utf8 ? (Utf8)this.item_name : null);
 
@@ -515,7 +515,7 @@ public class MenuItem extends org.apache.avro.specific.SpecificRecordBase implem
       for (int i = 0; i < 4; i++) {
         switch (fieldOrder[i].pos()) {
         case 0:
-          this.item_id = in.readLong();
+          this.item_id = in.readInt();
           break;
 
         case 1:

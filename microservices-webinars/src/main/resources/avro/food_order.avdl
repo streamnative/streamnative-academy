@@ -6,9 +6,9 @@ protocol OrderProtocol {
   import idl "./restaurant.avdl";
 
   record FoodOrder {
-    long order_id;
-    long customer_id;
-    long restaurant_id;
+    int order_id;
+    int customer_id;
+    int restaurant_id;
     string time_placed;
     OrderStatus order_status;
     array<OrderDetail> details;
@@ -26,5 +26,4 @@ protocol OrderProtocol {
   enum OrderStatus {
     NEW, ACCEPTED, READY, DISPATCHED, DELIVERED
   }
-
 }

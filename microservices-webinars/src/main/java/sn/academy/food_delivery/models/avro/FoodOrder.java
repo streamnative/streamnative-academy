@@ -14,8 +14,8 @@ import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = -8469910364298461711L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"FoodOrder\",\"namespace\":\"sn.academy.food_delivery.models.avro\",\"fields\":[{\"name\":\"order_id\",\"type\":\"long\"},{\"name\":\"customer_id\",\"type\":\"long\"},{\"name\":\"restaurant_id\",\"type\":\"long\"},{\"name\":\"time_placed\",\"type\":\"string\"},{\"name\":\"order_status\",\"type\":{\"type\":\"enum\",\"name\":\"OrderStatus\",\"symbols\":[\"NEW\",\"ACCEPTED\",\"READY\",\"DISPATCHED\",\"DELIVERED\"]}},{\"name\":\"details\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"OrderDetail\",\"fields\":[{\"name\":\"quantity\",\"type\":\"int\"},{\"name\":\"total\",\"type\":\"float\"},{\"name\":\"food_item\",\"type\":{\"type\":\"record\",\"name\":\"MenuItem\",\"fields\":[{\"name\":\"item_id\",\"type\":\"long\"},{\"name\":\"item_name\",\"type\":\"string\"},{\"name\":\"item_description\",\"type\":\"string\"},{\"name\":\"price\",\"type\":\"float\"}]}}]}}},{\"name\":\"delivery_location\",\"type\":{\"type\":\"record\",\"name\":\"Address\",\"fields\":[{\"name\":\"street\",\"type\":\"string\"},{\"name\":\"city\",\"type\":\"string\"},{\"name\":\"state\",\"type\":\"string\"},{\"name\":\"zip\",\"type\":\"string\"}]}},{\"name\":\"payment_method\",\"type\":{\"type\":\"record\",\"name\":\"CreditCard\",\"fields\":[{\"name\":\"card_type\",\"type\":{\"type\":\"enum\",\"name\":\"CardType\",\"symbols\":[\"MASTERCARD\",\"AMEX\",\"VISA\",\"DISCOVER\"]}},{\"name\":\"account_number\",\"type\":\"string\"},{\"name\":\"billing_zip\",\"type\":\"string\"},{\"name\":\"ccv\",\"type\":\"string\"}]}},{\"name\":\"total\",\"type\":\"float\",\"default\":0.0}]}");
+  private static final long serialVersionUID = 5554529473809126372L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"FoodOrder\",\"namespace\":\"sn.academy.food_delivery.models.avro\",\"fields\":[{\"name\":\"order_id\",\"type\":\"int\"},{\"name\":\"customer_id\",\"type\":\"int\"},{\"name\":\"restaurant_id\",\"type\":\"int\"},{\"name\":\"time_placed\",\"type\":\"string\"},{\"name\":\"order_status\",\"type\":{\"type\":\"enum\",\"name\":\"OrderStatus\",\"symbols\":[\"NEW\",\"ACCEPTED\",\"READY\",\"DISPATCHED\",\"DELIVERED\"]}},{\"name\":\"details\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"OrderDetail\",\"fields\":[{\"name\":\"quantity\",\"type\":\"int\"},{\"name\":\"total\",\"type\":\"float\"},{\"name\":\"food_item\",\"type\":{\"type\":\"record\",\"name\":\"MenuItem\",\"fields\":[{\"name\":\"item_id\",\"type\":\"int\"},{\"name\":\"item_name\",\"type\":\"string\"},{\"name\":\"item_description\",\"type\":\"string\"},{\"name\":\"price\",\"type\":\"float\"}]}}]}}},{\"name\":\"delivery_location\",\"type\":{\"type\":\"record\",\"name\":\"Address\",\"fields\":[{\"name\":\"street\",\"type\":\"string\"},{\"name\":\"city\",\"type\":\"string\"},{\"name\":\"state\",\"type\":\"string\"},{\"name\":\"zip\",\"type\":\"string\"}]}},{\"name\":\"payment_method\",\"type\":{\"type\":\"record\",\"name\":\"CreditCard\",\"fields\":[{\"name\":\"card_type\",\"type\":{\"type\":\"enum\",\"name\":\"CardType\",\"symbols\":[\"MASTERCARD\",\"AMEX\",\"VISA\",\"DISCOVER\"]}},{\"name\":\"account_number\",\"type\":\"string\"},{\"name\":\"billing_zip\",\"type\":\"string\"},{\"name\":\"ccv\",\"type\":\"string\"}]}},{\"name\":\"total\",\"type\":\"float\",\"default\":0.0}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -71,9 +71,9 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
     return DECODER.decode(b);
   }
 
-  @Deprecated public long order_id;
-  @Deprecated public long customer_id;
-  @Deprecated public long restaurant_id;
+  @Deprecated public int order_id;
+  @Deprecated public int customer_id;
+  @Deprecated public int restaurant_id;
   @Deprecated public java.lang.CharSequence time_placed;
   @Deprecated public sn.academy.food_delivery.models.avro.OrderStatus order_status;
   @Deprecated public java.util.List<sn.academy.food_delivery.models.avro.OrderDetail> details;
@@ -100,7 +100,7 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
    * @param payment_method The new value for payment_method
    * @param total The new value for total
    */
-  public FoodOrder(java.lang.Long order_id, java.lang.Long customer_id, java.lang.Long restaurant_id, java.lang.CharSequence time_placed, sn.academy.food_delivery.models.avro.OrderStatus order_status, java.util.List<sn.academy.food_delivery.models.avro.OrderDetail> details, sn.academy.food_delivery.models.avro.Address delivery_location, sn.academy.food_delivery.models.avro.CreditCard payment_method, java.lang.Float total) {
+  public FoodOrder(java.lang.Integer order_id, java.lang.Integer customer_id, java.lang.Integer restaurant_id, java.lang.CharSequence time_placed, sn.academy.food_delivery.models.avro.OrderStatus order_status, java.util.List<sn.academy.food_delivery.models.avro.OrderDetail> details, sn.academy.food_delivery.models.avro.Address delivery_location, sn.academy.food_delivery.models.avro.CreditCard payment_method, java.lang.Float total) {
     this.order_id = order_id;
     this.customer_id = customer_id;
     this.restaurant_id = restaurant_id;
@@ -134,9 +134,9 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
   @SuppressWarnings(value="unchecked")
   public void put(int field$, java.lang.Object value$) {
     switch (field$) {
-    case 0: order_id = (java.lang.Long)value$; break;
-    case 1: customer_id = (java.lang.Long)value$; break;
-    case 2: restaurant_id = (java.lang.Long)value$; break;
+    case 0: order_id = (java.lang.Integer)value$; break;
+    case 1: customer_id = (java.lang.Integer)value$; break;
+    case 2: restaurant_id = (java.lang.Integer)value$; break;
     case 3: time_placed = (java.lang.CharSequence)value$; break;
     case 4: order_status = (sn.academy.food_delivery.models.avro.OrderStatus)value$; break;
     case 5: details = (java.util.List<sn.academy.food_delivery.models.avro.OrderDetail>)value$; break;
@@ -151,7 +151,7 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
    * Gets the value of the 'order_id' field.
    * @return The value of the 'order_id' field.
    */
-  public long getOrderId() {
+  public int getOrderId() {
     return order_id;
   }
 
@@ -160,7 +160,7 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
    * Sets the value of the 'order_id' field.
    * @param value the value to set.
    */
-  public void setOrderId(long value) {
+  public void setOrderId(int value) {
     this.order_id = value;
   }
 
@@ -168,7 +168,7 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
    * Gets the value of the 'customer_id' field.
    * @return The value of the 'customer_id' field.
    */
-  public long getCustomerId() {
+  public int getCustomerId() {
     return customer_id;
   }
 
@@ -177,7 +177,7 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
    * Sets the value of the 'customer_id' field.
    * @param value the value to set.
    */
-  public void setCustomerId(long value) {
+  public void setCustomerId(int value) {
     this.customer_id = value;
   }
 
@@ -185,7 +185,7 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
    * Gets the value of the 'restaurant_id' field.
    * @return The value of the 'restaurant_id' field.
    */
-  public long getRestaurantId() {
+  public int getRestaurantId() {
     return restaurant_id;
   }
 
@@ -194,7 +194,7 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
    * Sets the value of the 'restaurant_id' field.
    * @param value the value to set.
    */
-  public void setRestaurantId(long value) {
+  public void setRestaurantId(int value) {
     this.restaurant_id = value;
   }
 
@@ -341,9 +341,9 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
   public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<FoodOrder>
     implements org.apache.avro.data.RecordBuilder<FoodOrder> {
 
-    private long order_id;
-    private long customer_id;
-    private long restaurant_id;
+    private int order_id;
+    private int customer_id;
+    private int restaurant_id;
     private java.lang.CharSequence time_placed;
     private sn.academy.food_delivery.models.avro.OrderStatus order_status;
     private java.util.List<sn.academy.food_delivery.models.avro.OrderDetail> details;
@@ -458,7 +458,7 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
       * Gets the value of the 'order_id' field.
       * @return The value.
       */
-    public long getOrderId() {
+    public int getOrderId() {
       return order_id;
     }
 
@@ -468,7 +468,7 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
       * @param value The value of 'order_id'.
       * @return This builder.
       */
-    public sn.academy.food_delivery.models.avro.FoodOrder.Builder setOrderId(long value) {
+    public sn.academy.food_delivery.models.avro.FoodOrder.Builder setOrderId(int value) {
       validate(fields()[0], value);
       this.order_id = value;
       fieldSetFlags()[0] = true;
@@ -497,7 +497,7 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
       * Gets the value of the 'customer_id' field.
       * @return The value.
       */
-    public long getCustomerId() {
+    public int getCustomerId() {
       return customer_id;
     }
 
@@ -507,7 +507,7 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
       * @param value The value of 'customer_id'.
       * @return This builder.
       */
-    public sn.academy.food_delivery.models.avro.FoodOrder.Builder setCustomerId(long value) {
+    public sn.academy.food_delivery.models.avro.FoodOrder.Builder setCustomerId(int value) {
       validate(fields()[1], value);
       this.customer_id = value;
       fieldSetFlags()[1] = true;
@@ -536,7 +536,7 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
       * Gets the value of the 'restaurant_id' field.
       * @return The value.
       */
-    public long getRestaurantId() {
+    public int getRestaurantId() {
       return restaurant_id;
     }
 
@@ -546,7 +546,7 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
       * @param value The value of 'restaurant_id'.
       * @return This builder.
       */
-    public sn.academy.food_delivery.models.avro.FoodOrder.Builder setRestaurantId(long value) {
+    public sn.academy.food_delivery.models.avro.FoodOrder.Builder setRestaurantId(int value) {
       validate(fields()[2], value);
       this.restaurant_id = value;
       fieldSetFlags()[2] = true;
@@ -885,9 +885,9 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
     public FoodOrder build() {
       try {
         FoodOrder record = new FoodOrder();
-        record.order_id = fieldSetFlags()[0] ? this.order_id : (java.lang.Long) defaultValue(fields()[0]);
-        record.customer_id = fieldSetFlags()[1] ? this.customer_id : (java.lang.Long) defaultValue(fields()[1]);
-        record.restaurant_id = fieldSetFlags()[2] ? this.restaurant_id : (java.lang.Long) defaultValue(fields()[2]);
+        record.order_id = fieldSetFlags()[0] ? this.order_id : (java.lang.Integer) defaultValue(fields()[0]);
+        record.customer_id = fieldSetFlags()[1] ? this.customer_id : (java.lang.Integer) defaultValue(fields()[1]);
+        record.restaurant_id = fieldSetFlags()[2] ? this.restaurant_id : (java.lang.Integer) defaultValue(fields()[2]);
         record.time_placed = fieldSetFlags()[3] ? this.time_placed : (java.lang.CharSequence) defaultValue(fields()[3]);
         record.order_status = fieldSetFlags()[4] ? this.order_status : (sn.academy.food_delivery.models.avro.OrderStatus) defaultValue(fields()[4]);
         record.details = fieldSetFlags()[5] ? this.details : (java.util.List<sn.academy.food_delivery.models.avro.OrderDetail>) defaultValue(fields()[5]);
@@ -944,11 +944,11 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
   @Override public void customEncode(org.apache.avro.io.Encoder out)
     throws java.io.IOException
   {
-    out.writeLong(this.order_id);
+    out.writeInt(this.order_id);
 
-    out.writeLong(this.customer_id);
+    out.writeInt(this.customer_id);
 
-    out.writeLong(this.restaurant_id);
+    out.writeInt(this.restaurant_id);
 
     out.writeString(this.time_placed);
 
@@ -980,11 +980,11 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
   {
     org.apache.avro.Schema.Field[] fieldOrder = in.readFieldOrderIfDiff();
     if (fieldOrder == null) {
-      this.order_id = in.readLong();
+      this.order_id = in.readInt();
 
-      this.customer_id = in.readLong();
+      this.customer_id = in.readInt();
 
-      this.restaurant_id = in.readLong();
+      this.restaurant_id = in.readInt();
 
       this.time_placed = in.readString(this.time_placed instanceof Utf8 ? (Utf8)this.time_placed : null);
 
@@ -1024,15 +1024,15 @@ public class FoodOrder extends org.apache.avro.specific.SpecificRecordBase imple
       for (int i = 0; i < 9; i++) {
         switch (fieldOrder[i].pos()) {
         case 0:
-          this.order_id = in.readLong();
+          this.order_id = in.readInt();
           break;
 
         case 1:
-          this.customer_id = in.readLong();
+          this.customer_id = in.readInt();
           break;
 
         case 2:
-          this.restaurant_id = in.readLong();
+          this.restaurant_id = in.readInt();
           break;
 
         case 3:

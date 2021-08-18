@@ -29,9 +29,22 @@
         </dependency>
 
         <dependency>
+            <groupId>org.apache.pulsar</groupId>
+            <artifactId>pulsar-functions-local-runner-original</artifactId>
+            <version>${pulsar.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
             <groupId>org.apache.avro</groupId>
             <artifactId>avro</artifactId>
             <version>1.9.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.javafaker</groupId>
+            <artifactId>javafaker</artifactId>
+            <version>1.0.2</version>
         </dependency>
     </dependencies>
 
