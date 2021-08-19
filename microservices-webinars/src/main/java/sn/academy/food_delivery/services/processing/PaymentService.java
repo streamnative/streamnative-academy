@@ -1,8 +1,10 @@
 package sn.academy.food_delivery.services.processing;
 
+import org.apache.pulsar.client.impl.schema.AvroSchema;
 import org.apache.pulsar.functions.api.Context;
 import org.apache.pulsar.functions.api.Function;
 import org.slf4j.Logger;
+import sn.academy.food_delivery.config.AppConfig;
 import sn.academy.food_delivery.models.avro.ApplePay;
 import sn.academy.food_delivery.models.avro.CreditCard;
 import sn.academy.food_delivery.models.avro.PayPal;
@@ -15,13 +17,14 @@ import sn.academy.food_delivery.services.external.MockPaymentValidationService;
  *
  * @see https://www.enterpriseintegrationpatterns.com/patterns/messaging/ContentBasedRouter.html
  */
-public class PaymentService implements Function<Payment, ValidatedFoodOrder> {
+public class PaymentService implements Function<Payment, Void> {
     private Logger logger;
 
     @Override
-    public ValidatedFoodOrder process(Payment payment, Context context) throws Exception {
+    public Void process(Payment payment, Context context) throws Exception {
         logger = context.getLogger();
         logger.info("Received payment: " + payment);
+        String orderKey = context.getCurrentRecord().getProperties().get("order-key");
 
         Class paymentType = payment.getMethodOfPayment().getType().getClass();
         boolean isPaymentValid = false;
@@ -36,9 +39,16 @@ public class PaymentService implements Function<Payment, ValidatedFoodOrder> {
             isPaymentValid = MockPaymentValidationService.validateCreditCard((CreditCard) payment.getMethodOfPayment().getType(), payment.getAmount().getTotal());
         }
         payment.setIsAuthorized(isPaymentValid);
-        return ValidatedFoodOrder
+        ValidatedFoodOrder validatedFoodOrder = ValidatedFoodOrder
                 .newBuilder()
                 .setPayment(payment)
                 .build();
+
+        logger.info("Sending: " + validatedFoodOrder);
+        context.newOutputMessage(AppConfig.ORDER_AGGREGATION_TOPIC_NAME, AvroSchema.of(ValidatedFoodOrder.class))
+                .property("order-key", orderKey)
+                .value(validatedFoodOrder)
+                .sendAsync();
+        return null;
     }
 }
