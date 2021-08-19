@@ -28,12 +28,12 @@ protocol OrderProtocol {
   }
 
   record ValidatedFoodOrder {
-    FoodOrderMeta meta;
-    int restaurant_id;
-    array<OrderDetail> details;
-    timestamp_ms eta;
-    sn.academy.food_delivery.models.avro.GeoEncodedAddress delivery_location;
-    sn.academy.food_delivery.models.avro.Payment payment;
+    union { null, FoodOrderMeta } meta;
+    union { null, int } restaurant_id;
+    union { null, array<OrderDetail> } details;
+    union { null, string } eta;
+    union { null, sn.academy.food_delivery.models.avro.GeoEncodedAddress } delivery_location;
+    union { null, sn.academy.food_delivery.models.avro.Payment } payment;
   }
 
   enum OrderStatus {

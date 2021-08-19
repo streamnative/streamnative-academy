@@ -14,14 +14,11 @@ import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class ValidatedFoodOrder extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 8802255050080734763L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"ValidatedFoodOrder\",\"namespace\":\"sn.academy.food_delivery.models.avro\",\"fields\":[{\"name\":\"meta\",\"type\":{\"type\":\"record\",\"name\":\"FoodOrderMeta\",\"fields\":[{\"name\":\"order_id\",\"type\":\"int\"},{\"name\":\"customer_id\",\"type\":\"int\"},{\"name\":\"time_placed\",\"type\":\"string\"},{\"name\":\"order_status\",\"type\":{\"type\":\"enum\",\"name\":\"OrderStatus\",\"symbols\":[\"NEW\",\"ACCEPTED\",\"DECLINED\",\"READY\",\"DISPATCHED\",\"DELIVERED\"]}}]}},{\"name\":\"restaurant_id\",\"type\":\"int\"},{\"name\":\"details\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"OrderDetail\",\"fields\":[{\"name\":\"quantity\",\"type\":\"int\"},{\"name\":\"total\",\"type\":\"float\"},{\"name\":\"food_item\",\"type\":{\"type\":\"record\",\"name\":\"MenuItem\",\"fields\":[{\"name\":\"item_id\",\"type\":\"int\"},{\"name\":\"item_name\",\"type\":\"string\"},{\"name\":\"item_description\",\"type\":\"string\"},{\"name\":\"price\",\"type\":\"float\"}]}}]}}},{\"name\":\"eta\",\"type\":{\"type\":\"long\",\"logicalType\":\"timestamp-millis\"}},{\"name\":\"delivery_location\",\"type\":{\"type\":\"record\",\"name\":\"GeoEncodedAddress\",\"fields\":[{\"name\":\"address\",\"type\":{\"type\":\"record\",\"name\":\"Address\",\"fields\":[{\"name\":\"street\",\"type\":\"string\"},{\"name\":\"city\",\"type\":\"string\"},{\"name\":\"state\",\"type\":\"string\"},{\"name\":\"country\",\"type\":\"string\"},{\"name\":\"zip\",\"type\":\"string\"}]}},{\"name\":\"isValidAddress\",\"type\":\"boolean\"},{\"name\":\"geoLocation\",\"type\":[\"null\",{\"type\":\"record\",\"name\":\"GeoLocation\",\"fields\":[{\"name\":\"latitude\",\"type\":\"double\"},{\"name\":\"longitude\",\"type\":\"double\"}]}]}]}},{\"name\":\"payment\",\"type\":{\"type\":\"record\",\"name\":\"Payment\",\"fields\":[{\"name\":\"method_of_payment\",\"type\":{\"type\":\"record\",\"name\":\"PaymentMethod\",\"fields\":[{\"name\":\"type\",\"type\":[{\"type\":\"record\",\"name\":\"CreditCard\",\"fields\":[{\"name\":\"card_type\",\"type\":{\"type\":\"enum\",\"name\":\"CardType\",\"symbols\":[\"MASTERCARD\",\"AMEX\",\"VISA\",\"DISCOVER\"]}},{\"name\":\"account_number\",\"type\":\"string\"},{\"name\":\"billing_zip\",\"type\":\"string\"},{\"name\":\"ccv\",\"type\":\"string\"},{\"name\":\"expMonth\",\"type\":\"string\"},{\"name\":\"expYear\",\"type\":\"string\"}]},{\"type\":\"record\",\"name\":\"ApplePay\",\"fields\":[{\"name\":\"accountNumber\",\"type\":\"string\"}]},{\"type\":\"record\",\"name\":\"PayPal\",\"fields\":[{\"name\":\"accountNumber\",\"type\":\"string\"}]}]}]}},{\"name\":\"amount\",\"type\":{\"type\":\"record\",\"name\":\"PaymentAmount\",\"fields\":[{\"name\":\"food_total\",\"type\":\"float\"},{\"name\":\"tax\",\"type\":\"float\"},{\"name\":\"total\",\"type\":\"float\"}]}},{\"name\":\"isAuthorized\",\"type\":\"boolean\"}]}}]}");
+  private static final long serialVersionUID = -420603286159820984L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"ValidatedFoodOrder\",\"namespace\":\"sn.academy.food_delivery.models.avro\",\"fields\":[{\"name\":\"meta\",\"type\":[\"null\",{\"type\":\"record\",\"name\":\"FoodOrderMeta\",\"fields\":[{\"name\":\"order_id\",\"type\":\"int\"},{\"name\":\"customer_id\",\"type\":\"int\"},{\"name\":\"time_placed\",\"type\":\"string\"},{\"name\":\"order_status\",\"type\":{\"type\":\"enum\",\"name\":\"OrderStatus\",\"symbols\":[\"NEW\",\"ACCEPTED\",\"DECLINED\",\"READY\",\"DISPATCHED\",\"DELIVERED\"]}}]}]},{\"name\":\"restaurant_id\",\"type\":[\"null\",\"int\"]},{\"name\":\"details\",\"type\":[\"null\",{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"OrderDetail\",\"fields\":[{\"name\":\"quantity\",\"type\":\"int\"},{\"name\":\"total\",\"type\":\"float\"},{\"name\":\"food_item\",\"type\":{\"type\":\"record\",\"name\":\"MenuItem\",\"fields\":[{\"name\":\"item_id\",\"type\":\"int\"},{\"name\":\"item_name\",\"type\":\"string\"},{\"name\":\"item_description\",\"type\":\"string\"},{\"name\":\"price\",\"type\":\"float\"}]}}]}}]},{\"name\":\"eta\",\"type\":[\"null\",\"string\"]},{\"name\":\"delivery_location\",\"type\":[\"null\",{\"type\":\"record\",\"name\":\"GeoEncodedAddress\",\"fields\":[{\"name\":\"address\",\"type\":{\"type\":\"record\",\"name\":\"Address\",\"fields\":[{\"name\":\"street\",\"type\":\"string\"},{\"name\":\"city\",\"type\":\"string\"},{\"name\":\"state\",\"type\":\"string\"},{\"name\":\"country\",\"type\":\"string\"},{\"name\":\"zip\",\"type\":\"string\"}]}},{\"name\":\"isValidAddress\",\"type\":\"boolean\"},{\"name\":\"geoLocation\",\"type\":[\"null\",{\"type\":\"record\",\"name\":\"GeoLocation\",\"fields\":[{\"name\":\"latitude\",\"type\":\"double\"},{\"name\":\"longitude\",\"type\":\"double\"}]}]}]}]},{\"name\":\"payment\",\"type\":[\"null\",{\"type\":\"record\",\"name\":\"Payment\",\"fields\":[{\"name\":\"method_of_payment\",\"type\":{\"type\":\"record\",\"name\":\"PaymentMethod\",\"fields\":[{\"name\":\"type\",\"type\":[{\"type\":\"record\",\"name\":\"CreditCard\",\"fields\":[{\"name\":\"card_type\",\"type\":{\"type\":\"enum\",\"name\":\"CardType\",\"symbols\":[\"MASTERCARD\",\"AMEX\",\"VISA\",\"DISCOVER\"]}},{\"name\":\"account_number\",\"type\":\"string\"},{\"name\":\"billing_zip\",\"type\":\"string\"},{\"name\":\"ccv\",\"type\":\"string\"},{\"name\":\"expMonth\",\"type\":\"string\"},{\"name\":\"expYear\",\"type\":\"string\"}]},{\"type\":\"record\",\"name\":\"ApplePay\",\"fields\":[{\"name\":\"accountNumber\",\"type\":\"string\"}]},{\"type\":\"record\",\"name\":\"PayPal\",\"fields\":[{\"name\":\"accountNumber\",\"type\":\"string\"}]}]}]}},{\"name\":\"amount\",\"type\":{\"type\":\"record\",\"name\":\"PaymentAmount\",\"fields\":[{\"name\":\"food_total\",\"type\":\"float\"},{\"name\":\"tax\",\"type\":\"float\"},{\"name\":\"total\",\"type\":\"float\"}]}},{\"name\":\"isAuthorized\",\"type\":\"boolean\"}]}]}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
-static {
-    MODEL$.addLogicalTypeConversion(new org.apache.avro.data.TimeConversions.TimestampMillisConversion());
-  }
 
   private static final BinaryMessageEncoder<ValidatedFoodOrder> ENCODER =
       new BinaryMessageEncoder<ValidatedFoodOrder>(MODEL$, SCHEMA$);
@@ -75,9 +72,9 @@ static {
   }
 
   @Deprecated public sn.academy.food_delivery.models.avro.FoodOrderMeta meta;
-  @Deprecated public int restaurant_id;
+  @Deprecated public java.lang.Integer restaurant_id;
   @Deprecated public java.util.List<sn.academy.food_delivery.models.avro.OrderDetail> details;
-  @Deprecated public java.time.Instant eta;
+  @Deprecated public java.lang.CharSequence eta;
   @Deprecated public sn.academy.food_delivery.models.avro.GeoEncodedAddress delivery_location;
   @Deprecated public sn.academy.food_delivery.models.avro.Payment payment;
 
@@ -97,11 +94,11 @@ static {
    * @param delivery_location The new value for delivery_location
    * @param payment The new value for payment
    */
-  public ValidatedFoodOrder(sn.academy.food_delivery.models.avro.FoodOrderMeta meta, java.lang.Integer restaurant_id, java.util.List<sn.academy.food_delivery.models.avro.OrderDetail> details, java.time.Instant eta, sn.academy.food_delivery.models.avro.GeoEncodedAddress delivery_location, sn.academy.food_delivery.models.avro.Payment payment) {
+  public ValidatedFoodOrder(sn.academy.food_delivery.models.avro.FoodOrderMeta meta, java.lang.Integer restaurant_id, java.util.List<sn.academy.food_delivery.models.avro.OrderDetail> details, java.lang.CharSequence eta, sn.academy.food_delivery.models.avro.GeoEncodedAddress delivery_location, sn.academy.food_delivery.models.avro.Payment payment) {
     this.meta = meta;
     this.restaurant_id = restaurant_id;
     this.details = details;
-    this.eta = eta.truncatedTo(java.time.temporal.ChronoUnit.MILLIS);
+    this.eta = eta;
     this.delivery_location = delivery_location;
     this.payment = payment;
   }
@@ -121,22 +118,6 @@ static {
     }
   }
 
-  private static final org.apache.avro.Conversion<?>[] conversions =
-      new org.apache.avro.Conversion<?>[] {
-      null,
-      null,
-      null,
-      new org.apache.avro.data.TimeConversions.TimestampMillisConversion(),
-      null,
-      null,
-      null
-  };
-
-  @Override
-  public org.apache.avro.Conversion<?> getConversion(int field) {
-    return conversions[field];
-  }
-
   // Used by DatumReader.  Applications should not call.
   @SuppressWarnings(value="unchecked")
   public void put(int field$, java.lang.Object value$) {
@@ -144,7 +125,7 @@ static {
     case 0: meta = (sn.academy.food_delivery.models.avro.FoodOrderMeta)value$; break;
     case 1: restaurant_id = (java.lang.Integer)value$; break;
     case 2: details = (java.util.List<sn.academy.food_delivery.models.avro.OrderDetail>)value$; break;
-    case 3: eta = (java.time.Instant)value$; break;
+    case 3: eta = (java.lang.CharSequence)value$; break;
     case 4: delivery_location = (sn.academy.food_delivery.models.avro.GeoEncodedAddress)value$; break;
     case 5: payment = (sn.academy.food_delivery.models.avro.Payment)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
@@ -172,7 +153,7 @@ static {
    * Gets the value of the 'restaurant_id' field.
    * @return The value of the 'restaurant_id' field.
    */
-  public int getRestaurantId() {
+  public java.lang.Integer getRestaurantId() {
     return restaurant_id;
   }
 
@@ -181,7 +162,7 @@ static {
    * Sets the value of the 'restaurant_id' field.
    * @param value the value to set.
    */
-  public void setRestaurantId(int value) {
+  public void setRestaurantId(java.lang.Integer value) {
     this.restaurant_id = value;
   }
 
@@ -206,7 +187,7 @@ static {
    * Gets the value of the 'eta' field.
    * @return The value of the 'eta' field.
    */
-  public java.time.Instant getEta() {
+  public java.lang.CharSequence getEta() {
     return eta;
   }
 
@@ -215,8 +196,8 @@ static {
    * Sets the value of the 'eta' field.
    * @param value the value to set.
    */
-  public void setEta(java.time.Instant value) {
-    this.eta = value.truncatedTo(java.time.temporal.ChronoUnit.MILLIS);
+  public void setEta(java.lang.CharSequence value) {
+    this.eta = value;
   }
 
   /**
@@ -296,9 +277,9 @@ static {
 
     private sn.academy.food_delivery.models.avro.FoodOrderMeta meta;
     private sn.academy.food_delivery.models.avro.FoodOrderMeta.Builder metaBuilder;
-    private int restaurant_id;
+    private java.lang.Integer restaurant_id;
     private java.util.List<sn.academy.food_delivery.models.avro.OrderDetail> details;
-    private java.time.Instant eta;
+    private java.lang.CharSequence eta;
     private sn.academy.food_delivery.models.avro.GeoEncodedAddress delivery_location;
     private sn.academy.food_delivery.models.avro.GeoEncodedAddress.Builder delivery_locationBuilder;
     private sn.academy.food_delivery.models.avro.Payment payment;
@@ -464,7 +445,7 @@ static {
       * Gets the value of the 'restaurant_id' field.
       * @return The value.
       */
-    public int getRestaurantId() {
+    public java.lang.Integer getRestaurantId() {
       return restaurant_id;
     }
 
@@ -474,7 +455,7 @@ static {
       * @param value The value of 'restaurant_id'.
       * @return This builder.
       */
-    public sn.academy.food_delivery.models.avro.ValidatedFoodOrder.Builder setRestaurantId(int value) {
+    public sn.academy.food_delivery.models.avro.ValidatedFoodOrder.Builder setRestaurantId(java.lang.Integer value) {
       validate(fields()[1], value);
       this.restaurant_id = value;
       fieldSetFlags()[1] = true;
@@ -495,6 +476,7 @@ static {
       * @return This builder.
       */
     public sn.academy.food_delivery.models.avro.ValidatedFoodOrder.Builder clearRestaurantId() {
+      restaurant_id = null;
       fieldSetFlags()[1] = false;
       return this;
     }
@@ -543,7 +525,7 @@ static {
       * Gets the value of the 'eta' field.
       * @return The value.
       */
-    public java.time.Instant getEta() {
+    public java.lang.CharSequence getEta() {
       return eta;
     }
 
@@ -553,9 +535,9 @@ static {
       * @param value The value of 'eta'.
       * @return This builder.
       */
-    public sn.academy.food_delivery.models.avro.ValidatedFoodOrder.Builder setEta(java.time.Instant value) {
+    public sn.academy.food_delivery.models.avro.ValidatedFoodOrder.Builder setEta(java.lang.CharSequence value) {
       validate(fields()[3], value);
-      this.eta = value.truncatedTo(java.time.temporal.ChronoUnit.MILLIS);
+      this.eta = value;
       fieldSetFlags()[3] = true;
       return this;
     }
@@ -574,6 +556,7 @@ static {
       * @return This builder.
       */
     public sn.academy.food_delivery.models.avro.ValidatedFoodOrder.Builder clearEta() {
+      eta = null;
       fieldSetFlags()[3] = false;
       return this;
     }
@@ -745,7 +728,7 @@ static {
         }
         record.restaurant_id = fieldSetFlags()[1] ? this.restaurant_id : (java.lang.Integer) defaultValue(fields()[1]);
         record.details = fieldSetFlags()[2] ? this.details : (java.util.List<sn.academy.food_delivery.models.avro.OrderDetail>) defaultValue(fields()[2]);
-        record.eta = fieldSetFlags()[3] ? this.eta : (java.time.Instant) defaultValue(fields()[3]);
+        record.eta = fieldSetFlags()[3] ? this.eta : (java.lang.CharSequence) defaultValue(fields()[3]);
         if (delivery_locationBuilder != null) {
           try {
             record.delivery_location = this.delivery_locationBuilder.build();

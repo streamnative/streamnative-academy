@@ -24,7 +24,6 @@ public class PaymentService implements Function<Payment, Void> {
     public Void process(Payment payment, Context context) throws Exception {
         logger = context.getLogger();
         logger.info("Received payment: " + payment);
-        String orderKey = context.getCurrentRecord().getProperties().get("order-key");
 
         Class paymentType = payment.getMethodOfPayment().getType().getClass();
         boolean isPaymentValid = false;
@@ -39,14 +38,12 @@ public class PaymentService implements Function<Payment, Void> {
             isPaymentValid = MockPaymentValidationService.validateCreditCard((CreditCard) payment.getMethodOfPayment().getType(), payment.getAmount().getTotal());
         }
         payment.setIsAuthorized(isPaymentValid);
-        ValidatedFoodOrder validatedFoodOrder = ValidatedFoodOrder
-                .newBuilder()
-                .setPayment(payment)
-                .build();
+        ValidatedFoodOrder validatedFoodOrder = new ValidatedFoodOrder();
+        validatedFoodOrder.setPayment(payment);
 
         logger.info("Sending: " + validatedFoodOrder);
         context.newOutputMessage(AppConfig.ORDER_AGGREGATION_TOPIC_NAME, AvroSchema.of(ValidatedFoodOrder.class))
-                .property("order-key", orderKey)
+                .properties(context.getCurrentRecord().getProperties())
                 .value(validatedFoodOrder)
                 .sendAsync();
         return null;

@@ -23,15 +23,14 @@ public class GeoEncoderService implements Function<Address, Void> {
             logger = context.getLogger();
             init(context);
         }
-        String orderKey = context.getCurrentRecord().getProperties().get("order-key");
         GeoEncodedAddress geoEncodedAddress = googleAPIGeoEncodingService.validateAddressMock(address);
 
-        ValidatedFoodOrder validatedFoodOrder = ValidatedFoodOrder.newBuilder()
-                .setDeliveryLocation(geoEncodedAddress)
-                .build();
+        ValidatedFoodOrder validatedFoodOrder = new ValidatedFoodOrder();
+        validatedFoodOrder.setDeliveryLocation(geoEncodedAddress);
+
         logger.info("Sending: " + validatedFoodOrder);
         context.newOutputMessage(AppConfig.ORDER_AGGREGATION_TOPIC_NAME, AvroSchema.of(ValidatedFoodOrder.class))
-                .property("order-key", orderKey)
+                .properties(context.getCurrentRecord().getProperties())
                 .value(validatedFoodOrder)
                 .sendAsync();
         return null;

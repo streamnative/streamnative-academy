@@ -1,24 +1,26 @@
-package sn.academy.food_delivery.services.processing;
+package sn.academy.food_delivery.services.aggregation;
 
 import java.util.Collections;
 import java.util.HashMap;
+import org.apache.pulsar.client.impl.schema.AvroSchema;
 import org.apache.pulsar.common.functions.ConsumerConfig;
 import org.apache.pulsar.common.functions.FunctionConfig;
 import org.apache.pulsar.functions.LocalRunner;
 import sn.academy.food_delivery.config.AppConfig;
+import sn.academy.food_delivery.models.avro.FoodOrder;
 
-public class OrderSolicitationServiceLRTest {
+public class OrderAggregationServiceLRTest {
     public static void main(String[] args) throws Exception {
         HashMap<String, ConsumerConfig> inputSpecs = new HashMap<>();
-        inputSpecs.put(AppConfig.RESTAURANTS_TOPIC_NAME, ConsumerConfig.builder().schemaType("avro").build());
+        inputSpecs.put(AppConfig.ORDER_AGGREGATION_TOPIC_NAME, ConsumerConfig.builder().schemaType(AvroSchema.of(FoodOrder.class).getSchemaInfo().getName()).build());
 
         FunctionConfig functionConfig = FunctionConfig.builder()
-                .className(OrderSolicitationService.class.getName())
-                .inputs(Collections.singletonList(AppConfig.RESTAURANTS_TOPIC_NAME))
+                .className(OrderAggregationService.class.getName())
+                .inputs(Collections.singletonList(AppConfig.ORDER_AGGREGATION_TOPIC_NAME))
                 .inputSpecs(inputSpecs)
-                .name("order-solicitation")
+                .name("order-aggregation")
                 .runtime(FunctionConfig.Runtime.JAVA)
-                .subName("order-solicitation-subscription")
+                .subName("order-aggregation-subscription")
                 .cleanupSubscription(true)
                 .build();
 
@@ -28,8 +30,8 @@ public class OrderSolicitationServiceLRTest {
                 .build();
 
         localRunner.start(false);
-        Thread.sleep(30000);
-        localRunner.stop();
-        System.exit(0);
+//        Thread.sleep(30000);
+//        localRunner.stop();
+//        System.exit(0);
     }
 }

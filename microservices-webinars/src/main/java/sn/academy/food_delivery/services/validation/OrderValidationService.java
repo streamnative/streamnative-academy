@@ -9,6 +9,7 @@ import sn.academy.food_delivery.models.avro.Address;
 import sn.academy.food_delivery.models.avro.FoodOrder;
 import sn.academy.food_delivery.models.avro.FoodOrderMeta;
 import sn.academy.food_delivery.models.avro.Payment;
+import sn.academy.food_delivery.models.avro.ValidatedFoodOrder;
 
 /**
  * Demonstrates the Splitter Pattern
@@ -20,6 +21,7 @@ public class OrderValidationService implements Function<FoodOrder, Void> {
     @Override
     public Void process(FoodOrder foodOrder, Context context) throws Exception {
         logger = context.getLogger();
+        logger.info("Received: " + foodOrder);
 
         // When a new order is invoke 3 services to validate it
         String orderId = foodOrder.getMeta().getOrderId() + "";
@@ -38,9 +40,9 @@ public class OrderValidationService implements Function<FoodOrder, Void> {
                 .value(payment)
                 .sendAsync();
 
-        context.newOutputMessage(AppConfig.ORDER_AGGREGATION_TOPIC_NAME, AvroSchema.of(FoodOrderMeta.class))
+        context.newOutputMessage(AppConfig.ORDER_AGGREGATION_TOPIC_NAME, AvroSchema.of(ValidatedFoodOrder.class))
                 .property("order-id", orderId)
-                .value(foodOrder.getMeta())
+                .value(new ValidatedFoodOrder())
                 .sendAsync();
 
         context.newOutputMessage(AppConfig.RESTAURANTS_TOPIC_NAME, AvroSchema.of(FoodOrder.class))
@@ -48,7 +50,6 @@ public class OrderValidationService implements Function<FoodOrder, Void> {
                 .value(foodOrder)
                 .sendAsync();
 
-        logger.info("Received: " + foodOrder);
         return null;
     }
 }

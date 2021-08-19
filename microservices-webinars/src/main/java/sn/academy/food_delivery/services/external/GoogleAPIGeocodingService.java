@@ -25,10 +25,10 @@ public class GoogleAPIGeocodingService {
     }
 
     public GeoEncodedAddress validateAddressMock(Address address) {
-        return GeoEncodedAddress.newBuilder()
-                .setAddress(address)
-                .setIsValidAddress(true)
-                .build();
+        GeoEncodedAddress geoEncodedAddress = new GeoEncodedAddress();
+        geoEncodedAddress.setAddress(address);
+        geoEncodedAddress.setIsValidAddress(true);
+        return geoEncodedAddress;
     }
 
     public GeoEncodedAddress validateAddress(Address address) {
