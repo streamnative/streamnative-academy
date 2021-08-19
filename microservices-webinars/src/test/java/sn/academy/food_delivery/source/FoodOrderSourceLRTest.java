@@ -21,7 +21,7 @@ public class FoodOrderSourceLRTest {
 
         localRunner.start(false);
 
-        Thread.sleep(60000);
+        Thread.sleep(30000);
         localRunner.stop();
         System.exit(0);
     }
