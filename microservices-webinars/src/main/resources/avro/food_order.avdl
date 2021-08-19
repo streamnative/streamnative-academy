@@ -1,7 +1,7 @@
 @namespace("sn.academy.food_delivery.models.avro")
 protocol OrderProtocol {
 
-  import idl "./common.avdl";
+  import idl "./geo.avdl";
   import idl "./payment.avdl";
   import idl "./restaurant.avdl";
 
@@ -27,7 +27,16 @@ protocol OrderProtocol {
     OrderStatus order_status;
   }
 
+  record ValidatedFoodOrder {
+    FoodOrderMeta meta;
+    int restaurant_id;
+    array<OrderDetail> details;
+    timestamp_ms eta;
+    sn.academy.food_delivery.models.avro.GeoEncodedAddress delivery_location;
+    sn.academy.food_delivery.models.avro.Payment payment;
+  }
+
   enum OrderStatus {
-    NEW, ACCEPTED, READY, DISPATCHED, DELIVERED
+    NEW, ACCEPTED, DECLINED, READY, DISPATCHED, DELIVERED
   }
 }

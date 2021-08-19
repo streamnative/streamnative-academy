@@ -14,8 +14,8 @@ import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class Payment extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 4024727646736558531L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Payment\",\"namespace\":\"sn.academy.food_delivery.models.avro\",\"fields\":[{\"name\":\"method_of_payment\",\"type\":{\"type\":\"record\",\"name\":\"PaymentMethod\",\"fields\":[{\"name\":\"type\",\"type\":[{\"type\":\"record\",\"name\":\"CreditCard\",\"fields\":[{\"name\":\"card_type\",\"type\":{\"type\":\"enum\",\"name\":\"CardType\",\"symbols\":[\"MASTERCARD\",\"AMEX\",\"VISA\",\"DISCOVER\"]}},{\"name\":\"account_number\",\"type\":\"string\"},{\"name\":\"billing_zip\",\"type\":\"string\"},{\"name\":\"ccv\",\"type\":\"string\"},{\"name\":\"expMonth\",\"type\":\"string\"},{\"name\":\"expYear\",\"type\":\"string\"}]},{\"type\":\"record\",\"name\":\"ApplePay\",\"fields\":[{\"name\":\"accountNumber\",\"type\":\"string\"}]},{\"type\":\"record\",\"name\":\"PayPal\",\"fields\":[{\"name\":\"accountNumber\",\"type\":\"string\"}]}]}]}},{\"name\":\"amount\",\"type\":{\"type\":\"record\",\"name\":\"PaymentAmount\",\"fields\":[{\"name\":\"food_total\",\"type\":\"float\"},{\"name\":\"tax\",\"type\":\"float\"},{\"name\":\"total\",\"type\":\"float\"}]}}]}");
+  private static final long serialVersionUID = -2064796509969062965L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Payment\",\"namespace\":\"sn.academy.food_delivery.models.avro\",\"fields\":[{\"name\":\"method_of_payment\",\"type\":{\"type\":\"record\",\"name\":\"PaymentMethod\",\"fields\":[{\"name\":\"type\",\"type\":[{\"type\":\"record\",\"name\":\"CreditCard\",\"fields\":[{\"name\":\"card_type\",\"type\":{\"type\":\"enum\",\"name\":\"CardType\",\"symbols\":[\"MASTERCARD\",\"AMEX\",\"VISA\",\"DISCOVER\"]}},{\"name\":\"account_number\",\"type\":\"string\"},{\"name\":\"billing_zip\",\"type\":\"string\"},{\"name\":\"ccv\",\"type\":\"string\"},{\"name\":\"expMonth\",\"type\":\"string\"},{\"name\":\"expYear\",\"type\":\"string\"}]},{\"type\":\"record\",\"name\":\"ApplePay\",\"fields\":[{\"name\":\"accountNumber\",\"type\":\"string\"}]},{\"type\":\"record\",\"name\":\"PayPal\",\"fields\":[{\"name\":\"accountNumber\",\"type\":\"string\"}]}]}]}},{\"name\":\"amount\",\"type\":{\"type\":\"record\",\"name\":\"PaymentAmount\",\"fields\":[{\"name\":\"food_total\",\"type\":\"float\"},{\"name\":\"tax\",\"type\":\"float\"},{\"name\":\"total\",\"type\":\"float\"}]}},{\"name\":\"isAuthorized\",\"type\":\"boolean\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -73,6 +73,7 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
 
   @Deprecated public sn.academy.food_delivery.models.avro.PaymentMethod method_of_payment;
   @Deprecated public sn.academy.food_delivery.models.avro.PaymentAmount amount;
+  @Deprecated public boolean isAuthorized;
 
   /**
    * Default constructor.  Note that this does not initialize fields
@@ -85,10 +86,12 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
    * All-args constructor.
    * @param method_of_payment The new value for method_of_payment
    * @param amount The new value for amount
+   * @param isAuthorized The new value for isAuthorized
    */
-  public Payment(sn.academy.food_delivery.models.avro.PaymentMethod method_of_payment, sn.academy.food_delivery.models.avro.PaymentAmount amount) {
+  public Payment(sn.academy.food_delivery.models.avro.PaymentMethod method_of_payment, sn.academy.food_delivery.models.avro.PaymentAmount amount, java.lang.Boolean isAuthorized) {
     this.method_of_payment = method_of_payment;
     this.amount = amount;
+    this.isAuthorized = isAuthorized;
   }
 
   public org.apache.avro.specific.SpecificData getSpecificData() { return MODEL$; }
@@ -98,6 +101,7 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
     switch (field$) {
     case 0: return method_of_payment;
     case 1: return amount;
+    case 2: return isAuthorized;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -108,6 +112,7 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
     switch (field$) {
     case 0: method_of_payment = (sn.academy.food_delivery.models.avro.PaymentMethod)value$; break;
     case 1: amount = (sn.academy.food_delivery.models.avro.PaymentAmount)value$; break;
+    case 2: isAuthorized = (java.lang.Boolean)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -144,6 +149,23 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
    */
   public void setAmount(sn.academy.food_delivery.models.avro.PaymentAmount value) {
     this.amount = value;
+  }
+
+  /**
+   * Gets the value of the 'isAuthorized' field.
+   * @return The value of the 'isAuthorized' field.
+   */
+  public boolean getIsAuthorized() {
+    return isAuthorized;
+  }
+
+
+  /**
+   * Sets the value of the 'isAuthorized' field.
+   * @param value the value to set.
+   */
+  public void setIsAuthorized(boolean value) {
+    this.isAuthorized = value;
   }
 
   /**
@@ -191,6 +213,7 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
     private sn.academy.food_delivery.models.avro.PaymentMethod.Builder method_of_paymentBuilder;
     private sn.academy.food_delivery.models.avro.PaymentAmount amount;
     private sn.academy.food_delivery.models.avro.PaymentAmount.Builder amountBuilder;
+    private boolean isAuthorized;
 
     /** Creates a new Builder */
     private Builder() {
@@ -217,6 +240,10 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
       if (other.hasAmountBuilder()) {
         this.amountBuilder = sn.academy.food_delivery.models.avro.PaymentAmount.newBuilder(other.getAmountBuilder());
       }
+      if (isValidValue(fields()[2], other.isAuthorized)) {
+        this.isAuthorized = data().deepCopy(fields()[2].schema(), other.isAuthorized);
+        fieldSetFlags()[2] = other.fieldSetFlags()[2];
+      }
     }
 
     /**
@@ -235,6 +262,10 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
         fieldSetFlags()[1] = true;
       }
       this.amountBuilder = null;
+      if (isValidValue(fields()[2], other.isAuthorized)) {
+        this.isAuthorized = data().deepCopy(fields()[2].schema(), other.isAuthorized);
+        fieldSetFlags()[2] = true;
+      }
     }
 
     /**
@@ -387,6 +418,45 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
       return this;
     }
 
+    /**
+      * Gets the value of the 'isAuthorized' field.
+      * @return The value.
+      */
+    public boolean getIsAuthorized() {
+      return isAuthorized;
+    }
+
+
+    /**
+      * Sets the value of the 'isAuthorized' field.
+      * @param value The value of 'isAuthorized'.
+      * @return This builder.
+      */
+    public sn.academy.food_delivery.models.avro.Payment.Builder setIsAuthorized(boolean value) {
+      validate(fields()[2], value);
+      this.isAuthorized = value;
+      fieldSetFlags()[2] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'isAuthorized' field has been set.
+      * @return True if the 'isAuthorized' field has been set, false otherwise.
+      */
+    public boolean hasIsAuthorized() {
+      return fieldSetFlags()[2];
+    }
+
+
+    /**
+      * Clears the value of the 'isAuthorized' field.
+      * @return This builder.
+      */
+    public sn.academy.food_delivery.models.avro.Payment.Builder clearIsAuthorized() {
+      fieldSetFlags()[2] = false;
+      return this;
+    }
+
     @Override
     @SuppressWarnings("unchecked")
     public Payment build() {
@@ -412,6 +482,7 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
         } else {
           record.amount = fieldSetFlags()[1] ? this.amount : (sn.academy.food_delivery.models.avro.PaymentAmount) defaultValue(fields()[1]);
         }
+        record.isAuthorized = fieldSetFlags()[2] ? this.isAuthorized : (java.lang.Boolean) defaultValue(fields()[2]);
         return record;
       } catch (org.apache.avro.AvroMissingFieldException e) {
         throw e;

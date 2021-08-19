@@ -14,8 +14,8 @@ import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class Address extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 5844521103584382938L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Address\",\"namespace\":\"sn.academy.food_delivery.models.avro\",\"fields\":[{\"name\":\"street\",\"type\":\"string\"},{\"name\":\"city\",\"type\":\"string\"},{\"name\":\"state\",\"type\":\"string\"},{\"name\":\"zip\",\"type\":\"string\"}]}");
+  private static final long serialVersionUID = -5355220322262842388L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Address\",\"namespace\":\"sn.academy.food_delivery.models.avro\",\"fields\":[{\"name\":\"street\",\"type\":\"string\"},{\"name\":\"city\",\"type\":\"string\"},{\"name\":\"state\",\"type\":\"string\"},{\"name\":\"country\",\"type\":\"string\"},{\"name\":\"zip\",\"type\":\"string\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -74,6 +74,7 @@ public class Address extends org.apache.avro.specific.SpecificRecordBase impleme
   @Deprecated public java.lang.CharSequence street;
   @Deprecated public java.lang.CharSequence city;
   @Deprecated public java.lang.CharSequence state;
+  @Deprecated public java.lang.CharSequence country;
   @Deprecated public java.lang.CharSequence zip;
 
   /**
@@ -88,12 +89,14 @@ public class Address extends org.apache.avro.specific.SpecificRecordBase impleme
    * @param street The new value for street
    * @param city The new value for city
    * @param state The new value for state
+   * @param country The new value for country
    * @param zip The new value for zip
    */
-  public Address(java.lang.CharSequence street, java.lang.CharSequence city, java.lang.CharSequence state, java.lang.CharSequence zip) {
+  public Address(java.lang.CharSequence street, java.lang.CharSequence city, java.lang.CharSequence state, java.lang.CharSequence country, java.lang.CharSequence zip) {
     this.street = street;
     this.city = city;
     this.state = state;
+    this.country = country;
     this.zip = zip;
   }
 
@@ -105,7 +108,8 @@ public class Address extends org.apache.avro.specific.SpecificRecordBase impleme
     case 0: return street;
     case 1: return city;
     case 2: return state;
-    case 3: return zip;
+    case 3: return country;
+    case 4: return zip;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -117,7 +121,8 @@ public class Address extends org.apache.avro.specific.SpecificRecordBase impleme
     case 0: street = (java.lang.CharSequence)value$; break;
     case 1: city = (java.lang.CharSequence)value$; break;
     case 2: state = (java.lang.CharSequence)value$; break;
-    case 3: zip = (java.lang.CharSequence)value$; break;
+    case 3: country = (java.lang.CharSequence)value$; break;
+    case 4: zip = (java.lang.CharSequence)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -171,6 +176,23 @@ public class Address extends org.apache.avro.specific.SpecificRecordBase impleme
    */
   public void setState(java.lang.CharSequence value) {
     this.state = value;
+  }
+
+  /**
+   * Gets the value of the 'country' field.
+   * @return The value of the 'country' field.
+   */
+  public java.lang.CharSequence getCountry() {
+    return country;
+  }
+
+
+  /**
+   * Sets the value of the 'country' field.
+   * @param value the value to set.
+   */
+  public void setCountry(java.lang.CharSequence value) {
+    this.country = value;
   }
 
   /**
@@ -234,6 +256,7 @@ public class Address extends org.apache.avro.specific.SpecificRecordBase impleme
     private java.lang.CharSequence street;
     private java.lang.CharSequence city;
     private java.lang.CharSequence state;
+    private java.lang.CharSequence country;
     private java.lang.CharSequence zip;
 
     /** Creates a new Builder */
@@ -259,9 +282,13 @@ public class Address extends org.apache.avro.specific.SpecificRecordBase impleme
         this.state = data().deepCopy(fields()[2].schema(), other.state);
         fieldSetFlags()[2] = other.fieldSetFlags()[2];
       }
-      if (isValidValue(fields()[3], other.zip)) {
-        this.zip = data().deepCopy(fields()[3].schema(), other.zip);
+      if (isValidValue(fields()[3], other.country)) {
+        this.country = data().deepCopy(fields()[3].schema(), other.country);
         fieldSetFlags()[3] = other.fieldSetFlags()[3];
+      }
+      if (isValidValue(fields()[4], other.zip)) {
+        this.zip = data().deepCopy(fields()[4].schema(), other.zip);
+        fieldSetFlags()[4] = other.fieldSetFlags()[4];
       }
     }
 
@@ -283,9 +310,13 @@ public class Address extends org.apache.avro.specific.SpecificRecordBase impleme
         this.state = data().deepCopy(fields()[2].schema(), other.state);
         fieldSetFlags()[2] = true;
       }
-      if (isValidValue(fields()[3], other.zip)) {
-        this.zip = data().deepCopy(fields()[3].schema(), other.zip);
+      if (isValidValue(fields()[3], other.country)) {
+        this.country = data().deepCopy(fields()[3].schema(), other.country);
         fieldSetFlags()[3] = true;
+      }
+      if (isValidValue(fields()[4], other.zip)) {
+        this.zip = data().deepCopy(fields()[4].schema(), other.zip);
+        fieldSetFlags()[4] = true;
       }
     }
 
@@ -410,6 +441,46 @@ public class Address extends org.apache.avro.specific.SpecificRecordBase impleme
     }
 
     /**
+      * Gets the value of the 'country' field.
+      * @return The value.
+      */
+    public java.lang.CharSequence getCountry() {
+      return country;
+    }
+
+
+    /**
+      * Sets the value of the 'country' field.
+      * @param value The value of 'country'.
+      * @return This builder.
+      */
+    public sn.academy.food_delivery.models.avro.Address.Builder setCountry(java.lang.CharSequence value) {
+      validate(fields()[3], value);
+      this.country = value;
+      fieldSetFlags()[3] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'country' field has been set.
+      * @return True if the 'country' field has been set, false otherwise.
+      */
+    public boolean hasCountry() {
+      return fieldSetFlags()[3];
+    }
+
+
+    /**
+      * Clears the value of the 'country' field.
+      * @return This builder.
+      */
+    public sn.academy.food_delivery.models.avro.Address.Builder clearCountry() {
+      country = null;
+      fieldSetFlags()[3] = false;
+      return this;
+    }
+
+    /**
       * Gets the value of the 'zip' field.
       * @return The value.
       */
@@ -424,9 +495,9 @@ public class Address extends org.apache.avro.specific.SpecificRecordBase impleme
       * @return This builder.
       */
     public sn.academy.food_delivery.models.avro.Address.Builder setZip(java.lang.CharSequence value) {
-      validate(fields()[3], value);
+      validate(fields()[4], value);
       this.zip = value;
-      fieldSetFlags()[3] = true;
+      fieldSetFlags()[4] = true;
       return this;
     }
 
@@ -435,7 +506,7 @@ public class Address extends org.apache.avro.specific.SpecificRecordBase impleme
       * @return True if the 'zip' field has been set, false otherwise.
       */
     public boolean hasZip() {
-      return fieldSetFlags()[3];
+      return fieldSetFlags()[4];
     }
 
 
@@ -445,7 +516,7 @@ public class Address extends org.apache.avro.specific.SpecificRecordBase impleme
       */
     public sn.academy.food_delivery.models.avro.Address.Builder clearZip() {
       zip = null;
-      fieldSetFlags()[3] = false;
+      fieldSetFlags()[4] = false;
       return this;
     }
 
@@ -457,7 +528,8 @@ public class Address extends org.apache.avro.specific.SpecificRecordBase impleme
         record.street = fieldSetFlags()[0] ? this.street : (java.lang.CharSequence) defaultValue(fields()[0]);
         record.city = fieldSetFlags()[1] ? this.city : (java.lang.CharSequence) defaultValue(fields()[1]);
         record.state = fieldSetFlags()[2] ? this.state : (java.lang.CharSequence) defaultValue(fields()[2]);
-        record.zip = fieldSetFlags()[3] ? this.zip : (java.lang.CharSequence) defaultValue(fields()[3]);
+        record.country = fieldSetFlags()[3] ? this.country : (java.lang.CharSequence) defaultValue(fields()[3]);
+        record.zip = fieldSetFlags()[4] ? this.zip : (java.lang.CharSequence) defaultValue(fields()[4]);
         return record;
       } catch (org.apache.avro.AvroMissingFieldException e) {
         throw e;
@@ -496,6 +568,8 @@ public class Address extends org.apache.avro.specific.SpecificRecordBase impleme
 
     out.writeString(this.state);
 
+    out.writeString(this.country);
+
     out.writeString(this.zip);
 
   }
@@ -511,10 +585,12 @@ public class Address extends org.apache.avro.specific.SpecificRecordBase impleme
 
       this.state = in.readString(this.state instanceof Utf8 ? (Utf8)this.state : null);
 
+      this.country = in.readString(this.country instanceof Utf8 ? (Utf8)this.country : null);
+
       this.zip = in.readString(this.zip instanceof Utf8 ? (Utf8)this.zip : null);
 
     } else {
-      for (int i = 0; i < 4; i++) {
+      for (int i = 0; i < 5; i++) {
         switch (fieldOrder[i].pos()) {
         case 0:
           this.street = in.readString(this.street instanceof Utf8 ? (Utf8)this.street : null);
@@ -529,6 +605,10 @@ public class Address extends org.apache.avro.specific.SpecificRecordBase impleme
           break;
 
         case 3:
+          this.country = in.readString(this.country instanceof Utf8 ? (Utf8)this.country : null);
+          break;
+
+        case 4:
           this.zip = in.readString(this.zip instanceof Utf8 ? (Utf8)this.zip : null);
           break;
 

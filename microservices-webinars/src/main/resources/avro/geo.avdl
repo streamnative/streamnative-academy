@@ -1,0 +1,23 @@
+@namespace("sn.academy.food_delivery.models.avro")
+
+protocol GeoProtocol {
+  record GeoLocation {
+    double latitude;
+    double longitude;
+  }
+
+  record Address {
+    string street;
+    string city;
+    string state;
+    string country;
+    string zip;
+  }
+
+  record GeoEncodedAddress {
+    Address address;
+    boolean isValidAddress;
+    union { null, GeoLocation } geoLocation;
+  }
+
+}

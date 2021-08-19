@@ -99,11 +99,11 @@ public class FoodOrderGenerator {
         }
 
 
-        return new Payment(paymentMethod, new PaymentAmount());
+        return new Payment(paymentMethod, new PaymentAmount(), false);
     }
 
     private Address getAddress() {
         com.github.javafaker.Address address = faker.address();
-        return new Address(address.streetAddress(), address.city(), address.state(), address.zipCode());
+        return new Address(address.streetAddress(), address.city(), address.state(), address.country(), address.zipCode());
     }
 }

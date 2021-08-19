@@ -25,6 +25,7 @@ protocol PaymentsProtocol {
   record Payment {
     PaymentMethod method_of_payment;
   	PaymentAmount amount;
+  	boolean isAuthorized;
   }
 
   record PaymentMethod {

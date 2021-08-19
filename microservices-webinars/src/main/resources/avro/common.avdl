@@ -1,9 +1,0 @@
-@namespace("sn.academy.food_delivery.models.avro")
-protocol CommonsProtocol {
-  record Address {
-    string street;
-    string city;
-    string state;
-    string zip;
-  }
-}
