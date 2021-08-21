@@ -11,5 +11,4 @@ public class AppConfig {
 
     public static final String ACCEPTED_ORDERS_TOPIC_NAME = "persistent://orders/inbound/orders-accepted";
     public static final String DECLINED_ORDERS_TOPIC_NAME = "persistent://orders/inbound/orders-declined";
-
 }

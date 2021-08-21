@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import sn.academy.food_delivery.config.AppConfig;
 import sn.academy.food_delivery.models.avro.Address;
 import sn.academy.food_delivery.models.avro.FoodOrder;
-import sn.academy.food_delivery.models.avro.FoodOrderMeta;
 import sn.academy.food_delivery.models.avro.Payment;
 import sn.academy.food_delivery.models.avro.ValidatedFoodOrder;
 
