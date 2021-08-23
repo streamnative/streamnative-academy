@@ -31,6 +31,12 @@
 
         <dependency>
             <groupId>org.apache.pulsar</groupId>
+            <artifactId>pulsar-functions-api</artifactId>
+            <version>${pulsar.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.pulsar</groupId>
             <artifactId>pulsar-functions-local-runner-original</artifactId>
             <version>${pulsar.version}</version>
             <scope>test</scope>
