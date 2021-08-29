@@ -36,25 +36,28 @@ spec:
       autoAck: true
 
   functions:
-    - name: "validation-service"
+    - name: "validation"
       image: polyzos/food-delivery
       className: sn.academy.food_delivery.services.validation.OrderValidationService
       forwardSourceMessageProperty: true
       MaxPendingAsyncRequests: 1000
       replicas: 1
-      maxReplicas: 5
+      maxReplicas: 3
       logTopic: persistent://public/default/order-validation-logs
       input:
         topics:
           - "persistent://orders/inbound/food-orders"
         sinkSchemaType: "avro"
         typeClassName: sn.academy.food_delivery.models.avro.FoodOrder
+        sourceSpecs:
+          "persistent://orders/inbound/food-orders":
+            schemaType: "AVRO"
       resources:
         limits:
-          cpu: "0.2"
+          cpu: "0.6"
           memory: 1.1G
         requests:
-          cpu: "0.1"
+          cpu: "0.5"
           memory: 1G
       pulsar:
         pulsarConfig: "food-delivery-mesh-config"
@@ -64,7 +67,7 @@ spec:
       clusterName: localpulsar
       autoAck: true
 
-    - name: aggregation-service
+    - name: aggregation
       image: polyzos/food-delivery
       className: sn.academy.food_delivery.services.aggregation.OrderAggregationService
       forwardSourceMessageProperty: true
@@ -77,6 +80,9 @@ spec:
           - "persistent://orders/inbound/aggregated-orders"
         sinkSchemaType: "avro"
         typeClassName: sn.academy.food_delivery.models.avro.ValidatedFoodOrder
+        sourceSpecs:
+          "persistent://orders/inbound/aggregated-orders":
+            schemaType: "AVRO"
       resources:
         limits:
           cpu: "0.2"
@@ -92,7 +98,7 @@ spec:
       clusterName: localpulsar
       autoAck: true
 
-    - name: "geo-encoding-service"
+    - name: "geo"
       image: polyzos/food-delivery
       className: sn.academy.food_delivery.services.processing.GeoEncoderService
       forwardSourceMessageProperty: true
@@ -103,8 +109,11 @@ spec:
       input:
         topics:
           - "persistent://orders/inbound/geo-encoder"
-        sinkSchemaType: "avro"
+        sinkSchemaType: "AVRO"
         typeClassName: sn.academy.food_delivery.models.avro.Address
+        sourceSpecs:
+          "persistent://orders/inbound/geo-encoder":
+            schemaType: "AVRO"
       resources:
         limits:
           cpu: "0.2"
@@ -120,7 +129,7 @@ spec:
       clusterName: localpulsar
       autoAck: true
 
-    - name: "payments-service"
+    - name: "payments"
       image: polyzos/food-delivery
       className: sn.academy.food_delivery.services.processing.PaymentService
       forwardSourceMessageProperty: true
@@ -131,8 +140,11 @@ spec:
       input:
         topics:
           - "persistent://orders/inbound/payments"
-        sinkSchemaType: "avro"
+        sinkSchemaType: "AVRO"
         typeClassName: sn.academy.food_delivery.models.avro.Payment
+        sourceSpecs:
+          "persistent://orders/inbound/payments":
+            schemaType: "AVRO"
       resources:
         limits:
           cpu: "0.2"
@@ -148,7 +160,7 @@ spec:
       clusterName: localpulsar
       autoAck: true
 
-    - name: "restaurants-service"
+    - name: "restaurants"
       image: polyzos/food-delivery
       className: sn.academy.food_delivery.services.processing.RestaurantCommunicationService
       forwardSourceMessageProperty: true
@@ -159,8 +171,11 @@ spec:
       input:
         topics:
           - "persistent://orders/inbound/restaurants"
-        sinkSchemaType: "avro"
+        sinkSchemaType: "AVRO"
         typeClassName: sn.academy.food_delivery.models.avro.FoodOrder
+        sourceSpecs:
+          "persistent://orders/inbound/restaurants":
+            schemaType: "AVRO"
       resources:
         limits:
           cpu: "0.2"
