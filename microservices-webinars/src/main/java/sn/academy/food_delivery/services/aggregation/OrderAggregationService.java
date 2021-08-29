@@ -1,72 +1,95 @@
 package sn.academy.food_delivery.services.aggregation;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.nio.ByteBuffer;
+import org.apache.commons.lang.SerializationUtils;
+import org.apache.pulsar.client.api.PulsarClientException;
 import org.apache.pulsar.client.impl.schema.AvroSchema;
 import org.apache.pulsar.functions.api.Context;
 import org.apache.pulsar.functions.api.Function;
 import org.slf4j.Logger;
+
 import sn.academy.food_delivery.config.AppConfig;
 import sn.academy.food_delivery.models.avro.OrderStatus;
 import sn.academy.food_delivery.models.avro.ValidatedFoodOrder;
 
 public class OrderAggregationService implements Function<ValidatedFoodOrder, Void> {
     private Logger logger;
-    private Map<String, Set<ValidatedFoodOrder>> orderCache = new HashMap<>();
 
     @Override
     public Void process(ValidatedFoodOrder validatedFoodOrder, Context context) throws Exception {
         logger = context.getLogger();
-        logger.info(validatedFoodOrder.toString());
-
         String orderId = context.getCurrentRecord().getProperties().get("order-id");
 
-        Set<ValidatedFoodOrder> orderResponses = orderCache.getOrDefault(orderId, new HashSet<>());
-        orderResponses.add(validatedFoodOrder);
-        if (orderResponses.size() == 4) {
-            ValidatedFoodOrder aggregatedOrderValidation = aggregateResponses(validatedFoodOrder, orderResponses);
-            logger.info("Received all responses for order: " + aggregatedOrderValidation);
-            orderCache.remove(orderId);
-            if (validatedFoodOrder.getMeta().getOrderStatus()== OrderStatus.ACCEPTED) {
-                context.newOutputMessage(AppConfig.ACCEPTED_ORDERS_TOPIC_NAME, AvroSchema.of(ValidatedFoodOrder.class))
-                        .value(aggregatedOrderValidation)
-                        .sendAsync();
-            } else {
-                context.newOutputMessage(AppConfig.DECLINED_ORDERS_TOPIC_NAME, AvroSchema.of(ValidatedFoodOrder.class))
-                        .value(aggregatedOrderValidation)
-                        .sendAsync();
-            }
+        ByteBuffer currentState = context.getState(orderId);
+        if (currentState == null) {
+            logger.info("Initializing state for order: " + orderId);
+            context.putState(orderId, ByteBuffer.wrap(SerializationUtils.serialize(validatedFoodOrder)));
         } else {
-            orderCache.put(orderId, orderResponses);
+            ValidatedFoodOrder orderState = (ValidatedFoodOrder) SerializationUtils.deserialize(currentState.array());
+
+            ValidatedFoodOrder updatedOrder = updateOrderFields(orderState, validatedFoodOrder);
+            if (checkIfAggregationCompleted(updatedOrder)) {
+                logger.info("Order " + orderId + " completed - " + updatedOrder);
+                routeValidatedOrder(context, updatedOrder);
+                context.deleteStateAsync(orderId).thenAccept(
+                        unused -> System.out.println("Order " + orderId + " state deleted."));
+            } else {
+                context.putState(orderId, ByteBuffer.wrap(SerializationUtils.serialize(updatedOrder)));
+            }
         }
-        logger.info("Total Records In Cache: " + orderCache.size());
-        // TODO: Clear cache every x minutes, to make sure it doesn't grow from missing messages
-        return null;
+       return null;
     }
 
-    private ValidatedFoodOrder aggregateResponses(ValidatedFoodOrder validatedFoodOrder, Set<ValidatedFoodOrder> orderResponses) {
-        for (ValidatedFoodOrder orderResponse: orderResponses) {
-            if (orderResponse.getMeta() != null) {
-                validatedFoodOrder.setMeta(orderResponse.getMeta());
-            }
-            if (orderResponse.getRestaurantId() != null) {
-                validatedFoodOrder.setRestaurantId(orderResponse.getRestaurantId());
-            }
-            if (orderResponse.getDetails() != null) {
-                validatedFoodOrder.setDetails(orderResponse.getDetails());
-            }
-            if (orderResponse.getEta() != null) {
-                validatedFoodOrder.setEta(orderResponse.getEta());
-            }
-            if (orderResponse.getDeliveryLocation() != null) {
-                validatedFoodOrder.setDeliveryLocation(orderResponse.getDeliveryLocation());
-            }
-            if (orderResponse.getPayment() != null) {
-                validatedFoodOrder.setPayment(orderResponse.getPayment());
-            }
+    private ValidatedFoodOrder updateOrderFields(ValidatedFoodOrder orderState, ValidatedFoodOrder inputOrder) {
+        if (inputOrder.getDetails() != null) {
+            orderState.setDetails(inputOrder.getDetails());
         }
-        return validatedFoodOrder;
+
+        if (inputOrder.getMeta() != null) {
+            orderState.setMeta(inputOrder.getMeta());
+        }
+
+        if (inputOrder.getDeliveryLocation() != null) {
+            orderState.setDeliveryLocation(inputOrder.getDeliveryLocation());
+        }
+
+        if (inputOrder.getEta() != null) {
+            orderState.setEta(inputOrder.getEta());
+        }
+
+        if (inputOrder.getPayment() != null) {
+            orderState.setPayment(inputOrder.getPayment());
+        }
+
+        if (inputOrder.getRestaurantId() != null) {
+            orderState.setRestaurantId(inputOrder.getRestaurantId());
+        }
+        return orderState;
+    }
+
+    private boolean checkIfAggregationCompleted(ValidatedFoodOrder order) {
+        return order.getDetails() != null &&
+                order.getMeta() != null &&
+                order.getDeliveryLocation() != null &&
+                order.getEta() != null &&
+                order.getPayment() != null
+                && order.getRestaurantId() != null;
+    }
+
+    private void routeValidatedOrder(Context context, ValidatedFoodOrder order) throws PulsarClientException {
+        if (order.getPayment().getIsAuthorized() && order.getMeta().getOrderStatus() == OrderStatus.ACCEPTED) {
+            context.newOutputMessage(AppConfig.ACCEPTED_ORDERS_TOPIC_NAME, AvroSchema.of(ValidatedFoodOrder.class))
+                    .value(order)
+                    .sendAsync();
+        } else {
+            String message = "restaurant-declined";
+            if (!order.getPayment().getIsAuthorized()) {
+                message = "payment-unauthorized";
+            }
+            context.newOutputMessage(AppConfig.DECLINED_ORDERS_TOPIC_NAME, AvroSchema.of(ValidatedFoodOrder.class))
+                    .property("reason", message)
+                    .value(order)
+                    .sendAsync();
+        }
     }
 }

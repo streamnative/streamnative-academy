@@ -1,7 +1,8 @@
 package sn.academy.food_delivery.config;
 
 public class AppConfig {
-    public static final String SERVICE_URL = "pulsar://localhost:6650"
+    public static final String SERVICE_URL = "pulsar://localhost:6650";
+    public static final String STATE_STORAGE_SERVICE_URL = "bk://localhost:4181";
 
     public static final String FOOD_ORDERS_TOPIC_NAME = "persistent://orders/inbound/food-orders";
     public static final String GEO_ENCODER_TOPIC_NAME = "persistent://orders/inbound/geo-encoder";

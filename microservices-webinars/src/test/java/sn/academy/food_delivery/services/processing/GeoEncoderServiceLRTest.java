@@ -10,9 +10,8 @@ import sn.academy.food_delivery.config.AppConfig;
 public class GeoEncoderServiceLRTest {
     public static void main(String[] args) throws Exception {
         HashMap<String, ConsumerConfig> inputSpecs = new HashMap<>();
-        inputSpecs.put(AppConfig.GEO_ENCODER_TOPIC_NAME,
-                ConsumerConfig.builder()
-                        .schemaType("AVRO").build()
+        inputSpecs.put(
+                AppConfig.GEO_ENCODER_TOPIC_NAME, ConsumerConfig.builder().schemaType("AVRO").build()
         );
 
         FunctionConfig functionConfig = FunctionConfig.builder()
