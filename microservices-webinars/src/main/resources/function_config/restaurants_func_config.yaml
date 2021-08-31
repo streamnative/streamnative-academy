@@ -1,0 +1,16 @@
+className: sn.academy.food_delivery.services.processing.RestaurantCommunicationService
+tenant: public
+namespace: default
+name: restaurants-func
+inputs:
+  - "persistent://orders/validation/restaurants"
+parallelism: 1
+logTopic: persistent://public/default/restaurants-logs
+autoAck: true
+cleanupSubscription: true
+subName: "restaurants-sub"
+inputSpecs:
+  persistent://orders/validation/restaurants:
+    schemaType: "avro"
+cpu: 0.2
+ram: 200000000

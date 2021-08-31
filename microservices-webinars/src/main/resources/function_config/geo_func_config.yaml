@@ -1,0 +1,16 @@
+className: sn.academy.food_delivery.services.processing.GeoEncoderService
+tenant: public
+namespace: default
+name: geo-encoder-func
+inputs:
+  - "persistent://orders/validation/geo-encoder"
+parallelism: 1
+logTopic: persistent://public/default/geo-encoder-logs
+autoAck: true
+cleanupSubscription: true
+subName: "geo-encoder-sub"
+inputSpecs:
+  persistent://orders/validation/geo-encoder:
+    schemaType: "avro"
+cpu: 0.2
+ram: 200000000
