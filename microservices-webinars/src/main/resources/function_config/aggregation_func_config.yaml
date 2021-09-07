@@ -1,0 +1,16 @@
+className: sn.academy.food_delivery.services.aggregation.OrderAggregationService
+tenant: public
+namespace: default
+name: order-aggregation-func
+inputs:
+  - "persistent://orders/validation/aggregated-orders"
+parallelism: 1
+logTopic: persistent://public/default/aggregated-orders-logs
+autoAck: true
+cleanupSubscription: true
+subName: "aggregated-orders-sub"
+inputSpecs:
+  persistent://orders/validation/aggregated-orders:
+    schemaType: "avro"
+cpu: 0.2
+ram: 500000000

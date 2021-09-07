@@ -1,0 +1,40 @@
+apiVersion: compute.functionmesh.io/v1alpha1
+kind: Function
+metadata:
+  name: order-aggregation-function
+  namespace: default
+spec:
+  image: polyzos/food-delivery
+  className: sn.academy.food_delivery.services.aggregation.OrderAggregationService
+  forwardSourceMessageProperty: true
+  MaxPendingAsyncRequests: 1000
+  replicas: 1
+  maxReplicas: 5
+  logTopic: persistent://public/default/order-aggregation-logs
+  input:
+    topics:
+      - "persistent://orders/inbound/aggregated-orders"
+    sinkSchemaType: "avro"
+    typeClassName: sn.academy.food_delivery.models.avro.ValidatedFoodOrder
+  resources:
+    limits:
+      cpu: "0.2"
+      memory: 1.1G
+    requests:
+      cpu: "0.1"
+      memory: 1G
+  pulsar:
+    pulsarConfig: "order-aggregation-config"
+  java:
+    jar: microservices-webinars-0.0.1.jar
+    jarLocation: ""
+  clusterName: localpulsar
+  autoAck: true
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: order-aggregation-config
+data:
+  webServiceURL: http://localpulsar-broker.pulsar.svc.cluster.local:8080
+  brokerServiceURL: pulsar://localpulsar-broker.pulsar.svc.cluster.local:6650

@@ -1,0 +1,9 @@
+@namespace("sn.academy.food_delivery.models.avro")
+protocol RestaurantsProtocol {
+  record MenuItem {
+    int item_id;
+    string item_name;
+    string item_description;
+    float price;
+  }
+}

@@ -1,0 +1,40 @@
+@namespace("sn.academy.food_delivery.models.avro")
+protocol PaymentsProtocol {
+
+  enum CardType {
+    MASTERCARD, AMEX, VISA, DISCOVER
+  }
+
+  record CreditCard {
+    CardType card_type;
+    string account_number;
+    string billing_zip;
+    string ccv;
+    string expMonth;
+    string expYear;
+  }
+
+  record ApplePay {
+    string accountNumber;
+  }
+
+  record PayPal {
+    string accountNumber;
+  }
+
+  record Payment {
+    PaymentMethod method_of_payment;
+  	PaymentAmount amount;
+  	boolean isAuthorized;
+  }
+
+  record PaymentMethod {
+    union { CreditCard, ApplePay, PayPal } type;
+  }
+
+  record PaymentAmount {
+    float food_total;
+    float tax;
+    float total;
+  }
+}

@@ -1,0 +1,16 @@
+className: sn.academy.food_delivery.services.validation.OrderValidationService
+tenant: public
+namespace: default
+name: order-validation-func
+inputs:
+  - "persistent://orders/inbound/food-orders"
+parallelism: 1
+logTopic: persistent://public/default/order-validation-logs
+autoAck: true
+cleanupSubscription: true
+subName: "order-validation-sub"
+inputSpecs:
+  persistent://orders/inbound/food-orders:
+    schemaType: "avro"
+cpu: 0.2
+ram: 300000000
