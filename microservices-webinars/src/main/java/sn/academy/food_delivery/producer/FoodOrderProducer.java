@@ -39,6 +39,7 @@ public class FoodOrderProducer {
         while (true) {
             Thread.sleep(500);
             FoodOrder foodOrder = foodOrderGenerator.generateOrder();
+            System.out.println(foodOrder);
             foodOrderProducer.newMessage()
                     .value(foodOrder)
                     .eventTime(System.currentTimeMillis())

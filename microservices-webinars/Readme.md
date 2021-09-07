@@ -33,42 +33,44 @@ pulsar-admin topics create persistent://orders/outbound/orders-declined
 
 4. Verify creation
 ```
-bin/pulsar-admin topics list orders/inbound/
+bin/pulsar-admin topics list orders/inbound
+bin/pulsar-admin topics list orders/validation
+bin/pulsar-admin topics list orders/outbound
 ```
 
 5. Deploy the Validation function
 ```
 pulsar-admin functions create \
- --function-config-file /Users/ipolyzos/Documents/streamnative-academy/microservices-webinars/src/main/resources/function_config/validation_func_config.yaml \
- --jar /Users/ipolyzos/Documents/streamnative-academy/microservices-webinars/target/microservices-webinars-0.0.1.jar
+ --function-config-file function_config/validation_func_config.yaml \
+ --jar myjars/workshop.jar
 ```
 
 6.Deploy the Geo function
 ```
 pulsar-admin functions create \
- --function-config-file /Users/ipolyzos/Documents/streamnative-academy/microservices-webinars/src/main/resources/function_config/geo_func_config.yaml \
- --jar /Users/ipolyzos/Documents/streamnative-academy/microservices-webinars/target/microservices-webinars-0.0.1.jar
+ --function-config-file function_config/geo_func_config.yaml \
+--jar myjars/workshop.jar
 ```
 
 7.Deploy the Payments function
 ```
 pulsar-admin functions create \
- --function-config-file /Users/ipolyzos/Documents/streamnative-academy/microservices-webinars/src/main/resources/function_config/payments_func_config.yaml \
- --jar /Users/ipolyzos/Documents/streamnative-academy/microservices-webinars/target/microservices-webinars-0.0.1.jar
+ --function-config-file function_config/payments_func_config.yaml \
+--jar myjars/workshop.jar
 ```
 
 8.Deploy the Restaurant function
 ```
 pulsar-admin functions create \
- --function-config-file /Users/ipolyzos/Documents/streamnative-academy/microservices-webinars/src/main/resources/function_config/restaurants_func_config.yaml \
- --jar /Users/ipolyzos/Documents/streamnative-academy/microservices-webinars/target/microservices-webinars-0.0.1.jar
+ --function-config-file function_config/restaurants_func_config.yaml \
+--jar myjars/workshop.jar
 ```
 
 9.Deploy the Aggregation function
 ```
 pulsar-admin functions create \
- --function-config-file /Users/ipolyzos/Documents/streamnative-academy/microservices-webinars/src/main/resources/function_config/aggregation_func_config.yaml \
- --jar /Users/ipolyzos/Documents/streamnative-academy/microservices-webinars/target/microservices-webinars-0.0.1.jar
+ --function-config-file function_config/aggregation_func_config.yaml \
+--jar myjars/workshop.jar
 ```
 
 10. Get Functions Configurations
