@@ -26,16 +26,15 @@ pulsar-admin topics create persistent://orders/validation/geo-encoder
 pulsar-admin topics create persistent://orders/validation/payments
 pulsar-admin topics create persistent://orders/validation/restaurants
 pulsar-admin topics create persistent://orders/validation/aggregated-orders
-pulsar-admin topics create persistent://orders/outbound/food-orders
 pulsar-admin topics create persistent://orders/outbound/orders-accepted
 pulsar-admin topics create persistent://orders/outbound/orders-declined
 ```
 
 4. Verify creation
 ```
-bin/pulsar-admin topics list orders/inbound
-bin/pulsar-admin topics list orders/validation
-bin/pulsar-admin topics list orders/outbound
+pulsar-admin topics list orders/inbound
+pulsar-admin topics list orders/validation
+pulsar-admin topics list orders/outbound
 ```
 
 5. Deploy the Validation function
