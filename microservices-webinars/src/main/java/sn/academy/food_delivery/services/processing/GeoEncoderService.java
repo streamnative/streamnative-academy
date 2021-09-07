@@ -23,6 +23,8 @@ public class GeoEncoderService implements Function<Address, Void> {
             logger = context.getLogger();
             init(context);
         }
+
+        // Mock http call to an external API
         GeoEncodedAddress geoEncodedAddress = googleAPIGeoEncodingService.validateAddressMock(address);
 
         ValidatedFoodOrder validatedFoodOrder = new ValidatedFoodOrder();

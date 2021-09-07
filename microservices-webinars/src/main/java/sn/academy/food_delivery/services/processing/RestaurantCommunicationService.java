@@ -21,8 +21,8 @@ public class RestaurantCommunicationService implements Function<FoodOrder, Void>
             init(context);
         }
         logger.info("Received order: " + foodOrder);
-        // communicate with the restaurant to verify and give an ETA
 
+        // communicate with the restaurant to verify and give an ETA
         FoodOrderMeta foodOrderMeta =
                 new FoodOrderMeta(
                         foodOrder.getMeta().getOrderId(),
@@ -31,7 +31,9 @@ public class RestaurantCommunicationService implements Function<FoodOrder, Void>
                         OrderStatus.ACCEPTED
                 );
 
-        // invoke the restaurants service
+        // invoke a mock http call to the restaurants service
+        // this call verifies the availability of the restaurant
+        // and give an ETA for the delivery
         String eta = MockRestaurantCommunicationService
                 .validateWithRestaurant(foodOrder.getDetails());
 

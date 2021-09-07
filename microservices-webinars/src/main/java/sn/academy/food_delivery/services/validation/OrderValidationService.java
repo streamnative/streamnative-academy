@@ -12,7 +12,7 @@ import sn.academy.food_delivery.models.avro.ValidatedFoodOrder;
 
 /**
  * Demonstrates the Splitter Pattern
- *
+ *  @see https://www.enterpriseintegrationpatterns.com/Sequencer.html
  * */
 public class OrderValidationService implements Function<FoodOrder, Void> {
     private Logger logger;
@@ -39,14 +39,15 @@ public class OrderValidationService implements Function<FoodOrder, Void> {
                 .value(payment)
                 .sendAsync();
 
-        context.newOutputMessage(AppConfig.ORDER_AGGREGATION_TOPIC_NAME, AvroSchema.of(ValidatedFoodOrder.class))
-                .property("order-id", orderId)
-                .value(new ValidatedFoodOrder())
-                .sendAsync();
-
+        // invoke the restaurants service
         context.newOutputMessage(AppConfig.RESTAURANTS_TOPIC_NAME, AvroSchema.of(FoodOrder.class))
                 .property("order-id", orderId)
                 .value(foodOrder)
+                .sendAsync();
+
+        context.newOutputMessage(AppConfig.ORDER_AGGREGATION_TOPIC_NAME, AvroSchema.of(ValidatedFoodOrder.class))
+                .property("order-id", orderId)
+                .value(new ValidatedFoodOrder())
                 .sendAsync();
 
         return null;

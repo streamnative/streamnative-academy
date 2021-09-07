@@ -12,6 +12,11 @@ import sn.academy.food_delivery.config.AppConfig;
 import sn.academy.food_delivery.models.avro.OrderStatus;
 import sn.academy.food_delivery.models.avro.ValidatedFoodOrder;
 
+/**
+ * This class demonstrates the aggregator pattern using Pulsar State Store
+ *
+ * @see https://www.enterpriseintegrationpatterns.com/Aggregator.html
+ * */
 public class OrderAggregationService implements Function<ValidatedFoodOrder, Void> {
     private Logger logger;
 

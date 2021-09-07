@@ -25,6 +25,9 @@ public class PaymentService implements Function<Payment, Void> {
         logger = context.getLogger();
         logger.info("Received payment: " + payment);
 
+        // based on the type of payment
+        // create a mock http call to an external Open Banking API
+        // to validate the payment information
         Class paymentType = payment.getMethodOfPayment().getType().getClass();
         boolean isPaymentValid = false;
         if (paymentType == ApplePay.class) {
