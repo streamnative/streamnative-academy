@@ -72,7 +72,15 @@ pulsar-admin functions create \
 --jar myjars/workshop.jar
 ```
 
-10. Get Functions Configurations
+9.Deploy the Food Order Source
+```
+pulsar-admin source create \
+  --source-config-file function_config/food_orders_source_config.yaml \
+  --archive myjars/workshop.jar
+```
+
+
+11.Get Functions Configurations
 ```
 pulsar-admin functions get --name order-validation-func
 pulsar-admin functions get --name geo-encoder-func
@@ -81,7 +89,7 @@ pulsar-admin functions get --name restaurants-func
 pulsar-admin functions get --name order-aggregation-func
 ```
 
-11. Get Functions Status
+12.Get Functions Status
 ```
 pulsar-admin functions status --name order-validation-func
 pulsar-admin functions status --name geo-encoder-func
@@ -90,7 +98,7 @@ pulsar-admin functions status --name restaurants-func
 pulsar-admin functions status --name order-aggregation-func
 ```
 
-12. Get Functions Stats
+13.Get Functions Stats
 ```
 pulsar-admin functions stats --name order-validation-func
 pulsar-admin functions stats --name geo-encoder-func
@@ -99,7 +107,7 @@ pulsar-admin functions stats --name restaurants-func
 pulsar-admin functions stats --name order-aggregation-func
 ```
 
-13. Delete Functions
+14.Delete Functions
 ```
 pulsar-admin functions delete --name order-validation-func
 pulsar-admin functions delete --name geo-encoder-func
@@ -108,8 +116,12 @@ pulsar-admin functions delete --name restaurants-func
 pulsar-admin functions delete --name order-aggregation-func
 ```
 
+15.Delete Source
+```
+pulsar-admin source delete --name food-orders-source
+```
 
-14. Check topics stats
+16.Check topics stats
 ```
 pulsar-admin topics stats persistent://orders/inbound/food-orders
 pulsar-admin topics stats-internal persistent://orders/inbound/food-orders
