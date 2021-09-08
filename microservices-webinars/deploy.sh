@@ -26,7 +26,7 @@ kubectl exec -it pulsar-toolset-0 -n workshop -- pulsar-admin functions create \
 
 echo "Services deployed successfully."
 
-sleep 2000
+sleep 2
 echo "Deploying Data Generator: Food Orders Source."
 kubectl exec -it pulsar-toolset-0 -n workshop -- pulsar-admin source create \
   --source-config-file function_config/food_orders_source_config.yaml \
