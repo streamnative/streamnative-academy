@@ -11,6 +11,9 @@ import sn.academy.food_delivery.models.avro.Address;
 import sn.academy.food_delivery.models.avro.GeoEncodedAddress;
 import sn.academy.food_delivery.models.avro.GeoLocation;
 
+/**
+ * Mock external service that mocks the Geoconding process
+ * */
 public class GoogleAPIGeocodingService {
     private GeoApiContext geoApiContext;
 

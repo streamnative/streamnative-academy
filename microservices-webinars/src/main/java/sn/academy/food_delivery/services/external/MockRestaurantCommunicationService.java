@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Random;
 import sn.academy.food_delivery.models.avro.OrderDetail;
 
+/**
+ * Mock external service that mocks the communication with Restaurants
+ * */
 public class MockRestaurantCommunicationService {
     private static final Random random = new Random();
     /***

@@ -4,6 +4,9 @@ import sn.academy.food_delivery.models.avro.ApplePay;
 import sn.academy.food_delivery.models.avro.CreditCard;
 import sn.academy.food_delivery.models.avro.PayPal;
 
+/**
+ * Mock external service that mocks the payment validation
+ * */
 public class MockPaymentValidationService {
     /**
      * mock method that queries the paypal api to check

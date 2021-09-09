@@ -15,5 +15,5 @@ public class AppConfig {
     public static final String ACCEPTED_ORDERS_TOPIC_NAME   = "persistent://orders/outbound/orders-accepted";
     public static final String DECLINED_ORDERS_TOPIC_NAME   = "persistent://orders/outbound/orders-declined";
 
-    public static final Optional<String> DEV_TOKEN = Optional.empty();
+    public static final Optional<String> DEV_TOKEN          = Optional.empty();
 }
