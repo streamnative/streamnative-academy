@@ -1,7 +1,7 @@
+className: sn.academy.food_delivery.source.FoodOrderSource
 tenant: public
 namespace: default
 name: food-orders-source
-className: sn.academy.food_delivery.source.FoodOrderSource
 topicName: "persistent://orders/inbound/food-orders"
 parallelism: 1
 processingGuarantees: ATLEAST_ONCE

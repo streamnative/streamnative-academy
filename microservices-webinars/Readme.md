@@ -1,3 +1,7 @@
+High Level Microservices Architecture
+-------------------------------------
+![Alt text](../images/microservices_arch.png "Microservices Architecture")
+
 Create Logical Components
 -------------------------
 1. Run Pulsar Standalone
