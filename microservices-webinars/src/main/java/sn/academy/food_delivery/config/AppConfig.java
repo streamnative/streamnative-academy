@@ -3,7 +3,7 @@ package sn.academy.food_delivery.config;
 import java.util.Optional;
 
 public class AppConfig {
-    public static final String SERVICE_URL                  = "pulsar+ssl://data.workshop.aws.sn3.dev:6651";
+    public static final String SERVICE_URL                  = "pulsar://localhost:6650";
     public static final String STATE_STORAGE_SERVICE_URL    = "bk://localhost:4181";
 
     public static final String FOOD_ORDERS_TOPIC_NAME       = "persistent://orders/inbound/food-orders";
