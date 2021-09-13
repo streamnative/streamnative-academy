@@ -13,7 +13,7 @@ spec:
   logTopic: persistent://public/default/geo-encoding-logs
   input:
     topics:
-      - "persistent://orders/inbound/geo-encoder"
+      - "persistent://orders/validation/geo-encoder"
     sinkSchemaType: "AVRO"
     typeClassName: sn.academy.food_delivery.models.avro.Address
     sourceSpecs:

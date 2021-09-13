@@ -13,7 +13,7 @@ spec:
   logTopic: persistent://public/default/order-aggregation-logs
   input:
     topics:
-      - "persistent://orders/inbound/aggregated-orders"
+      - "persistent://orders/validation/aggregated-orders"
     sinkSchemaType: "avro"
     typeClassName: sn.academy.food_delivery.models.avro.ValidatedFoodOrder
   resources:

@@ -8,9 +8,9 @@ spec:
       image: polyzos/food-delivery
       className: sn.academy.food_delivery.source.FoodOrderSource
       forwardSourceMessageProperty: true
-      MaxPendingAsyncRequests: 1000
+      maxPendingAsyncRequests: 1000
       replicas: 1
-      maxReplicas: 3
+#      maxReplicas: 3
       logTopic: persistent://public/default/food-orders-logs
       output:
         producerConf:
@@ -29,6 +29,7 @@ spec:
           memory: 1G
       pulsar:
         pulsarConfig: "food-delivery-mesh-config"
+        authSecret: "food-delivery-mesh-secret"
       java:
         jar: microservices-webinars-0.0.1.jar
         jarLocation: ""
@@ -40,9 +41,9 @@ spec:
       image: polyzos/food-delivery
       className: sn.academy.food_delivery.services.validation.OrderValidationService
       forwardSourceMessageProperty: true
-      MaxPendingAsyncRequests: 1000
+      maxPendingAsyncRequests: 1000
       replicas: 1
-      maxReplicas: 3
+#      maxReplicas: 3
       logTopic: persistent://public/default/order-validation-logs
       input:
         topics:
@@ -51,47 +52,50 @@ spec:
         typeClassName: sn.academy.food_delivery.models.avro.FoodOrder
         sourceSpecs:
           "persistent://orders/inbound/food-orders":
-            schemaType: "AVRO"
+            schemaType: "avro"
       resources:
         limits:
-          cpu: "0.6"
-          memory: 1.1G
-        requests:
           cpu: "0.5"
-          memory: 1G
-      pulsar:
-        pulsarConfig: "food-delivery-mesh-config"
-      java:
-        jar: microservices-webinars-0.0.1.jar
-        jarLocation: ""
-      clusterName: localpulsar
-      autoAck: true
-
-    - name: aggregation
-      image: polyzos/food-delivery
-      className: sn.academy.food_delivery.services.aggregation.OrderAggregationService
-      forwardSourceMessageProperty: true
-      MaxPendingAsyncRequests: 1000
-      replicas: 1
-      maxReplicas: 3
-      logTopic: persistent://public/default/order-aggregation-logs
-      input:
-        topics:
-          - "persistent://orders/inbound/aggregated-orders"
-        sinkSchemaType: "avro"
-        typeClassName: sn.academy.food_delivery.models.avro.ValidatedFoodOrder
-        sourceSpecs:
-          "persistent://orders/inbound/aggregated-orders":
-            schemaType: "AVRO"
-      resources:
-        limits:
-          cpu: "0.2"
           memory: 1.1G
         requests:
           cpu: "0.1"
           memory: 1G
       pulsar:
         pulsarConfig: "food-delivery-mesh-config"
+        authSecret: "food-delivery-mesh-secret"
+      java:
+        jar: microservices-webinars-0.0.1.jar
+        jarLocation: ""
+      clusterName: localpulsar
+      autoAck: true
+
+
+    - name: aggregation
+      image: polyzos/food-delivery
+      className: sn.academy.food_delivery.services.aggregation.OrderAggregationService
+      forwardSourceMessageProperty: true
+      maxPendingAsyncRequests: 1000
+      replicas: 1
+      maxReplicas: 3
+      logTopic: persistent://public/default/order-aggregation-logs
+      input:
+        topics:
+          - "persistent://orders/validation/aggregated-orders"
+        sinkSchemaType: "avro"
+        typeClassName: sn.academy.food_delivery.models.avro.ValidatedFoodOrder
+        sourceSpecs:
+          "persistent://orders/validation/aggregated-orders":
+            schemaType: "avro"
+      resources:
+        limits:
+          cpu: "0.6"
+          memory: 1.1G
+        requests:
+          cpu: "0.3"
+          memory: 1G
+      pulsar:
+        pulsarConfig: "food-delivery-mesh-config"
+        authSecret: "food-delivery-mesh-secret"
       java:
         jar: microservices-webinars-0.0.1.jar
         jarLocation: ""
@@ -102,18 +106,18 @@ spec:
       image: polyzos/food-delivery
       className: sn.academy.food_delivery.services.processing.GeoEncoderService
       forwardSourceMessageProperty: true
-      MaxPendingAsyncRequests: 1000
+      maxPendingAsyncRequests: 1000
       replicas: 1
-      maxReplicas: 3
+#      maxReplicas: 3
       logTopic: persistent://public/default/geo-encoding-logs
       input:
         topics:
-          - "persistent://orders/inbound/geo-encoder"
-        sinkSchemaType: "AVRO"
+          - "persistent://orders/validation/geo-encoder"
+        sinkSchemaType: "avro"
         typeClassName: sn.academy.food_delivery.models.avro.Address
         sourceSpecs:
-          "persistent://orders/inbound/geo-encoder":
-            schemaType: "AVRO"
+          "persistent://orders/validation/geo-encoder":
+            schemaType: "avro"
       resources:
         limits:
           cpu: "0.2"
@@ -123,6 +127,7 @@ spec:
           memory: 1G
       pulsar:
         pulsarConfig: "food-delivery-mesh-config"
+        authSecret: "food-delivery-mesh-secret"
       java:
         jar: microservices-webinars-0.0.1.jar
         jarLocation: ""
@@ -133,18 +138,18 @@ spec:
       image: polyzos/food-delivery
       className: sn.academy.food_delivery.services.processing.PaymentService
       forwardSourceMessageProperty: true
-      MaxPendingAsyncRequests: 1000
+      maxPendingAsyncRequests: 1000
       replicas: 1
-      maxReplicas: 5
+#      maxReplicas: 3
       logTopic: persistent://public/default/payments-logs
       input:
         topics:
-          - "persistent://orders/inbound/payments"
-        sinkSchemaType: "AVRO"
+          - "persistent://orders/validation/payments"
+        sinkSchemaType: "avro"
         typeClassName: sn.academy.food_delivery.models.avro.Payment
         sourceSpecs:
-          "persistent://orders/inbound/payments":
-            schemaType: "AVRO"
+          "persistent://orders/validation/payments":
+            schemaType: "avro"
       resources:
         limits:
           cpu: "0.2"
@@ -154,6 +159,7 @@ spec:
           memory: 1G
       pulsar:
         pulsarConfig: "food-delivery-mesh-config"
+        authSecret: "food-delivery-mesh-secret"
       java:
         jar: microservices-webinars-0.0.1.jar
         jarLocation: ""
@@ -164,18 +170,18 @@ spec:
       image: polyzos/food-delivery
       className: sn.academy.food_delivery.services.processing.RestaurantCommunicationService
       forwardSourceMessageProperty: true
-      MaxPendingAsyncRequests: 1000
+      maxPendingAsyncRequests: 1000
       replicas: 1
-      maxReplicas: 5
+#      maxReplicas: 3
       logTopic: persistent://public/default/restaurant-communication-logs
       input:
         topics:
-          - "persistent://orders/inbound/restaurants"
-        sinkSchemaType: "AVRO"
+          - "persistent://orders/validation/restaurants"
+        sinkSchemaType: "avro"
         typeClassName: sn.academy.food_delivery.models.avro.FoodOrder
         sourceSpecs:
-          "persistent://orders/inbound/restaurants":
-            schemaType: "AVRO"
+          "persistent://orders/validation/restaurants":
+            schemaType: "avro"
       resources:
         limits:
           cpu: "0.2"
@@ -185,6 +191,7 @@ spec:
           memory: 1G
       pulsar:
         pulsarConfig: "food-delivery-mesh-config"
+        authSecret: "food-delivery-mesh-secret"
       java:
         jar: microservices-webinars-0.0.1.jar
         jarLocation: ""
@@ -196,5 +203,14 @@ kind: ConfigMap
 metadata:
   name: food-delivery-mesh-config
 data:
-  webServiceURL: http://localpulsar-broker.pulsar.svc.cluster.local:8080
-  brokerServiceURL: pulsar://localpulsar-broker.pulsar.svc.cluster.local:6650
+  webServiceURL: http://pulsar-broker.workshop.svc.cluster.local:8080
+  brokerServiceURL: pulsar://pulsar-broker.workshop.svc.cluster.local:6650
+  stateStorageServiceUrl: bk://pulsar-bookie.workshop.svc.cluster.local:4181
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: food-delivery-mesh-secret
+stringData:
+  clientAuthenticationPlugin: "org.apache.pulsar.client.impl.auth.AuthenticationToken"
+  clientAuthenticationParameters: ""

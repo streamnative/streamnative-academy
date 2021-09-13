@@ -13,7 +13,7 @@ spec:
   logTopic: persistent://public/default/restaurant-communication-logs
   input:
     topics:
-      - "persistent://orders/inbound/restaurants"
+      - "persistent://orders/validation/restaurants"
     sinkSchemaType: "avro"
     typeClassName: sn.academy.food_delivery.models.avro.FoodOrder
   resources:
