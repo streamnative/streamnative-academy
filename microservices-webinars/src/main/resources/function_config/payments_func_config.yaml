@@ -12,5 +12,6 @@ subName: "payments-sub"
 inputSpecs:
   persistent://orders/validation/payments:
     schemaType: "avro"
-cpu: 0.2
-ram: 200000000
+resources:
+  cpu: 0.5
+  ram: 500000000

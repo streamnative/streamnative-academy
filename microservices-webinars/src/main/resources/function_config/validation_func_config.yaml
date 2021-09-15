@@ -12,5 +12,6 @@ subName: "order-validation-sub"
 inputSpecs:
   persistent://orders/inbound/food-orders:
     schemaType: "avro"
-cpu: 0.2
-ram: 300000000
+resources:
+  cpu: 0.5
+  ram: 500000000

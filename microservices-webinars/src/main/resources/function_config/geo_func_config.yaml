@@ -12,5 +12,6 @@ subName: "geo-encoder-sub"
 inputSpecs:
   persistent://orders/validation/geo-encoder:
     schemaType: "avro"
-cpu: 0.2
-ram: 200000000
+resources:
+  cpu: 0.5
+  ram: 500000000

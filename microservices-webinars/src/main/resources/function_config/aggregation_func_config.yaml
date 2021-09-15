@@ -12,5 +12,6 @@ subName: "aggregated-orders-sub"
 inputSpecs:
   persistent://orders/validation/aggregated-orders:
     schemaType: "avro"
-cpu: 0.2
-ram: 500000000
+resources:
+  cpu: 0.5
+  ram: 500000000
