@@ -10,7 +10,6 @@ spec:
       forwardSourceMessageProperty: true
       maxPendingAsyncRequests: 1000
       replicas: 1
-#      maxReplicas: 3
       logTopic: persistent://public/default/food-orders-logs
       output:
         producerConf:
@@ -33,7 +32,7 @@ spec:
       java:
         jar: microservices-webinars-0.0.1.jar
         jarLocation: ""
-      clusterName: localpulsar
+      clusterName: pulsar
       autoAck: true
 
   functions:
@@ -43,7 +42,6 @@ spec:
       forwardSourceMessageProperty: true
       maxPendingAsyncRequests: 1000
       replicas: 1
-#      maxReplicas: 3
       logTopic: persistent://public/default/order-validation-logs
       input:
         topics:
@@ -66,7 +64,7 @@ spec:
       java:
         jar: microservices-webinars-0.0.1.jar
         jarLocation: ""
-      clusterName: localpulsar
+      clusterName: pulsar
       autoAck: true
 
 
@@ -99,7 +97,7 @@ spec:
       java:
         jar: microservices-webinars-0.0.1.jar
         jarLocation: ""
-      clusterName: localpulsar
+      clusterName: pulsar
       autoAck: true
 
     - name: "geo"
@@ -108,7 +106,6 @@ spec:
       forwardSourceMessageProperty: true
       maxPendingAsyncRequests: 1000
       replicas: 1
-#      maxReplicas: 3
       logTopic: persistent://public/default/geo-encoding-logs
       input:
         topics:
@@ -131,7 +128,7 @@ spec:
       java:
         jar: microservices-webinars-0.0.1.jar
         jarLocation: ""
-      clusterName: localpulsar
+      clusterName: pulsar
       autoAck: true
 
     - name: "payments"
@@ -140,7 +137,6 @@ spec:
       forwardSourceMessageProperty: true
       maxPendingAsyncRequests: 1000
       replicas: 1
-#      maxReplicas: 3
       logTopic: persistent://public/default/payments-logs
       input:
         topics:
@@ -163,7 +159,7 @@ spec:
       java:
         jar: microservices-webinars-0.0.1.jar
         jarLocation: ""
-      clusterName: localpulsar
+      clusterName: pulsar
       autoAck: true
 
     - name: "restaurants"
@@ -172,7 +168,6 @@ spec:
       forwardSourceMessageProperty: true
       maxPendingAsyncRequests: 1000
       replicas: 1
-#      maxReplicas: 3
       logTopic: persistent://public/default/restaurant-communication-logs
       input:
         topics:
@@ -195,7 +190,7 @@ spec:
       java:
         jar: microservices-webinars-0.0.1.jar
         jarLocation: ""
-      clusterName: localpulsar
+      clusterName: pulsar
       autoAck: true
 ---
 apiVersion: v1

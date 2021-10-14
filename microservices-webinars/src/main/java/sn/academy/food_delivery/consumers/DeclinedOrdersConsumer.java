@@ -17,7 +17,7 @@ public class DeclinedOrdersConsumer {
                 .topic(AppConfig.DECLINED_ORDERS_TOPIC_NAME)
                 .consumerName("declined-orders-consumer")
                 .subscriptionInitialPosition(SubscriptionInitialPosition.Earliest)
-                .subscriptionName("declined-orders-subscription2")
+                .subscriptionName("declined-orders-subscription")
                 .subscribe();
 
         int messageCount = 0;
