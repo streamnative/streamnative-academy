@@ -1,0 +1,64 @@
+apiVersion: compute.functionmesh.io/v1alpha1
+kind: Source
+metadata:
+  name: pulsar-s3-source
+  namespace: pulsar
+spec:
+  image: polyzos/pulsar-s3-source
+  imagePullPolicy: Always
+  className: io.streamnative.S3PulsarSource
+  tenant: public
+  namespace: default
+  name: pulsar-s3-source
+  replicas: 1
+  forwardSourceMessageProperty: false
+  output:
+    producerConf:
+      maxPendingMessages: 1000
+      maxPendingMessagesAcrossPartitions: 50000
+      useThreadLocalProducers: true
+    topic: persistent://public/default/raw_click_events
+    typeClassName: "java.lang.String"
+  sourceConfig:
+    awsBuckets: "events-bucket-small"
+    awsRegion: "us-west-2"
+  secretsMap:
+    "AWS_ACCESS_KEY":
+      path: "pulsar-s3-secrets"
+      key: "accessKey"
+    "AWS_SECRET_KEY":
+      path: "pulsar-s3-secrets"
+      key: "secretKey"
+  resources:
+    limits:
+      cpu: "1.1"
+      memory: 1.1G
+    requests:
+      cpu: "1"
+      memory: 1G
+  pulsar:
+    pulsarConfig: "s3-source-config"
+  java:
+    jar: pulsar-s3-source-0.0.1.jar
+    jarLocation: ""
+  clusterName: localpulsar
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: s3-source-config
+  namespace: pulsar
+data:
+  webServiceURL: http://pulsar-broker.pulsar.svc.cluster.local:8080
+  brokerServiceURL: pulsar://pulsar-broker.pulsar.svc.cluster.local:6650
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: pulsar-s3-secrets
+  namespace: pulsar
+type: Opaque
+data:
+  accessKey: ""
+  secretKey: ""

@@ -1,0 +1,17 @@
+className: io.streamnative.S3PulsarSource
+tenant: public
+namespace: default
+name: s3-file-source
+topicName: "persistent://public/default/raw_click_events"
+parallelism: 1
+resources:
+  cpu: 1.0
+  ram: 500000000
+
+configs:
+  awsBuckets: "events-bucket-small"
+  awsRegion: "us-west-2"
+
+secrets:
+  AWS_ACCESS_KEY: ""
+  AWS_SECRET_KEY: ""

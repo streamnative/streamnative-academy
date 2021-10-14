@@ -12,5 +12,6 @@
   <modules>
     <module>sn-examples</module>
     <module>microservices-webinars</module>
+    <module>pulsar-io-s3-simple-source</module>
   </modules>
 </project>
