@@ -11,7 +11,7 @@ spec:
   namespace: default
   name: pulsar-s3-source
   replicas: 1
-  forwardSourceMessageProperty: false
+  forwardSourceMessageProperty: true
   output:
     producerConf:
       maxPendingMessages: 1000
@@ -39,9 +39,9 @@ spec:
   pulsar:
     pulsarConfig: "s3-source-config"
   java:
-    jar: pulsar-s3-source-0.0.1.jar
+    jar: pulsar-io-s3-simple-source-0.0.1.jar
     jarLocation: ""
-  clusterName: localpulsar
+  clusterName: pulsar
 
 ---
 apiVersion: v1

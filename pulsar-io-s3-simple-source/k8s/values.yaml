@@ -30,13 +30,13 @@ components:
   autorecovery: false
 
 zookeeper:
-  replicaCount: 3
+  replicaCount: 1
 
 bookkeeper:
-  replicaCount: 3
+  replicaCount: 1
 
 broker:
-  replicaCount: 2
+  replicaCount: 1
   configData:
     ## Enable `autoSkipNonRecoverableData` since bookkeeper is running
     ## without persistence

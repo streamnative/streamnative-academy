@@ -8,7 +8,6 @@ import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 import org.apache.pulsar.io.core.PushSource;
 import org.apache.pulsar.io.core.SourceContext;
 import org.apache.pulsar.io.core.annotations.Connector;
@@ -24,7 +23,7 @@ import org.slf4j.Logger;
 public class S3PulsarSource extends PushSource<String> {
     private static Logger logger;
     private static AmazonS3 awsS3client;
-    private final ExecutorService executorService = Executors.newFixedThreadPool(4);
+    private final ExecutorService executorService = Executors.newFixedThreadPool(1);
 
     @Override
     public void open(Map<String, Object> config, SourceContext sourceContext) throws Exception {
@@ -52,16 +51,7 @@ public class S3PulsarSource extends PushSource<String> {
     @Override
     public void close() throws Exception {
         executorService.shutdown();
-        try {
-            if (!executorService.awaitTermination(3000, TimeUnit.MILLISECONDS)) {
-                executorService.shutdownNow();
-                // wait a while for tasks to respond to being cancelled
-                executorService.awaitTermination(3000, TimeUnit.MILLISECONDS);
-            }
-        } catch (InterruptedException e) {
-            executorService.shutdownNow();
-            Thread.currentThread().interrupt();
-        }
+        awsS3client.shutdown();
     }
 
 

@@ -7,7 +7,6 @@ import org.apache.pulsar.common.io.SourceConfig;
 import org.apache.pulsar.functions.LocalRunner;
 
 public class S3PulsarSourceLRTest {
-    private static LocalRunner localRunner;
     private static final String EVENTS_BUCKET_NAME = "events-bucket-small";
     private static final String EVENTS_OUTPUT_TOPIC_NAME = "persistent://public/default/raw_click_events";
 
@@ -17,7 +16,7 @@ public class S3PulsarSourceLRTest {
     }
 
     private static void startLocalRunner() throws Exception {
-        localRunner = LocalRunner.builder()
+        LocalRunner localRunner = LocalRunner.builder()
                 .brokerServiceUrl("pulsar://127.0.0.1:6650")
                 .sourceConfig(getSourceConfig())
                 .build();
@@ -41,7 +40,7 @@ public class S3PulsarSourceLRTest {
                 .className(S3PulsarSource.class.getName())
                 .configs(configs)
                 .secrets(secrets)
-                .name("s3-io.ipolyzos.source")
+                .name("s3-io-source")
                 .tenant("public")
                 .namespace("default")
                 .topicName(EVENTS_OUTPUT_TOPIC_NAME)
