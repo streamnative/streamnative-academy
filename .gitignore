@@ -4,3 +4,4 @@ streamnative-academy.iml
 images/.DS_Store
 target/
 *iml
+*dependency-reduced-pom.xml
