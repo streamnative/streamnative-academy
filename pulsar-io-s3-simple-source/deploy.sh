@@ -6,5 +6,3 @@ kubectl exec -it pulsar-toolset-0 -n pulsar -- bin/pulsar-admin source create \
 
 
 kubectl exec -it pulsar-toolset-0 -n pulsar -- bin/pulsar-admin source list
-
-#pulsar-admin source delete --name s3-file-source

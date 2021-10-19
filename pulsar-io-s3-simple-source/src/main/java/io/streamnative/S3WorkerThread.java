@@ -78,7 +78,7 @@ public class S3WorkerThread extends Thread {
              final BufferedReader reader = new BufferedReader(streamReader)) {
             return reader.lines().collect(Collectors.toList());
         } catch (final IOException e) {
-            System.out.println(e.getMessage());
+            logger.warn(e.getMessage());
             return Collections.emptyList();
         }
     }

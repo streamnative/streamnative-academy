@@ -17,7 +17,7 @@
 # under the License.
 #
 
-## deployed withh emptyDir
+## deployed with emptyDir
 volumes:
   persistence: false
 
@@ -38,17 +38,11 @@ bookkeeper:
 broker:
   replicaCount: 1
   configData:
-    ## Enable `autoSkipNonRecoverableData` since bookkeeper is running
-    ## without persistence
     autoSkipNonRecoverableData: "true"
     # storage settings
-    managedLedgerDefaultEnsembleSize: "2"
-    managedLedgerDefaultWriteQuorum: "2"
-    managedLedgerDefaultAckQuorum: "2"
-    systemTopicEnabled: "true"
-    topicLevelPoliciesEnabled: "true"
-    httpOutputBufferSize: "80000000"
-
+    managedLedgerDefaultEnsembleSize: "1"
+    managedLedgerDefaultWriteQuorum: "1"
+    managedLedgerDefaultAckQuorum: "1"
 
 proxy:
   replicaCount: 1
@@ -57,6 +51,8 @@ proxy:
       -Xms64m -Xmx128M -XX:MaxDirectMemorySize=128M
     httpOutputBufferSize: "80000000"
 
-toolset:
-  configData:
-    httpOutputBufferSize: "80000000"
+
+images:
+  pulsar_manager:
+    repository: streamnative/sn-pulsar-manager
+    tag: 0.6.0
