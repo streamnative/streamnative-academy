@@ -28,6 +28,7 @@ affinity:
 # disable auto recovery
 components:
   autorecovery: false
+  pulsar_manager: false
 
 zookeeper:
   replicaCount: 1
@@ -51,8 +52,3 @@ proxy:
       -Xms64m -Xmx128M -XX:MaxDirectMemorySize=128M
     httpOutputBufferSize: "80000000"
 
-
-images:
-  pulsar_manager:
-    repository: streamnative/sn-pulsar-manager
-    tag: 0.6.0
