@@ -7,3 +7,4 @@
 * https://github.com/tspannhw/FLiP-Jetson
 * https://github.com/tspannhw/FLiP-InfluxDB
 * https://github.com/streamnative/examples
+* https://github.com/tspannhw/FLiP-SQL
