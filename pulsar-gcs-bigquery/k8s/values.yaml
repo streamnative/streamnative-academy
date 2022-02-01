@@ -1,0 +1,53 @@
+namespace: demo
+
+volumes:
+  persistence: false
+
+affinity:
+  anti_affinity: false
+
+components:
+  autorecovery: false
+  pulsar_manager: false
+
+zookeeper:
+  replicaCount: 3
+
+bookkeeper:
+  replicaCount: 3
+  configData:
+    BOOKIE_MEM: >
+      -Xms128M
+      -Xmx256M
+      -XX:MaxDirectMemorySize=256M
+    PULSAR_MEM: >
+      -Xms128M
+      -Xmx256M
+      -XX:MaxDirectMemorySize=256M
+    PULSAR_EXTRA_OPTS: >
+      -Dpulsar.allocator.exit_on_oom=true
+      -Dio.netty.recycler.maxCapacity.default=1000
+      -Dio.netty.recycler.linkCapacity=1024
+      -Dnetworkaddress.cache.ttl=60
+broker:
+  replicaCount: 2
+  configData:
+    autoSkipNonRecoverableData: "true"
+
+    managedLedgerDefaultEnsembleSize: "1"
+    managedLedgerDefaultWriteQuorum: "1"
+    managedLedgerDefaultAckQuorum: "1"
+
+proxy:
+  replicaCount: 1
+  configData:
+    PULSAR_MEM: >
+      -Xms64m -Xmx128M -XX:MaxDirectMemorySize=128M
+    httpOutputBufferSize: "110000000"
+
+monitoring:
+  prometheus: false
+  grafana: false
+  node_exporter: false
+  alert_manager: false
+  loki: false

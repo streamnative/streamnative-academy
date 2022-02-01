@@ -1,0 +1,12 @@
+className: io.streamnative.functions.EventParserFunc
+tenant: public
+namespace: default
+name: "event_parser_func"
+inputs:
+  - "persistent://public/default/raw_events"
+output: "persistent://public/default/parsed_events"
+parallelism: 1
+logTopic: "persistent://public/default/parsed_events_logs"
+autoAck: true
+cleanupSubscription: true
+subName: "parsed_events_sub"
