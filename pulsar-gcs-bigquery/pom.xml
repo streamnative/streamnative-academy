@@ -26,12 +26,6 @@
             <version>${pulsar.version}</version>
         </dependency>
 
-        <!--    <dependency>-->
-        <!--      <groupId>org.apache.pulsar</groupId>-->
-        <!--      <artifactId>pulsar-io-core</artifactId>-->
-        <!--      <version>${pulsar.version}</version>-->
-        <!--    </dependency>-->
-
         <dependency>
             <groupId>org.apache.pulsar</groupId>
             <artifactId>pulsar-functions-api</artifactId>
@@ -44,18 +38,6 @@
             <version>${pulsar.version}</version>
             <scope>test</scope>
         </dependency>
-
-        <!--    <dependency>-->
-        <!--      <groupId>org.slf4j</groupId>-->
-        <!--      <artifactId>slf4j-api</artifactId>-->
-        <!--      <version>${slf4j.version}</version>-->
-        <!--    </dependency>-->
-
-        <!--    <dependency>-->
-        <!--      <groupId>org.slf4j</groupId>-->
-        <!--      <artifactId>slf4j-simple</artifactId>-->
-        <!--      <version>${slf4j.version}</version>-->
-        <!--    </dependency>-->
 
         <dependency>
             <groupId>org.projectlombok</groupId>
