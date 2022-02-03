@@ -5,7 +5,7 @@ on top in order to query them.
 
 Sample Streaming Data Pipeline
 ---------------------
-![Alt text](images/pipeline.png "Example Data Pipeline")
+![Alt text](../images/pipeline.png "Example Data Pipeline")
 
 Make sure you have a kubernetes cluster up and running with enough resources to deploy a Pulsar Cluster
 
