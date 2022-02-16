@@ -1,6 +1,6 @@
 Geo-Replication Demo
 --------------------
-The purpose of this repo is to demonstrate how you leverage Pulsar's Geo-Replication in order to design and implement disaster recovery solutions.
+The purpose of this repo is to demonstrate how you can leverage Pulsar's Geo-Replication in order to design and implement disaster recovery solutions.
 In this demo we will create a full-mesh replication between 3 different Pulsar Clusters under one 
 Global Zookeeper Configuration Store.
 
