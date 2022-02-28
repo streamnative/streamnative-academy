@@ -1,0 +1,193 @@
+tls:
+  enabled: false
+  proxy:
+    enabled: false
+
+zookeeper:
+  replicaCount: 1
+  resources:
+    requests:
+      memory: 500Mi
+      cpu: 100m
+  volumes:
+    useSeparateDiskForTxlog: true
+    data:
+      name: data
+      size: 10Gi
+    dataLog:
+      name: datalog
+      size: 10Gi
+  configData:
+    PULSAR_MEM: >
+      -Xms300M -Xmx300M
+    PULSAR_EXTRA_OPTS: >
+      -Dzookeeper.snapCount=1000000
+    PULSAR_PREFIX_maxClientCnxns: "1000"
+
+bookkeeper:
+  replicaCount: 1
+  resources:
+    limits:
+      cpu: 100m
+      memory: 500Mi
+    requests:
+      cpu: 100m
+      memory: 500Mi
+  volumes:
+    journal:
+      name: journal
+      size: 5Gi
+      # set your own storage class name or use the default storage class
+      #storageClassName: local-ssd
+    ledgers:
+      name: ledgers
+      size: 10Gi
+      # set your own storage class name or use the default storage class
+      #storageClassName: local-hdd
+  configData:
+    PULSAR_GC: >
+      -XX:+ExitOnOutOfMemoryError
+    PULSAR_MEM: >
+      -Xms100M
+      -Xmx100M
+      -XX:MaxDirectMemorySize=100M
+    PULSAR_EXTRA_OPTS: >
+      -Dpulsar.allocator.exit_on_oom=true
+      -Dio.netty.recycler.maxCapacity.default=1000
+      -Dio.netty.recycler.linkCapacity=1024
+      -Dnetworkaddress.cache.ttl=60
+    gcWaitTime: "900000"
+    journalFormatVersionToWrite: "6"
+    # set fileInfoFormatVersionToWrite to `1` in order to enable journal format version `6`
+    fileInfoFormatVersionToWrite: "1"
+    minorCompactionInterval: "3600"
+    majorCompactionInterval: "86400"
+    isThrottleByBytes: "true"
+    compactionRateByBytes: "10485760"
+    PULSAR_PREFIX_useTransactionalCompaction: "true"
+    PULSAR_PREFIX_persistBookieStatusEnabled: "false"
+
+broker:
+  replicaCount: 1
+  resources:
+    requests:
+      cpu: 100m
+      memory: 500Mi
+  configData:
+    PULSAR_MEM: >
+      -Xms100M
+      -Xmx100M
+      -XX:MaxDirectMemorySize=100M
+    PULSAR_GC: >
+      -XX:+ExitOnOutOfMemoryError
+    PULSAR_EXTRA_OPTS: >
+      -Dpulsar.allocator.exit_on_oom=true
+      -Dio.netty.recycler.maxCapacity.default=1000
+      -Dio.netty.recycler.linkCapacity=1024
+      -Dnetworkaddress.cache.ttl=60
+    managedLedgerDefaultEnsembleSize: "1"
+    managedLedgerDefaultWriteQuorum: "1"
+    managedLedgerDefaultAckQuorum: "1"
+    metadataStoreUrl: "global-zk-sn-platform-zookeeper.global:2181"
+    configurationMetadataStoreUrl: "global-zk-sn-platform-zookeeper.global:2181"
+    configurationStoreServers: "global-zk-sn-platform-zookeeper.global:2181"
+
+    # For audit log
+    PULSAR_PREFIX_brokerInterceptors: "audit-log"
+    PULSAR_PREFIX_brokerInterceptorsDirectory: "./interceptors"
+    PULSAR_PREFIX_snAuditLogConfig: >
+      {"defaultTopics":{"allowed":"persistent://sn/system/audit_log_allowed","denied":"persistent://sn/system/audit_log_denied"}}
+
+proxy:
+  replicaCount: 1
+  resources:
+    requests:
+      cpu: 100m
+      memory: 500Mi
+  configData:
+    PULSAR_MEM: >
+      -Xms100M -Xmx100M -XX:MaxDirectMemorySize=100M
+    PULSAR_GC: >
+      -XX:+ExitOnOutOfMemoryError
+    PULSAR_EXTRA_OPTS: >
+      -Dpulsar.allocator.exit_on_oom=true
+      -Dio.netty.recycler.maxCapacity.default=1000
+      -Dio.netty.recycler.linkCapacity=1024
+      -Dnetworkaddress.cache.ttl=60
+  tlsSecretName: "demo-sn-pulsar-proxy-tls"
+
+components:
+  vault: false
+  zookeeper: true
+  bookkeeper: true
+  autorecovery: true
+  broker: true
+  functions: false
+  proxy: true
+  toolset: true
+  streamnative_console: false
+  sql_worker: false
+  kop: false
+  aop: false
+  pulsar_detector: false
+  superset: false
+  entities: false
+  custom_metric_server: false
+
+monitoring:
+  prometheus: false
+  grafana: false
+  node_exporter: false
+  alert_manager: false
+  loki: false
+  datadog: false
+
+auth:
+  authentication:
+    enabled: false
+    provider: "jwt"
+    jwt:
+      usingSecretKey: false
+  authorization:
+    enabled: false
+  superUsers:
+    # broker to broker communication
+    broker: "broker-admin"
+    # proxy to broker communication
+    proxy: "proxy-admin"
+    # websocket proxy to broker communication
+    websocket: "ws-admin"
+    # pulsar-admin client to broker/proxy communication
+    client: "admin"
+    # streamnative-console
+    streamnative-console: "super"
+  # Enable vault based authentication
+  vault:
+    enabled: false
+  oauth:
+    enabled: false
+    oauthIssuerUrl: "https://login.microsoftonline.com/your-tenant-id/v2.0"
+    oauthAudience: "your-application-id"
+    oauthSubjectClaim: "oid"
+    oauthScopeClaim: "scp"
+    oauthAuthzRoleClaim: "roles"
+    # The name of the role when creating the application
+    oauthAuthzAdminRole: ""
+    authenticationProvider: "io.streamnative.pulsar.broker.authentication.AuthenticationProviderOAuth"
+    authorizationProvider: "io.streamnative.pulsar.broker.authorization.AuthorizationProviderOAuth"
+
+configmapReload:
+  prometheus:
+    ## configmap-reload container image
+    ##
+    image:
+      repository: jimmidyson/configmap-reload
+      tag: v0.3.0
+      pullPolicy: IfNotPresent
+  alertmanager:
+    ## configmap-reload container image
+    ##
+    image:
+      repository: jimmidyson/configmap-reload
+      tag: v0.3.0
+      pullPolicy: IfNotPresent

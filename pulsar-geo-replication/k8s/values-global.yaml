@@ -1,0 +1,51 @@
+tls:
+  enabled: false
+  proxy:
+    enabled: false
+
+zookeeper:
+  replicaCount: 1
+  resources:
+    requests:
+      memory: 500Mi
+      cpu: 100m
+  volumes:
+    useSeparateDiskForTxlog: true
+    data:
+      name: data
+      size: 10Gi
+    dataLog:
+      name: datalog
+      size: 10Gi
+  configData:
+    PULSAR_MEM: >
+      -Xms300M -Xmx300M
+    PULSAR_EXTRA_OPTS: >
+      -Dzookeeper.snapCount=1000000
+    PULSAR_PREFIX_maxClientCnxns: "1000"
+
+components:
+  vault: false
+  zookeeper: true
+  bookkeeper: false
+  autorecovery: false
+  broker: false
+  functions: false
+  proxy: false
+  toolset: false
+  streamnative_console: false
+  sql_worker: false
+  kop: false
+  aop: false
+  pulsar_detector: false
+  superset: false
+  entities: false
+  custom_metric_server: false
+
+monitoring:
+  prometheus: false
+  grafana: false
+  node_exporter: false
+  alert_manager: false
+  loki: false
+  datadog: false
