@@ -15,5 +15,6 @@
     <module>pulsar-io-s3-simple-source</module>
     <module>pulsar-gcs-bigquery</module>
     <module>pulsar-geo-replication</module>
+    <module>pulsar-certification-examples</module>
   </modules>
 </project>

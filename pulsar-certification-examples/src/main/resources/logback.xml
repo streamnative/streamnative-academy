@@ -1,0 +1,15 @@
+<configuration>
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%yellow(%d{HH:mm:ss.SSS}) %highlight(%level) %green([%thread]) %cyan(%logger{50}) - %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <logger name="io.ipolyzos" level="debug"/>
+  <logger name="io.netty" level="warn"/>
+  <logger name="io.vertx" level="info"/>
+
+  <root level="info">
+    <appender-ref ref="STDOUT" />
+  </root>
+</configuration>
