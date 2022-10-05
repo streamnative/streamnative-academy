@@ -12,7 +12,7 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
 
-        <pulsar.version>2.9.1</pulsar.version>
+        <pulsar.version>2.9.3</pulsar.version>
         <slf4j.version>1.7.32</slf4j.version>
         <resilience4j.version>1.7.1</resilience4j.version>
     </properties>
