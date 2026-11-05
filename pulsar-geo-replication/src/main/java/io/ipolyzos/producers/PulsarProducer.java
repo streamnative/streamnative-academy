@@ -32,7 +32,7 @@ public class PulsarProducer {
                 .onFailure(throwable -> {
                     if (throwable instanceof PulsarClientException) {
                         System.out.printf(
-                                "An exception occured, while trying to connect to cluster: %s - failed after %s "
+                                "An exception occurred, while trying to connect to cluster: %s - failed after %s "
                                         + "retries.%n",
                                 producerThread.getConnectionURL(),
                                 AppConfig.maxAttempts
